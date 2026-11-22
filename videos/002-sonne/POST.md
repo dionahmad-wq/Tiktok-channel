@@ -6,7 +6,7 @@
 Die Sonne verschwindet – und 8 Minuten 19 lang merkst du nichts. ☀️➡️🌑 Wer überlebt am Ende? Was soll ich als Nächstes simulieren? 👇
 #wissen #weltall #sonne #waspassiert #simulation
 
-**Sound:** im TikTok-Editor einen düsteren Ambient-/Spannungs-Track bei ca. 10–15 % Lautstärke dazulegen.
+**Ton:** fertig, nur Stimme – im TikTok-Editor **keinen** Sound/Musik dazulegen.
 
 ## Rechnung & Fakten
 | Aussage im Video | Grundlage |

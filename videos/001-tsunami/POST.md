@@ -6,7 +6,7 @@
 Kannst du einem Tsunami davonrennen? 🌊🏃 Wir haben es simuliert – die Antwort überrascht. Was soll ich als Nächstes simulieren? 👇
 #wissen #simulation #tsunami #waspassiert #experiment
 
-**Sound:** im TikTok-Editor einen ruhigen Lo-Fi-/„Slowed + Reverb“-Track bei ca. 10–15 % Lautstärke dazulegen.
+**Ton:** fertig, nur Stimme – im TikTok-Editor **keinen** Sound/Musik dazulegen.
 
 ## Rechnung & Fakten
 | Aussage im Video | Grundlage |

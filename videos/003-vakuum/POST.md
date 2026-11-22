@@ -1,10 +1,12 @@
 # 003 · Wie lange überlebst du ohne Raumanzug im All?
 
-**Datei:** `out/003-vakuum.mp4` (1080×1920, 30 fps, 51 s, dramatische Stimme + Sounddesign + Untertitel, −14 LUFS)
+**Datei:** `out/003-vakuum.mp4` (1080×1920, 30 fps, 51 s, dramatische Stimme + Geräusche (keine Musik) + Untertitel, −14 LUFS)
 
 ## Beschreibung (zum Kopieren)
 Ohne Raumanzug im All: Du hast 90 Sekunden – und ein Fehler tötet dich sofort. 😳🚀 Hättest du es gewusst? 👇
 #wissen #weltall #simulation #waspassiert #nasa
+
+**Ton:** fertig – im TikTok-Editor **keinen** Sound/Musik dazulegen.
 
 ## Fakten
 | Aussage | Grundlage |

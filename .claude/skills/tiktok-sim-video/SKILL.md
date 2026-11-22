@@ -5,6 +5,9 @@ description: Erstellt ein komplettes deutsches TikTok-Video im Stil „Was passi
 
 # TikTok-Simulationsvideo (Deutsch, HyperFrames)
 
+> **Feste Regeln des Kanals:** immer Deutsch · **keine Musik, keine Instrumente, keine Melodien** –
+> nur Stimme und nicht-musikalische Geräusche.
+
 Du produzierst **allein und komplett im Code** ein fertiges Video für den Kanal. Immer **auf Deutsch**.
 Look & Aufbau folgen `STYLE_GUIDE.md` im Repo-Root (Analyse der 3 Referenzvideos). Lies ihn zuerst.
 Fertiges Beispiel zum Abschauen: `videos/001-tsunami/` (alle Szenentypen: Hook, Querschnitt, Rennen,
@@ -39,9 +42,10 @@ Jedes Video erfüllt **alle** Punkte (Vorbild: `videos/003-vakuum/`):
 6. **Knappes Finale:** Auflösung in letzter Sekunde, Restzeit nennen („Sechs Sekunden vor Schluss.“).
 7. **Pointe = Handlung/Erkenntnis** in 1–2 Wörtern, riesig, mit Impact („AUSATMEN.“).
 8. **Länge 45–60 s.** Lieber kürzer und dichter: alle 2–3 s eine neue visuelle Information.
-9. **Sound ist Pflicht** (`sfx` in script.json, siehe Schritt 4b): Drone-Bett, Whoosh vor jedem
-   Szenenwechsel, Impact auf Schlüsselwörtern, Herzschlag (schneller werdend) in kritischen Phasen,
-   Riser in die Auflösung.
+9. **Geräusche statt Musik** (`sfx` in script.json, siehe Schritt 4b): Whoosh vor jedem Szenenwechsel,
+   Impact auf Schlüsselwörtern, Herzschlag (schneller werdend) in kritischen Phasen, Rausch-Riser in die
+   Auflösung. **Niemals Musik, Instrumente, Melodien oder tonale Klangteppiche** (Regel des Kanals) –
+   auch nicht als Empfehlung für den TikTok-Editor.
 10. **Stimme:** `"fx": "dramatic"`, kurze Sätze, `speed` 1.05–1.2 auf Schlüsselsätzen, `pause` 0.5 vor Wendungen.
 
 ## 2. Fakten & Rechnung
@@ -88,9 +92,9 @@ eine `"sfx"`-Liste anlegen (Format und Klänge: Kopf von `scripts/sfx.py`), dann
 ```bash
 python3 $S/sfx.py .        # erzeugt assets/sfx/*.wav und setzt die <audio>-Tags
 ```
-Pegel-Richtwerte: Stimme `data-volume` 1.4, Drone 0.1 (≈ 12 dB unter Stimme), Herzschlag 0.75–0.85,
-Impact 0.8–0.9, Whoosh 0.5, Riser 0.55. Nach dem Rendern messen (Ziel −14 LUFS, Spitze ≤ −1 dB) und in
-einer Sprechpause prüfen, dass das Bett leiser ist als die Stimme. Die Klänge sind synthetisch und nur
+Pegel-Richtwerte: Stimme `data-volume` 1.4, Herzschlag 0.75–0.85, Impact 0.8–0.9, Whoosh 0.5,
+Riser 0.55. Nach dem Rendern messen (Ziel −14 LUFS, Spitze ≤ −1 dB). Kein Dauer-Bett: Zwischen den
+Sätzen darf Stille sein. Die Klänge sind synthetisch und nur
 gemessen, nicht gehört – das dem Nutzer so sagen.
 
 ## 5. Szenen schreiben (`compositions/<szene>.html`)
@@ -136,6 +140,6 @@ Untertitel und Dramaturgie bleiben gleich.
 
 ## 7. Abgabe
 - `out/NNN-slug.mp4` und `POST.md` (Beschreibung, 3–5 Hashtags, Quellen/Rechnung) committen; `.snaps/` nicht.
-- Dem Nutzer sagen: Musik im TikTok-Editor dazulegen (Referenzen nutzen leisen Lo-Fi-/Slowed-Sound,
-  ca. 10–15 % Lautstärke) – die Stimme ist bereits im Video.
+- **Keine Musik empfehlen.** Das Video ist fertig mit Stimme + Geräuschen; im TikTok-Editor keinen Sound
+  dazulegen (Regel des Kanals: keine Musik/Instrumente).
 - Bessere Stimme möglich: ElevenLabs (braucht API-Schlüssel über das sichere Formular, nie im Chat).

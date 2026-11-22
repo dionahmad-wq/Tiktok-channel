@@ -124,12 +124,6 @@
  ],
  "sfx": [
   {
-   "sound": "drone",
-   "at": "start",
-   "until": "end",
-   "vol": 0.1
-  },
-  {
    "sound": "impact",
    "at": [
     "h3",

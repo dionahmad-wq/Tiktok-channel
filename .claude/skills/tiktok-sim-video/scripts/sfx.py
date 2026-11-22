@@ -6,7 +6,6 @@ Nutzung (nach tts_de.py und sync_timing.py):
 
 In script.json:
   "sfx": [
-    {"sound": "drone",     "at": "start", "until": "end", "vol": 0.22},
     {"sound": "impact",    "at": ["h3", 3], "vol": 0.9},          # Wort 3 von Satz h3 (Start)
     {"sound": "whoosh",    "at": ["f1"], "offset": -0.3},          # Satzanfang f1, 0,3 s früher
     {"sound": "riser",     "until": ["r3", 4], "dur": 2.5},        # endet genau auf dem Wort
@@ -15,12 +14,14 @@ In script.json:
   ]
 Anker: "start" | "end" | [satz] | [satz, wort] | [satz, wort, "end"]  (+ optional "offset")
 
+REGEL DES KANALS: keine Musik, keine Instrumente, keine Melodien oder tonalen Klangteppiche.
+Erlaubt sind nur nicht-musikalische Geräusche (Herzschlag, Luftzug, Einschlag, Rauschen, Uhr-Tick).
+
 Klänge (rein synthetisch, deterministisch – gemessen, nicht gehört):
-  drone      tiefes, unruhiges Bett (Bremsrauschen + 55-Hz-Schweben)
   heartbeat  Lub-Dub, Tempo steigt von bpm[0] auf bpm[1]
   impact     tiefer Schlag mit Nachhall (für Pointe/Einschlag)
   whoosh     Luftzug (Szenenwechsel, schnelle Karten)
-  riser      ansteigendes Rauschen bis zum Anker (Spannung vor Auflösung)
+  riser      ansteigendes Luftrauschen (ohne Ton) bis zum Anker (Spannung vor Auflösung)
   tick       kurzer Uhr-Tick
 Schreibt assets/sfx/*.wav und ersetzt in index.html den Block zwischen <!-- SFX:BEGIN --> und <!-- SFX:END -->.
 """
@@ -57,19 +58,6 @@ def env_ad(n, attack, decay):
 def norm(x, peak=0.89):
     m = np.abs(x).max()
     return x / m * peak if m > 0 else x
-
-
-def s_drone(dur):
-    n = int(dur * SR)
-    t = np.arange(n) / SR
-    brown = np.cumsum(RNG.standard_normal(n)) * 0.02
-    brown -= lowpass(brown, 0.5)
-    bed = lowpass(brown, 140)
-    hum = 0.5 * np.sin(2 * np.pi * 55 * t) * (0.6 + 0.4 * np.sin(2 * np.pi * 0.13 * t))
-    hum += 0.25 * np.sin(2 * np.pi * 82.4 * t + 0.7) * (0.5 + 0.5 * np.sin(2 * np.pi * 0.07 * t))
-    x = norm(bed) * 0.8 + hum * 0.5
-    fade = np.minimum(1, np.minimum(t / 2.0, (dur - t) / 1.5))
-    return norm(x * fade, 0.8)
 
 
 def thump(f0, dur, amp):
@@ -125,10 +113,9 @@ def s_riser(dur=2.5):
     fc = 250 + 6000 * k ** 2
     noise = RNG.standard_normal(n)
     band = lowpass(noise, fc) - lowpass(noise, fc * 0.3)
-    sweep = 0.25 * np.sin(2 * np.pi * np.cumsum(120 + 600 * k ** 2) / SR)
     amp = k ** 2.2
     amp[-int(0.01 * SR):] *= np.linspace(1, 0, int(0.01 * SR))
-    return norm((band + sweep) * amp, 0.8)
+    return norm(band * amp, 0.8)
 
 
 def s_tick(dur=0.06):
@@ -172,7 +159,9 @@ def main():
     tags = []
     for i, e in enumerate(spec.get("sfx", [])):
         snd, off = e["sound"], e.get("offset", 0.0)
-        if "at" in e and "until" in e and snd in ("drone", "heartbeat"):
+        if snd in ("drone", "music", "melody", "pad"):
+            raise SystemExit(f"'{snd}' ist auf diesem Kanal nicht erlaubt (keine Musik/Klangteppiche).")
+        if "at" in e and "until" in e and snd == "heartbeat":
             t0, t1 = anchor(e["at"], off), anchor(e["until"], e.get("until_offset", 0.0))
         elif "until" in e and "at" not in e:
             t1 = anchor(e["until"], off)
@@ -186,9 +175,7 @@ def main():
             end = anchor(e["until"])
             starts = list(np.arange(t0, end, e["every"]))
         for k, st in enumerate(starts):
-            if snd == "drone":
-                x = s_drone(t1 - st)
-            elif snd == "heartbeat":
+            if snd == "heartbeat":
                 x = s_heartbeat(t1 - st, tuple(e.get("bpm", (70, 140))))
             elif snd == "impact":
                 x = s_impact(e.get("dur", 1.8))
@@ -203,7 +190,7 @@ def main():
             name = f"{i:02d}{chr(97 + k) if len(starts) > 1 else ''}-{snd}.wav"
             write_wav(os.path.join(out, name), x)
             d = len(x) / SR
-            lane = 5 if snd in ("drone", "heartbeat") else 4
+            lane = 5 if snd == "heartbeat" else 4
             tags.append(f'      <audio id="sfx-{name[:-4]}" src="assets/sfx/{name}" data-start="{st:.3f}" '
                         f'data-duration="{d:.3f}" data-track-index="{lane}" data-volume="{e.get("vol", 0.6)}"></audio>')
 

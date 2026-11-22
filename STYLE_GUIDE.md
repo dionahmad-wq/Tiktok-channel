@@ -27,7 +27,7 @@ Das ist das direkte Vorbild für unsere Nische: **„Was passiert, wenn …?“-
 4. Knappes Finale: Zielzeiten-Tafel `2:12:00` vs `2:12:30`.
 5. Erklärung der Mathe dahinter (Durchschnittsgeschwindigkeit 96 vs 100 km/h).
 6. Punchline groß: **„EINE EINZIGE MINUTE.“**
-- Musik: ruhiger Lo-Fi/Slowed-Track, leise unter der Stimme.
+- Ton (Referenz): Lo-Fi-Track unter der Stimme – **übernehmen wir nicht** (Kanal-Regel: keine Musik/Instrumente).
 
 ## Referenz B – `lumis.50` „Was wäre wenn?“ (Workflow-Tutorial, 92 s)
 **Visuell:** dunkles Violett/Navy, Neon-Linie (Pfad) durch eine 3D-Szene, Glas-UI-Karten im
@@ -53,7 +53,7 @@ Schatten**, mittig im Bild. Starker Hook („6 views“ → „2.6 million views
 | Datenebene | Zähler, Uhren, Fortschrittsbalken, Diagramm-Karten – Zuschauer „sieht die Rechnung“ |
 | Spannung | Führungswechsel / Wendepunkt in der Mitte |
 | Auflösung | eine Zahl/ein Satz riesig als Punchline |
-| Ton | KI-Stimme, sachlich-neugierig, kurze Sätze; Lo-Fi-Musik leise darunter |
+| Ton | KI-Stimme, dramatisch, kurze Sätze; nur Geräusche (Herzschlag, Whoosh, Einschlag) – **keine Musik, keine Instrumente** |
 | Untertitel | Wort-für-Wort-synchron, 2–4 Wörter, Keyword farbig |
 | Outro | Frage an die Community („Was soll ich als Nächstes simulieren?“) |
 
