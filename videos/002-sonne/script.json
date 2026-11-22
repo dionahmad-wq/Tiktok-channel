@@ -1,0 +1,36 @@
+{
+ "title": "Was passiert, wenn die Sonne plötzlich verschwindet?",
+ "speed": 0.95,
+ "fx": "dramatic",
+ "lead_in": 0.2,
+ "segments": [
+  {"id": "h1", "scene": "hook", "text": "Was passiert, wenn die *Sonne* plötzlich *verschwindet?*", "pause": 0.35},
+  {"id": "h2", "scene": "hook", "text": "Die Antwort ist *unheimlich.*", "speed": 1.12, "pause": 0.5},
+
+  {"id": "l1", "scene": "licht", "text": "Die Sonne ist weg. Doch du merkst: *nichts.*", "pause": 0.3},
+  {"id": "l2", "scene": "licht", "text": "Ihr letztes Licht ist noch unterwegs zu uns.", "pause": 0.15},
+  {"id": "l3", "scene": "licht", "text": "*Hundertfünfzig* *Millionen* Kilometer.", "pause": 0.25},
+  {"id": "l4", "scene": "licht", "text": "Acht Minuten und neunzehn Sekunden lang scheint sie einfach weiter.", "pause": 0.2},
+  {"id": "l5", "scene": "licht", "text": "Auch ihre *Schwerkraft* hält uns genau so lange fest.", "pause": 0.4},
+  {"id": "l6", "scene": "licht", "text": "Dann: *Dunkelheit.*", "speed": 1.2, "pause": 0.6},
+
+  {"id": "d1", "scene": "drift", "text": "Die Erde verliert ihren Halt und rast geradeaus ins All.", "pause": 0.15},
+  {"id": "d2", "scene": "drift", "text": "Mit *dreißig* Kilometern pro *Sekunde.*", "pause": 0.3},
+  {"id": "d3", "scene": "drift", "text": "Der Mond wird schwarz. Doch am Himmel leuchtet noch etwas.", "pause": 0.3},
+  {"id": "d4", "scene": "drift", "text": "*Jupiter.* Noch über eine Stunde lang.", "pause": 0.15},
+  {"id": "d5", "scene": "drift", "text": "*Saturn* sogar über zwei Stunden.", "pause": 0.2},
+  {"id": "d6", "scene": "drift", "text": "Es ist das *letzte* *Sonnenlicht,* das wir je sehen.", "speed": 1.08, "pause": 0.5},
+
+  {"id": "c1", "scene": "kaelte", "text": "Dann kommt die *Kälte.*", "pause": 0.2},
+  {"id": "c2", "scene": "kaelte", "text": "Nach einer Woche: im Schnitt unter minus *achtzehn* Grad.", "pause": 0.2},
+  {"id": "c3", "scene": "kaelte", "text": "Nach einem Jahr: unter minus *dreiundsiebzig.*", "pause": 0.25},
+  {"id": "c4", "scene": "kaelte", "text": "Pflanzen sterben. Die Meere *frieren* zu.", "pause": 0.45},
+
+  {"id": "s1", "scene": "tiefsee", "text": "Aber unter dem Eis bleibt das Wasser noch lange *flüssig.*", "pause": 0.2},
+  {"id": "s2", "scene": "tiefsee", "text": "Und tief unten, an heißen Quellen am Meeresgrund, leben *Bakterien,* die *nie* Sonnenlicht gebraucht haben.", "pause": 0.5},
+
+  {"id": "p1", "scene": "punch", "text": "Die letzten Überlebenden der Erde? Leben in der Tiefsee.", "caption": false, "speed": 1.05, "pause": 0.5},
+
+  {"id": "x1", "scene": "outro", "text": "Was soll ich als Nächstes simulieren? Schreib es in die Kommentare.", "caption": false, "pause": 0.6}
+ ]
+}

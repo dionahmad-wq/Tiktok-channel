@@ -1,0 +1,84 @@
+<!-- Szene 5 · Die Letzten: Eis isoliert, darunter bleibt Wasser flüssig; Hydrothermalquellen (bis ~400 °C)
+     mit chemosynthetischen Bakterien, die keine Sonne brauchen. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ts-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #ts-card { left: 90px; width: 900px; top: 396px; padding: 18px 34px; }
+    .ts-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; }
+    .ts-row + .ts-row { border-top: 2px solid var(--line); }
+    .ts-row .who { font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.08em; white-space: nowrap; }
+    .ts-row .t { font: 900 42px/1 "Inter", sans-serif; white-space: nowrap; }
+    .ts-tag { position: absolute; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.12em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="tiefsee" data-width="1080" data-height="1920">
+    <svg id="ts-svg" viewBox="0 0 1080 1920">
+      <defs>
+        <linearGradient id="ts-water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#123A68" /><stop offset=".5" stop-color="#0A2142" /><stop offset="1" stop-color="#040B18" /></linearGradient>
+        <linearGradient id="ts-ice" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F2F8FF" /><stop offset="1" stop-color="#9EC6EE" /></linearGradient>
+        <radialGradient id="ts-hot"><stop offset="0" stop-color="#FFE3A0" /><stop offset=".4" stop-color="#FF8A2B" stop-opacity=".8" /><stop offset="1" stop-color="#FF5A1A" stop-opacity="0" /></radialGradient>
+      </defs>
+      <rect x="0" y="760" width="1080" height="560" fill="url(#ts-water)" />
+      <path d="M0 690 L1080 690 L1080 752 Q900 770 760 756 Q600 744 430 762 Q240 776 0 754 Z" fill="url(#ts-ice)" />
+      <path d="M0 1240 Q200 1210 380 1236 Q520 1256 640 1226 Q820 1196 1080 1236 L1080 1340 L0 1340 Z" fill="#17131F" stroke="#3A3352" stroke-width="3" />
+      <circle cx="600" cy="1080" r="170" fill="url(#ts-hot)" opacity=".35" />
+      <path d="M560 1232 L580 1110 L620 1110 L642 1232 Z" fill="#2A2030" stroke="#4A3A52" stroke-width="3" />
+      <ellipse cx="600" cy="1110" rx="24" ry="8" fill="#FF8A2B" style="filter: drop-shadow(0 0 14px rgba(255,138,43,.9))" />
+      <g id="ts-plume"></g>
+      <g id="ts-bact"></g>
+    </svg>
+    <div id="ts-lbl-ice" class="ts-tag ui" style="left: 120px; top: 708px; color: #0B2140">EIS · OBEN −73 °C</div>
+    <div id="ts-lbl-water" class="ts-tag ui c-teal" style="left: 120px; top: 820px">DARUNTER: FLÜSSIGES WASSER</div>
+    <div id="ts-lbl-vent" class="ts-tag ui c-amber" style="left: 670px; top: 1150px">HEISSE QUELLE</div>
+    <div id="ts-lbl-bact" class="ts-tag ui c-teal" style="left: 160px; top: 1120px">BAKTERIEN ▸</div>
+
+    <div class="ui-head ui" id="ts-head">
+      <div class="ui-pill">Phase 4 · <em>Die Letzten</em></div>
+      <div class="ui-segs"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    </div>
+    <div id="ts-card" class="ui-card ui">
+      <div class="ts-row"><div class="who" style="color: #9DD8FF">OBERFLÄCHE</div><div class="t" style="color: #9DD8FF">−73 °C</div></div>
+      <div class="ts-row" id="ts-row2"><div class="who c-teal">UNTER DEM EIS</div><div class="t c-teal">FLÜSSIG</div></div>
+      <div class="ts-row" id="ts-row3"><div class="who c-amber">QUELLEN AM GRUND</div><div class="t c-amber">BIS 400 °C</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("tiefsee");
+      const $ = (id) => document.getElementById(id);
+      const r = SIM.rng(9);
+      const plume = [];
+      for (let i = 0; i < 26; i++) plume.push({ el: SIM.el("circle", { fill: "#3B2A30" }, $("ts-plume")), o: r(), w: (r() - 0.5) * 60 });
+      const bact = [];
+      for (let i = 0; i < 34; i++) {
+        const a = r() * Math.PI * 2, d = 60 + r() * 140;
+        bact.push({ el: SIM.el("circle", { cx: 600 + Math.cos(a) * d * 1.4, cy: 1200 - Math.abs(Math.sin(a)) * d * 0.55, r: 3 + r() * 3, fill: "#3ED6C0", style: "filter: drop-shadow(0 0 6px rgba(62,214,192,.9))" }, $("ts-bact")), p: r() * 6 });
+      }
+      const tB = VT.word("s2", 11), tVent = VT.word("s2", 4);
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t;
+        plume.forEach((p) => {
+          const k = (p.o + t * 0.35) % 1;
+          p.el.setAttribute("cx", 600 + p.w * k + 10 * Math.sin(t * 2 + p.o * 9));
+          p.el.setAttribute("cy", 1105 - k * 330);
+          p.el.setAttribute("r", 8 + k * 34);
+          p.el.setAttribute("opacity", 0.55 * (1 - k));
+        });
+        const on = SIM.clamp((t - tB + 0.6) / 0.8, 0, 1);
+        bact.forEach((b) => b.el.setAttribute("opacity", on * (0.5 + 0.5 * Math.sin(t * 3 + b.p))));
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#ts-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#ts-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#ts-row2", { opacity: 0 }, { opacity: 1, duration: 0.3 }, VT.word("s1", 9) - 0.3);
+      tl.fromTo("#ts-lbl-water", { opacity: 0 }, { opacity: 1, duration: 0.3 }, VT.word("s1", 9) - 0.3);
+      tl.fromTo("#ts-row3", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tVent);
+      tl.fromTo("#ts-lbl-vent", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tVent);
+      tl.fromTo("#ts-lbl-bact", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.3 }, tB);
+      draw();
+      window.__timelines["tiefsee"] = tl;
+    })();
+  </script>
+</template>

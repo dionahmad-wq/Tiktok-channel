@@ -1,0 +1,52 @@
+<!-- Szene 1 · Hook: Frage + Sonne implodiert auf „verschwindet“ (Bild 0 = Thumbnail mit Sonne) -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #hk-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #hk-card { left: 90px; width: 900px; top: 330px; padding: 34px 30px 40px; text-align: center; }
+    #hk-l1 { font: 900 60px/1.05 "Inter", sans-serif; color: var(--ink); letter-spacing: -0.01em; }
+    #hk-l1 em { font-style: normal; color: var(--amber); }
+    #hk-l2 { font: 900 98px/1 "Inter", sans-serif; color: var(--amber); margin-top: 12px; letter-spacing: -0.02em;
+      text-shadow: 0 0 34px rgba(255, 181, 71, 0.5); }
+    #hk-gone { position: absolute; left: 148px; top: 1238px; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.14em; color: var(--mute); white-space: nowrap; }
+    #hk-earthlbl { position: absolute; left: 830px; top: 1110px; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.14em; color: var(--teal); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <svg id="hk-svg" viewBox="0 0 1080 1920">
+      <defs>
+        <radialGradient id="hk-sun"><stop offset="0" stop-color="#FFF6D8" /><stop offset=".45" stop-color="#FFC34D" /><stop offset=".8" stop-color="#FF8A2B" /><stop offset="1" stop-color="#FF6A1A" /></radialGradient>
+        <radialGradient id="hk-glow"><stop offset=".3" stop-color="#FFB547" stop-opacity=".55" /><stop offset="1" stop-color="#FFB547" stop-opacity="0" /></radialGradient>
+        <radialGradient id="hk-earth" cx=".3" cy=".45" r=".8"><stop offset="0" stop-color="#7FC8FF" /><stop offset=".55" stop-color="#2B6CB8" /><stop offset="1" stop-color="#0B1A33" /></radialGradient>
+      </defs>
+      <circle id="hk-ghost" cx="330" cy="1040" r="150" fill="none" stroke="#5B5875" stroke-width="3" stroke-dasharray="10 12" opacity="0" />
+      <g id="hk-sungrp">
+        <circle cx="330" cy="1040" r="330" fill="url(#hk-glow)" />
+        <circle cx="330" cy="1040" r="150" fill="url(#hk-sun)" />
+      </g>
+      <circle id="hk-flash" cx="330" cy="1040" r="150" fill="none" stroke="#FFF1C9" stroke-width="10" opacity="0" />
+      <circle cx="900" cy="1040" r="46" fill="url(#hk-earth)" />
+    </svg>
+    <div id="hk-gone" class="ui">SONNE · WEG</div>
+    <div id="hk-earthlbl" class="ui">ERDE</div>
+    <div id="hk-card" class="ui-card ui">
+      <div id="hk-l1">WAS PASSIERT, WENN<br />DIE <em>SONNE</em> PLÖTZLICH</div>
+      <div id="hk-l2">VERSCHWINDET?</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const tV = VT.word("h1", 6);
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#hk-sungrp", { scale: 1, opacity: 1, transformOrigin: "330px 1040px" },
+        { scale: 1.06, duration: 1.2, ease: "sine.inOut" }, 0);
+      tl.to("#hk-sungrp", { scale: 0, opacity: 0, duration: 0.28, ease: "power3.in" }, tV);
+      tl.fromTo("#hk-flash", { opacity: 0, scale: 1, transformOrigin: "330px 1040px" },
+        { opacity: 1, scale: 1.05, duration: 0.05 }, tV + 0.26);
+      tl.to("#hk-flash", { opacity: 0, scale: 3.2, duration: 0.7, ease: "power2.out" }, tV + 0.31);
+      tl.fromTo("#hk-ghost", { opacity: 0 }, { opacity: 0.9, duration: 0.4 }, tV + 0.5);
+      tl.fromTo("#hk-gone", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.3 }, tV + 0.6);
+      tl.fromTo("#hk-l2", { scale: 1 }, { scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, tV);
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

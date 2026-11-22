@@ -18,6 +18,8 @@ script.json:
 
   *Wort*  = Wort im Untertitel farbig hervorheben
   say     = optionale Aussprache-Variante (gleiche Wortanzahl wie text!)
+  speed   = optional pro Satz (z. B. 1.15 = langsamer, für Spannung)
+  "fx": "dramatic" (oben im JSON) = tiefere, wuchtige Erzählstimme mit Raum
   caption = false → Satz bekommt keinen Untertitel (z. B. wenn der Text groß im Bild steht)
 
 Erzeugt:
@@ -32,6 +34,7 @@ import json
 import os
 import re
 import sys
+import subprocess
 import wave
 
 import numpy as np
@@ -41,6 +44,15 @@ VOICE_DIR = os.environ.get(
     "PIPER_VOICE_DIR", "/home/user/tools/voices/vits-piper-de_DE-thorsten-high"
 )
 VOICE = os.path.join(VOICE_DIR, "de_DE-thorsten-high.onnx")
+
+# Klang-Presets (Tempo bleibt gleich → Zeitstempel bleiben gültig)
+FX = {
+    # Trailer-/Doku-Erzähler: ~1,3 Halbtöne tiefer, mehr Bauch, verdichtet, kleiner Raum
+    "dramatic": ("asetrate=22050*0.925,aresample=22050,atempo=1.0811,"
+                 "equalizer=f=110:t=q:w=1.0:g=4,equalizer=f=3200:t=q:w=1.2:g=2.5,"
+                 "acompressor=threshold=-20dB:ratio=3.5:attack=8:release=120:makeup=3,"
+                 "aecho=0.85:0.5:45|95:0.18|0.10,alimiter=limit=0.89"),
+}
 
 
 def synth(voice, text, speed):
@@ -111,7 +123,7 @@ def main():
         raw_tokens = seg["text"].split()
         hl = [t.startswith("*") or t.rstrip(",.:;!?").endswith("*") for t in raw_tokens]
         clean = seg["text"].replace("*", "")
-        audio, phonemes, sr = synth(voice, seg.get("say", clean), speed)
+        audio, phonemes, sr = synth(voice, seg.get("say", clean), seg.get("speed", speed))
         audio = trim(audio, sr)
         dur = len(audio) / sr
         start, end = cursor, cursor + dur
@@ -165,6 +177,14 @@ def main():
         wf.setsampwidth(2)
         wf.setframerate(sr)
         wf.writeframes((full * 32767).astype(np.int16).tobytes())
+
+    fx = spec.get("fx")
+    if fx in FX:
+        tmp = os.path.join(out_dir, "voice.raw.wav")
+        os.replace(os.path.join(out_dir, "voice.wav"), tmp)
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", tmp, "-af", FX[fx], "-ar", "44100",
+                        os.path.join(out_dir, "voice.wav")], check=True)
+        os.remove(tmp)
 
     timing = {"duration": round(len(full) / sr, 3), "scenes": scenes,
               "segments": segments, "words": words}

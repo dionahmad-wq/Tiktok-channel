@@ -50,6 +50,8 @@ cp ../../.claude/skills/tiktok-sim-video/assets/{sim.js,sim.css,gsap.min.js} ass
   {"id": "p1", "scene": "punch", "text": "Nicht weg. Nach oben.", "caption": false} ]}
 ```
 - Kurze Sätze, gesprochene Sprache, **Zahlen als Wörter** („achthundert“), damit Stimme und Untertitel passen.
+- Spannende Stimme: oben `"fx": "dramatic"` (tiefer, wuchtiger Erzähler mit Raum) und pro Satz `"speed"`
+  (1.1–1.2 = langsamer für Schlüsselsätze wie „Dann: Dunkelheit.“), längere `pause` vor Wendungen.
 - `*Wort*` = Untertitel-Hervorhebung (Amber). `say` = andere Aussprache, **gleiche Wortanzahl**.
   `caption: false`, wenn der Satz ohnehin groß im Bild steht (Pointe, Outro).
 - Dramaturgie (55–75 s): Hook-Frage (≤3 s) → Regeln/Fakten → Simulation mit laufenden Zählern
@@ -98,6 +100,11 @@ npx -y hyperframes@0.9.80 snapshot --at 0,5,12,20,30,40,50,58 -o .snaps/x --no-e
 npx -y hyperframes@0.9.80 render -o out/NNN-slug.mp4 --fps 30
 ```
 Bild 0 ist das Thumbnail: Hook-Frage muss ab Bild 0 voll sichtbar sein.
+Lautheit prüfen: `ffmpeg -i out/X.mp4 -af ebur128=peak=true -f null -` → Ziel −16 bis −14 LUFS,
+sonst `data-volume` am `<audio id="voice">` anheben (1.4 ≈ +3 dB) und neu rendern.
+
+Eigene Welten statt Nachtstadt sind erlaubt (Beispiel Weltall: `videos/002-sonne/`) – Farben, HUD,
+Untertitel und Dramaturgie bleiben gleich.
 
 ## 7. Abgabe
 - `out/NNN-slug.mp4` und `POST.md` (Beschreibung, 3–5 Hashtags, Quellen/Rechnung) committen; `.snaps/` nicht.

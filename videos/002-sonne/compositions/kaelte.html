@@ -1,0 +1,108 @@
+<!-- Szene 4 · Die Kälte: Ø-Temperatur 15 °C → < −18 °C nach 1 Woche → < −73 °C nach 1 Jahr
+     (gängige Abschätzung, u. a. Live Science / D. Stevenson, Caltech). -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ka-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #ka-card { left: 90px; width: 900px; top: 396px; padding: 26px 34px 30px; }
+    #ka-top { display: flex; justify-content: space-between; align-items: flex-end; }
+    #ka-top .blk { display: flex; flex-direction: column; gap: 12px; }
+    #ka-top .blk.r { align-items: flex-end; }
+    #ka-temp { font: 900 96px/1 "Inter", sans-serif; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    #ka-line { position: relative; margin-top: 30px; height: 70px; }
+    #ka-track { position: absolute; left: 0; right: 0; top: 10px; height: 10px; border-radius: 5px; background: rgba(255, 255, 255, 0.1); }
+    #ka-fill { position: absolute; left: 0; top: 10px; height: 10px; width: 832px; border-radius: 5px; transform-origin: 0 50%;
+      background: linear-gradient(90deg, #FF5A4E, #9DD8FF); }
+    .ka-mk { position: absolute; top: 0; display: flex; flex-direction: column; align-items: center; transform: translateX(-50%); }
+    .ka-mk i { display: block; width: 4px; height: 30px; background: #F4F5FA; border-radius: 2px; }
+    .ka-mk span { margin-top: 10px; font: 900 24px/1 "Inter", sans-serif; letter-spacing: 0.1em; color: var(--ink); white-space: nowrap; }
+    #ka-frost { position: absolute; inset: 0; opacity: 0;
+      background: radial-gradient(85% 60% at 50% 60%, rgba(160, 210, 255, 0) 45%, rgba(170, 215, 255, 0.35) 100%); }
+  </style>
+  <div id="root" data-composition-id="kaelte" data-width="1080" data-height="1920">
+    <svg id="ka-svg" viewBox="0 0 1080 1920">
+      <defs>
+        <linearGradient id="ka-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E4C86" /><stop offset="1" stop-color="#081A33" /></linearGradient>
+      </defs>
+      <path d="M-20 1060 L120 950 L230 1030 L360 900 L470 1010 L600 930 L740 1040 L880 940 L1100 1060 L1100 1200 L-20 1200 Z" fill="#221D3A" stroke="#342D52" stroke-width="3" />
+      <path id="ka-snowcaps" d="M330 928 L360 900 L392 932 Z M570 952 L600 930 L628 954 Z M850 962 L880 940 L912 964 Z" fill="#DDEBFF" opacity="0" />
+      <rect x="-20" y="1180" width="520" height="140" fill="url(#ka-sea)" />
+      <rect id="ka-ice" x="-20" y="1180" width="520" height="140" fill="#CFE6FF" opacity="0" />
+      <line x1="-20" y1="1180" x2="500" y2="1180" stroke="#6FAEF0" stroke-width="3" />
+      <rect x="500" y="1180" width="600" height="140" fill="#14111F" />
+      <line id="ka-groundline" x1="500" y1="1180" x2="1100" y2="1180" stroke="#3A3550" stroke-width="4" />
+      <g id="ka-trees"></g>
+      <g id="ka-snow"></g>
+    </svg>
+    <div id="ka-frost"></div>
+    <div class="ui-head ui" id="ka-head">
+      <div class="ui-pill">Phase 3 · <em>Die Kälte</em></div>
+      <div class="ui-segs"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    </div>
+    <div id="ka-card" class="ui-card ui">
+      <div id="ka-top">
+        <div class="blk"><div class="ui-label">Ø Temperatur Erde</div><div id="ka-temp">+15 °C</div></div>
+        <div class="blk r"><div class="ui-label">Ohne Sonne</div><div class="ui-mid" id="ka-day">Tag 0</div></div>
+      </div>
+      <div id="ka-line">
+        <div id="ka-track"></div><div id="ka-fill"></div>
+        <div class="ka-mk" style="left: 150px"><i></i><span>1 WOCHE</span></div>
+        <div class="ka-mk" style="left: 800px"><i></i><span>1 JAHR</span></div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("kaelte");
+      const $ = (id) => document.getElementById(id);
+      // Bäume (Laub) – verlieren Farbe
+      const trees = [], r = SIM.rng(3);
+      for (let i = 0; i < 6; i++) {
+        const x = 560 + i * 90 + r() * 30, h = 70 + r() * 40;
+        const g = SIM.el("g", {}, $("ka-trees"));
+        SIM.el("rect", { x: x - 5, y: 1180 - h * 0.45, width: 10, height: h * 0.45, fill: "#2A2236" }, g);
+        trees.push(SIM.el("circle", { cx: x, cy: 1180 - h * 0.62, r: h * 0.32, fill: "#2E8F6E" }, g));
+      }
+      const flakes = [];
+      for (let i = 0; i < 46; i++) flakes.push({ el: SIM.el("circle", { r: 2 + r() * 3, fill: "#EAF4FF" }, $("ka-snow")), x: r() * 1080, s: 40 + r() * 70, o: r() * 600 });
+
+      const tW = VT.word("c2", 3, "end"), tY = VT.word("c3", 3, "end"), tPl = VT.seg("c4");
+      const day = (t) => SIM.keys([[0, 0], [VT.seg("c2"), 1], [tW, 7, "out"], [tY, 365, "inOut"], [L, 365]], t);
+      const temp = (d) => (d <= 7 ? SIM.lerp(15, -18, SIM.ease.out(d / 7)) : SIM.lerp(-18, -73, SIM.ease.out((d - 7) / 358)));
+      const mix = (a, b, k) => { // Hex-Farben mischen
+        const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+        const A = p(a), B = p(b);
+        return "rgb(" + A.map((v, i) => Math.round(v + (B[i] - v) * k)).join(",") + ")";
+      };
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t, d = day(t), T = temp(d);
+        const cold = SIM.clamp((15 - T) / 88, 0, 1);
+        $("ka-temp").textContent = (T > 0 ? "+" : T < 0 ? "−" : "") + Math.abs(Math.round(T)) + " °C";
+        $("ka-temp").style.color = mix("#FF5A4E", "#9DD8FF", SIM.clamp(cold * 1.6, 0, 1));
+        $("ka-day").textContent = d < 1 ? "Tag 0" : "Tag " + Math.round(d);
+        const pos = d <= 7 ? (150 * d) / 7 : 150 + (650 * (d - 7)) / 358;
+        $("ka-fill").style.transform = `scaleX(${pos / 832})`;
+        $("ka-ice").setAttribute("opacity", 0.85 * SIM.clamp((t - tPl) / 1.6, 0, 1) + 0.25 * cold);
+        $("ka-snowcaps").setAttribute("opacity", cold);
+        const pk = SIM.clamp((t - tPl + 0.2) / 1.2, 0, 1);
+        trees.forEach((c) => c.setAttribute("fill", mix("#2E8F6E", "#3A3446", Math.max(cold * 0.6, pk))));
+        $("ka-frost").style.opacity = cold;
+        flakes.forEach((f) => {
+          const y = 660 + ((f.o + t * f.s) % 620);
+          f.el.setAttribute("cx", f.x + 12 * Math.sin(t * 1.3 + f.o));
+          f.el.setAttribute("cy", y);
+          f.el.setAttribute("opacity", 0.85 * SIM.clamp(cold * 2, 0, 1));
+        });
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#ka-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#ka-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#ka-temp", { scale: 1 }, { scale: 1.12, duration: 0.16, yoyo: true, repeat: 1 }, tW);
+      tl.fromTo("#ka-temp", { scale: 1 }, { scale: 1.12, duration: 0.16, yoyo: true, repeat: 1 }, tY);
+      draw();
+      window.__timelines["kaelte"] = tl;
+    })();
+  </script>
+</template>

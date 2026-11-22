@@ -1,0 +1,117 @@
+<!-- Szene 3 · Ins Dunkle: Erde fliegt tangential weiter (29,8 km/s ≈ 107.000 km/h = 2,57 Mio km/Tag).
+     Danach Himmel: Mond dunkel, Jupiter leuchtet noch ~70–86 min, Saturn ~143–159 min
+     (Licht Sonne→Planet + Planet→Erde, minus 8,3 min; je nach Stellung). -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #dr-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .dr-card { left: 90px; width: 900px; top: 396px; padding: 26px 34px; display: flex; justify-content: space-between; align-items: flex-end; }
+    .dr-card .blk { display: flex; flex-direction: column; gap: 12px; }
+    .dr-card .blk.r { align-items: flex-end; }
+    #dr-cardB { flex-direction: column; align-items: stretch; gap: 0; }
+    .dr-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 2px solid var(--line); }
+    .dr-row .who { font: 900 28px/1 "Inter", sans-serif; letter-spacing: 0.08em; white-space: nowrap; }
+    .dr-row .t { font: 900 40px/1 "Inter", sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .dr-tag { position: absolute; left: 0; top: 0; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.12em; white-space: nowrap; }
+    #dr-sky { position: absolute; inset: 0; opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="drift" data-width="1080" data-height="1920">
+    <svg id="dr-svg" viewBox="0 0 1080 1920">
+      <defs>
+        <radialGradient id="dr-earth" cx=".5" cy=".5" r=".7"><stop offset="0" stop-color="#1D2D45" /><stop offset="1" stop-color="#070B14" /></radialGradient>
+        <radialGradient id="dr-jup"><stop offset="0" stop-color="#FFF0CC" /><stop offset=".35" stop-color="#FFB547" stop-opacity=".9" /><stop offset="1" stop-color="#FFB547" stop-opacity="0" /></radialGradient>
+        <radialGradient id="dr-sat"><stop offset="0" stop-color="#FFF8E6" /><stop offset=".35" stop-color="#E8D3A0" stop-opacity=".85" /><stop offset="1" stop-color="#E8D3A0" stop-opacity="0" /></radialGradient>
+        <linearGradient id="dr-trail" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#3ED6C0" stop-opacity="0" /><stop offset="1" stop-color="#3ED6C0" stop-opacity=".9" /></linearGradient>
+      </defs>
+      <g id="dr-orbitview">
+        <circle cx="540" cy="1080" r="300" fill="none" stroke="#3A3656" stroke-width="3" stroke-dasharray="10 12" />
+        <circle cx="540" cy="1080" r="40" fill="none" stroke="#5B5875" stroke-width="3" stroke-dasharray="6 8" />
+        <rect id="dr-trailrect" x="836" width="8" rx="4" fill="url(#dr-trail)" />
+        <circle id="dr-earthO" cx="840" cy="1080" r="30" fill="url(#dr-earth)" stroke="#3ED6C0" stroke-width="3" />
+      </g>
+      <g id="dr-skyview" opacity="0">
+        <path d="M-40 1330 Q540 1180 1120 1330 L1120 1500 L-40 1500 Z" fill="#05060C" stroke="#1E1C30" stroke-width="3" />
+        <circle cx="290" cy="860" r="58" fill="#06070D" stroke="#2A2840" stroke-width="3" />
+        <circle id="dr-jupG" cx="700" cy="790" r="46" fill="url(#dr-jup)" />
+        <circle id="dr-satG" cx="840" cy="1010" r="40" fill="url(#dr-sat)" />
+        <ellipse id="dr-satR" cx="840" cy="1010" rx="22" ry="6" fill="none" stroke="#FFF2D2" stroke-width="2.5" opacity=".9" />
+      </g>
+    </svg>
+    <div id="dr-lbl-orbit" class="dr-tag ui c-mute" style="left: 120px; top: 800px">ALTE BAHN</div>
+    <div id="dr-lbl-sun" class="dr-tag ui c-mute" style="left: 450px; top: 1140px">SONNE · WEG</div>
+    <div id="dr-lbl-earth" class="dr-tag ui c-teal">ERDE ▲ GERADEAUS</div>
+    <div id="dr-lbl-moon" class="dr-tag ui c-mute" style="left: 200px; top: 950px; opacity: 0">MOND · DUNKEL</div>
+    <div id="dr-lbl-jup" class="dr-tag ui c-amber" style="left: 560px; top: 700px; opacity: 0">JUPITER</div>
+    <div id="dr-lbl-sat" class="dr-tag ui" style="left: 640px; top: 1080px; opacity: 0; color: #E8D3A0">SATURN</div>
+
+    <div class="ui-head ui" id="dr-head">
+      <div class="ui-pill">Phase 2 · <em>Ins Dunkle</em></div>
+      <div class="ui-segs"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div id="dr-cardA" class="ui-card ui dr-card">
+      <div class="blk"><div class="ui-label">Tempo der Erde</div><div class="ui-big c-teal">29,8<span class="ui-unit">km/s</span></div></div>
+      <div class="blk r"><div class="ui-label">Strecke ins All</div><div class="ui-mid"><span id="dr-v-dist">0,0</span><span class="ui-unit">Mio km</span></div><div class="ui-label" id="dr-v-days">nach 0 h</div></div>
+    </div>
+    <div id="dr-cardB" class="ui-card ui dr-card" style="opacity: 0">
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 14px">
+        <div class="ui-label">Zeit seit Dunkelheit</div><div class="ui-mid" id="dr-v-clock">0:00:00</div></div>
+      <div class="dr-row"><div class="who c-amber">JUPITER LEUCHTET</div><div class="t c-amber" id="dr-v-jup">noch ~1:15 h</div></div>
+      <div class="dr-row"><div class="who" style="color: #E8D3A0">SATURN LEUCHTET</div><div class="t" style="color: #E8D3A0" id="dr-v-sat">noch ~2:30 h</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("drift");
+      const $ = (id) => document.getElementById(id);
+      const JUP = 75 * 60, SAT = 150 * 60; // s nach Dunkelheit
+      const tSwitch = VT.seg("d3"), tJ0 = VT.seg("d4"), tJ = VT.seg("d5"), tS = VT.seg("d6", "end") - 0.6;
+      const earth = $("dr-earthO"), trail = $("dr-trailrect"), le = $("dr-lbl-earth");
+      const vDist = $("dr-v-dist"), vDays = $("dr-v-days"), vClock = $("dr-v-clock"), vJ = $("dr-v-jup"), vS = $("dr-v-sat");
+      const jG = $("dr-jupG"), sG = $("dr-satG"), sR = $("dr-satR");
+      const S = { t: 0 };
+      const hoursA = (t) => SIM.keys([[0, 0], [tSwitch, 24, "inOut"]], t);
+      const clockB = (t) => SIM.keys([[tJ0, 0], [tJ, JUP], [tS, SAT], [L, SAT + 600]], t);
+      const fmtH = (s) => { s = Math.max(0, Math.round(s / 60)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0") + " h"; };
+      function draw() {
+        const t = S.t;
+        // Teil A: Bahnansicht
+        const h = hoursA(t);
+        const y = 1080 - 330 * (h / 24);
+        earth.setAttribute("cy", y);
+        trail.setAttribute("y", y);
+        trail.setAttribute("height", 1080 - y);
+        le.style.transform = `translate(${700}px, ${y - 82}px)`;
+        vDist.textContent = SIM.fmtDec((29.78 * 3600 * h) / 1e6, 2);
+        vDays.textContent = "nach " + Math.round(h) + " h";
+        // Teil B: Himmel
+        const c = clockB(t);
+        const cs = Math.floor(c); vClock.textContent = Math.floor(cs / 3600) + ":" + String(Math.floor(cs / 60) % 60).padStart(2, "0") + ":" + String(cs % 60).padStart(2, "0");
+        const jOn = c < JUP ? 1 : SIM.clamp(1 - (c - JUP) / 240, 0, 1);
+        const sOn = c < SAT ? 1 : SIM.clamp(1 - (c - SAT) / 240, 0, 1);
+        const tw = 1 + 0.06 * Math.sin(t * 7);
+        jG.setAttribute("opacity", jOn); jG.setAttribute("r", 46 * tw);
+        sG.setAttribute("opacity", sOn); sR.setAttribute("opacity", 0.9 * sOn);
+        vJ.textContent = c < JUP ? "noch ~" + fmtH(JUP - c) : "ERLOSCHEN";
+        vS.textContent = c < SAT ? "noch ~" + fmtH(SAT - c) : "ERLOSCHEN";
+        vJ.style.color = c >= JUP ? "var(--mute)" : "";
+        vS.style.color = c >= SAT ? "var(--mute)" : "";
+        $("dr-lbl-jup").style.opacity = SIM.clamp((t - tJ0 + 0.3) / 0.3, 0, 1) * (0.35 + 0.65 * jOn);
+        $("dr-lbl-sat").style.opacity = SIM.clamp((t - tJ + 0.1) / 0.3, 0, 1) * (0.35 + 0.65 * sOn);
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#dr-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#dr-cardA", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      // Wechsel Bahn → Himmel
+      tl.to(["#dr-orbitview", "#dr-cardA", "#dr-lbl-orbit", "#dr-lbl-sun", "#dr-lbl-earth"], { opacity: 0, duration: 0.4 }, tSwitch - 0.2);
+      tl.fromTo("#dr-skyview", { opacity: 0 }, { opacity: 1, duration: 0.5 }, tSwitch);
+      tl.fromTo("#dr-lbl-moon", { opacity: 0 }, { opacity: 1, duration: 0.3 }, tSwitch + 0.4);
+      tl.fromTo("#dr-cardB", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tSwitch + 0.2);
+      tl.fromTo("#dr-v-jup", { scale: 1 }, { scale: 1.15, duration: 0.15, yoyo: true, repeat: 1 }, tJ);
+      tl.fromTo("#dr-v-sat", { scale: 1 }, { scale: 1.15, duration: 0.15, yoyo: true, repeat: 1 }, tS);
+      draw();
+      window.__timelines["drift"] = tl;
+    })();
+  </script>
+</template>

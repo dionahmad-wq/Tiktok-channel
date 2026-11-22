@@ -1,0 +1,38 @@
+<!-- Szene 6 · Pointe -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #pu-dim { position: absolute; inset: 0; background: rgba(4, 5, 11, 0.78); }
+    #pu-glow { position: absolute; left: 140px; top: 760px; width: 800px; height: 560px;
+      background: radial-gradient(closest-side, rgba(62, 214, 192, 0.28), rgba(62, 214, 192, 0)); }
+    #pu-wrap { position: absolute; left: 0; right: 0; top: 600px; text-align: center; }
+    #pu-a { font: 800 36px/1 "Inter", sans-serif; letter-spacing: 0.18em; color: var(--mute); }
+    #pu-b { font: 900 92px/1 "Inter", sans-serif; letter-spacing: -0.02em; color: var(--ink); margin-top: 22px; }
+    #pu-c { font: 900 60px/1 "Inter", sans-serif; color: var(--ink); margin-top: 70px; }
+    #pu-d { font: 900 150px/1 "Inter", sans-serif; letter-spacing: -0.03em; color: var(--amber); margin-top: 14px;
+      text-shadow: 0 0 44px rgba(255, 181, 71, 0.6); }
+  </style>
+  <div id="root" data-composition-id="punch" data-width="1080" data-height="1920">
+    <div id="pu-dim"></div>
+    <div id="pu-glow"></div>
+    <div id="pu-wrap" class="ui">
+      <div id="pu-a">DIE LETZTEN</div>
+      <div id="pu-b">ÜBERLEBENDEN?</div>
+      <div id="pu-c">LEBEN IN DER</div>
+      <div id="pu-d">TIEFSEE.</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const w = (n) => VT.word("p1", n) - 0.04;
+      const tl = gsap.timeline({ paused: true });
+      tl.fromTo("#pu-dim", { opacity: 0 }, { opacity: 1, duration: 0.25 }, 0);
+      tl.fromTo("#pu-a", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.25 }, w(0));
+      tl.fromTo("#pu-b", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power3.out" }, w(2));
+      tl.fromTo("#pu-c", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.25 }, w(5));
+      tl.fromTo("#pu-d", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" }, w(8));
+      tl.fromTo("#pu-glow", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, w(8));
+      window.__timelines["punch"] = tl;
+    })();
+  </script>
+</template>

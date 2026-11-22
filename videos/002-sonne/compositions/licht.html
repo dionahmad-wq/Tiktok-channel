@@ -1,0 +1,111 @@
+<!-- Szene 2 · Das letzte Licht: 149,6 Mio km / 299.792 km/s = 499 s = 8:19. Schwerkraft breitet sich ebenfalls mit c aus. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #li-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #li-card { left: 90px; width: 900px; top: 396px; padding: 26px 34px 24px; }
+    #li-top { display: flex; justify-content: space-between; align-items: flex-end; }
+    #li-top .blk { display: flex; flex-direction: column; gap: 12px; }
+    #li-top .blk.r { align-items: flex-end; }
+    #li-grav { margin-top: 22px; padding-top: 18px; border-top: 2px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+    #li-grav-v { font: 900 34px/1 "Inter", sans-serif; white-space: nowrap; }
+    #li-ff { position: absolute; right: 28px; top: -24px; }
+    #li-dark { position: absolute; inset: 0; background: #020207; opacity: 0; }
+    .li-tag { position: absolute; left: 0; top: 0; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.12em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="licht" data-width="1080" data-height="1920">
+    <svg id="li-svg" viewBox="0 0 1080 1920">
+      <defs>
+        <linearGradient id="li-beam" x1="0" x2="1"><stop offset="0" stop-color="#FFB547" stop-opacity=".15" /><stop offset=".25" stop-color="#FFD27A" stop-opacity=".9" /><stop offset="1" stop-color="#FFE7B0" stop-opacity=".95" /></linearGradient>
+        <radialGradient id="li-earth" cx=".25" cy=".45" r=".85"><stop offset="0" stop-color="#8FD0FF" /><stop offset=".5" stop-color="#2B6CB8" /><stop offset="1" stop-color="#0B1A33" /></radialGradient>
+        <radialGradient id="li-earthdark" cx=".5" cy=".5" r=".7"><stop offset="0" stop-color="#1A2638" /><stop offset="1" stop-color="#070B14" /></radialGradient>
+      </defs>
+      <line x1="170" y1="1050" x2="905" y2="1050" stroke="#2C2A44" stroke-width="2" stroke-dasharray="4 10" />
+      <circle cx="110" cy="1050" r="60" fill="none" stroke="#5B5875" stroke-width="3" stroke-dasharray="8 10" />
+      <g id="li-gravrings"></g>
+      <rect id="li-beamrect" y="1032" height="36" rx="18" fill="url(#li-beam)" style="filter: drop-shadow(0 0 18px rgba(255,190,90,.8))" />
+      <circle id="li-earthglow" cx="950" cy="1050" r="80" fill="#FFC66B" opacity=".25" />
+      <circle cx="950" cy="1050" r="42" fill="url(#li-earthdark)" />
+      <circle id="li-earthlit" cx="950" cy="1050" r="42" fill="url(#li-earth)" />
+      <g id="li-ticks"></g>
+    </svg>
+    <div id="li-dark"></div>
+    <div id="li-lbl-sun" class="li-tag ui c-mute" style="left: 52px; top: 1140px">SONNE · WEG</div>
+    <div id="li-lbl-earth" class="li-tag ui c-teal" style="left: 905px; top: 1124px">ERDE</div>
+    <div id="li-lbl-front" class="li-tag ui c-amber">LETZTES LICHT ▸</div>
+    <div id="li-lbl-grav" class="li-tag ui c-coral">SCHWERKRAFT ▸</div>
+
+    <div class="ui-head ui" id="li-head">
+      <div class="ui-pill">Phase 1 · <em>Das letzte Licht</em></div>
+      <div class="ui-segs"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div id="li-card" class="ui-card ui">
+      <div id="li-ff" class="ui-ff">⏩ ZEITRAFFER</div>
+      <div id="li-top">
+        <div class="blk"><div class="ui-label">Zeit ohne Sonne</div><div class="ui-big" id="li-v-time">0:00</div></div>
+        <div class="blk r"><div class="ui-label">Licht noch unterwegs</div><div class="ui-mid c-amber"><span id="li-v-dist">149,6</span><span class="ui-unit">Mio km</span></div></div>
+      </div>
+      <div id="li-grav"><div class="ui-label">Schwerkraft der Sonne</div><div id="li-grav-v" class="c-teal">WIRKT NOCH</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("licht");
+      const $ = (id) => document.getElementById(id);
+      const X0 = 170, X1 = 905, D = 499; // Lichtlaufzeit Sonne → Erde in s
+      const beam = $("li-beamrect"), lit = $("li-earthlit"), glow = $("li-earthglow");
+      const vT = $("li-v-time"), vD = $("li-v-dist"), grav = $("li-grav-v");
+      const lf = $("li-lbl-front"), lg = $("li-lbl-grav");
+      const rings = [];
+      for (let i = 0; i < 3; i++) rings.push(SIM.el("circle", { cx: 110, cy: 1050, r: 60, fill: "none", stroke: "#FF5A4E", "stroke-width": 3, "stroke-dasharray": "14 10", opacity: 0 }, $("li-gravrings")));
+      // Kilometer-Marken alle 25 Mio km
+      for (let km = 0; km <= 150; km += 50) {
+        const x = X0 + (X1 - X0) * (km / 149.6);
+        SIM.el("line", { x1: x, x2: x, y1: 1092, y2: 1106, stroke: "#5B5875", "stroke-width": 2 }, $("li-ticks"));
+        const tx = SIM.el("text", { x, y: 1196, "text-anchor": "middle", fill: "#8A8FA8", "font-family": "Inter", "font-weight": 800, "font-size": 24 }, $("li-ticks"));
+        tx.textContent = km === 0 ? "" : km + " Mio km";
+      }
+
+      const tDark = VT.word("l6", 1), tGrav = VT.seg("l5");
+      const S = { t: 0 };
+      const simT = (t) => SIM.keys([[0, 4], [VT.seg("l4"), 110], [tDark, D, "inOut"], [L, D + 40]], t);
+      function draw() {
+        const t = S.t, T = simT(t);
+        const k = SIM.clamp(T / D, 0, 1);
+        const fx = X0 + (X1 - X0) * k;
+        beam.setAttribute("x", fx);
+        beam.setAttribute("width", Math.max(0, X1 + 20 - fx));
+        beam.setAttribute("opacity", k < 1 ? 1 : 0);
+        lit.setAttribute("opacity", k < 1 ? 1 : SIM.clamp(1 - (T - D) / 6, 0, 1));
+        glow.setAttribute("opacity", k < 1 ? 0.25 : 0);
+        lf.style.transform = `translate(${fx - 10}px, ${990}px)`;
+        lf.style.opacity = k < 0.97 ? 1 : 0;
+        const gOn = SIM.clamp((t - tGrav) / 0.4, 0, 1) * (k < 1 ? 1 : 0);
+        lg.style.transform = `translate(${Math.min(fx, 700) - 10}px, ${1216}px)`;
+        lg.style.opacity = gOn;
+        rings.forEach((r, i) => {
+          const rr = Math.max(60, (fx - 110) - i * 26);
+          r.setAttribute("r", rr);
+          r.setAttribute("opacity", gOn * (0.75 - i * 0.22));
+        });
+        vT.textContent = SIM.clock(Math.min(T, D));
+        vD.textContent = SIM.fmtDec(149.6 * (1 - k), 1);
+        vT.style.color = k >= 1 ? "var(--coral)" : "";
+        grav.textContent = k >= 1 ? "WEG" : "WIRKT NOCH";
+        grav.style.color = k >= 1 ? "var(--coral)" : "";
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#li-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#li-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#li-ff", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 0.5);
+      tl.to("#li-ff", { opacity: 0, duration: 0.2 }, tDark);
+      tl.fromTo("#li-grav", { opacity: 0.35 }, { opacity: 1, duration: 0.3 }, tGrav);
+      tl.fromTo("#li-dark", { opacity: 0 }, { opacity: 0.55, duration: 0.5, ease: "power2.in" }, tDark - 0.1);
+      tl.fromTo("#li-v-time", { scale: 1 }, { scale: 1.2, duration: 0.18, yoyo: true, repeat: 1 }, tDark);
+      draw();
+      window.__timelines["licht"] = tl;
+    })();
+  </script>
+</template>

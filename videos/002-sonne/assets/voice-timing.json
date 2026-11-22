@@ -1,0 +1,1685 @@
+{
+ "duration": 60.269,
+ "scenes": {
+  "hook": {
+   "start": 0.2,
+   "end": 4.229
+  },
+  "licht": {
+   "start": 4.729,
+   "end": 19.636
+  },
+  "drift": {
+   "start": 20.236,
+   "end": 34.518
+  },
+  "kaelte": {
+   "start": 35.018,
+   "end": 43.674
+  },
+  "tiefsee": {
+   "start": 44.124,
+   "end": 52.68
+  },
+  "punch": {
+   "start": 53.18,
+   "end": 56.196
+  },
+  "outro": {
+   "start": 56.696,
+   "end": 59.669
+  }
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "scene": "hook",
+   "text": "Was passiert, wenn die Sonne plötzlich verschwindet?",
+   "start": 0.2,
+   "end": 2.545
+  },
+  {
+   "id": "h2",
+   "scene": "hook",
+   "text": "Die Antwort ist unheimlich.",
+   "start": 2.895,
+   "end": 4.229
+  },
+  {
+   "id": "l1",
+   "scene": "licht",
+   "text": "Die Sonne ist weg. Doch du merkst: nichts.",
+   "start": 4.729,
+   "end": 6.897
+  },
+  {
+   "id": "l2",
+   "scene": "licht",
+   "text": "Ihr letztes Licht ist noch unterwegs zu uns.",
+   "start": 7.197,
+   "end": 9.406
+  },
+  {
+   "id": "l3",
+   "scene": "licht",
+   "text": "Hundertfünfzig Millionen Kilometer.",
+   "start": 9.556,
+   "end": 11.4
+  },
+  {
+   "id": "l4",
+   "scene": "licht",
+   "text": "Acht Minuten und neunzehn Sekunden lang scheint sie einfach weiter.",
+   "start": 11.65,
+   "end": 15.253
+  },
+  {
+   "id": "l5",
+   "scene": "licht",
+   "text": "Auch ihre Schwerkraft hält uns genau so lange fest.",
+   "start": 15.453,
+   "end": 18.016
+  },
+  {
+   "id": "l6",
+   "scene": "licht",
+   "text": "Dann: Dunkelheit.",
+   "start": 18.416,
+   "end": 19.636
+  },
+  {
+   "id": "d1",
+   "scene": "drift",
+   "text": "Die Erde verliert ihren Halt und rast geradeaus ins All.",
+   "start": 20.236,
+   "end": 23.186
+  },
+  {
+   "id": "d2",
+   "scene": "drift",
+   "text": "Mit dreißig Kilometern pro Sekunde.",
+   "start": 23.336,
+   "end": 25.223
+  },
+  {
+   "id": "d3",
+   "scene": "drift",
+   "text": "Der Mond wird schwarz. Doch am Himmel leuchtet noch etwas.",
+   "start": 25.523,
+   "end": 28.074
+  },
+  {
+   "id": "d4",
+   "scene": "drift",
+   "text": "Jupiter. Noch über eine Stunde lang.",
+   "start": 28.374,
+   "end": 30.143
+  },
+  {
+   "id": "d5",
+   "scene": "drift",
+   "text": "Saturn sogar über zwei Stunden.",
+   "start": 30.293,
+   "end": 31.928
+  },
+  {
+   "id": "d6",
+   "scene": "drift",
+   "text": "Es ist das letzte Sonnenlicht, das wir je sehen.",
+   "start": 32.128,
+   "end": 34.518
+  },
+  {
+   "id": "c1",
+   "scene": "kaelte",
+   "text": "Dann kommt die Kälte.",
+   "start": 35.018,
+   "end": 35.961
+  },
+  {
+   "id": "c2",
+   "scene": "kaelte",
+   "text": "Nach einer Woche: im Schnitt unter minus achtzehn Grad.",
+   "start": 36.161,
+   "end": 38.805
+  },
+  {
+   "id": "c3",
+   "scene": "kaelte",
+   "text": "Nach einem Jahr: unter minus dreiundsiebzig.",
+   "start": 39.005,
+   "end": 41.336
+  },
+  {
+   "id": "c4",
+   "scene": "kaelte",
+   "text": "Pflanzen sterben. Die Meere frieren zu.",
+   "start": 41.586,
+   "end": 43.674
+  },
+  {
+   "id": "s1",
+   "scene": "tiefsee",
+   "text": "Aber unter dem Eis bleibt das Wasser noch lange flüssig.",
+   "start": 44.124,
+   "end": 46.61
+  },
+  {
+   "id": "s2",
+   "scene": "tiefsee",
+   "text": "Und tief unten, an heißen Quellen am Meeresgrund, leben Bakterien, die nie Sonnenlicht gebraucht haben.",
+   "start": 46.81,
+   "end": 52.68
+  },
+  {
+   "id": "p1",
+   "scene": "punch",
+   "text": "Die letzten Überlebenden der Erde? Leben in der Tiefsee.",
+   "start": 53.18,
+   "end": 56.196
+  },
+  {
+   "id": "x1",
+   "scene": "outro",
+   "text": "Was soll ich als Nächstes simulieren? Schreib es in die Kommentare.",
+   "start": 56.696,
+   "end": 59.669
+  }
+ ],
+ "words": [
+  {
+   "id": "w0",
+   "seg": "h1",
+   "text": "Was",
+   "start": 0.2,
+   "end": 0.447,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w1",
+   "seg": "h1",
+   "text": "passiert,",
+   "start": 0.447,
+   "end": 0.94,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w2",
+   "seg": "h1",
+   "text": "wenn",
+   "start": 1.13,
+   "end": 1.282,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w3",
+   "seg": "h1",
+   "text": "die",
+   "start": 1.282,
+   "end": 1.383,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w4",
+   "seg": "h1",
+   "text": "Sonne",
+   "start": 1.383,
+   "end": 1.585,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w5",
+   "seg": "h1",
+   "text": "plötzlich",
+   "start": 1.585,
+   "end": 2.039,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w6",
+   "seg": "h1",
+   "text": "verschwindet?",
+   "start": 2.039,
+   "end": 2.545,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w7",
+   "seg": "h2",
+   "text": "Die",
+   "start": 2.895,
+   "end": 3.016,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w8",
+   "seg": "h2",
+   "text": "Antwort",
+   "start": 3.016,
+   "end": 3.441,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w9",
+   "seg": "h2",
+   "text": "ist",
+   "start": 3.441,
+   "end": 3.623,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w10",
+   "seg": "h2",
+   "text": "unheimlich.",
+   "start": 3.623,
+   "end": 4.229,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w11",
+   "seg": "l1",
+   "text": "Die",
+   "start": 4.729,
+   "end": 4.871,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w12",
+   "seg": "l1",
+   "text": "Sonne",
+   "start": 4.871,
+   "end": 5.154,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w13",
+   "seg": "l1",
+   "text": "ist",
+   "start": 5.154,
+   "end": 5.367,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w14",
+   "seg": "l1",
+   "text": "weg.",
+   "start": 5.367,
+   "end": 5.579,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w15",
+   "seg": "l1",
+   "text": "Doch",
+   "start": 5.779,
+   "end": 5.943,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w16",
+   "seg": "l1",
+   "text": "du",
+   "start": 5.943,
+   "end": 6.052,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w17",
+   "seg": "l1",
+   "text": "merkst:",
+   "start": 6.052,
+   "end": 6.379,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w18",
+   "seg": "l1",
+   "text": "nichts.",
+   "start": 6.549,
+   "end": 6.897,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w19",
+   "seg": "l2",
+   "text": "Ihr",
+   "start": 7.197,
+   "end": 7.327,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w20",
+   "seg": "l2",
+   "text": "letztes",
+   "start": 7.327,
+   "end": 7.782,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w21",
+   "seg": "l2",
+   "text": "Licht",
+   "start": 7.782,
+   "end": 8.107,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w22",
+   "seg": "l2",
+   "text": "ist",
+   "start": 8.107,
+   "end": 8.302,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w23",
+   "seg": "l2",
+   "text": "noch",
+   "start": 8.302,
+   "end": 8.496,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w24",
+   "seg": "l2",
+   "text": "unterwegs",
+   "start": 8.496,
+   "end": 9.016,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w25",
+   "seg": "l2",
+   "text": "zu",
+   "start": 9.016,
+   "end": 9.211,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w26",
+   "seg": "l2",
+   "text": "uns.",
+   "start": 9.211,
+   "end": 9.406,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w27",
+   "seg": "l3",
+   "text": "Hundertfünfzig",
+   "start": 9.556,
+   "end": 10.449,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w28",
+   "seg": "l3",
+   "text": "Millionen",
+   "start": 10.449,
+   "end": 10.925,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w29",
+   "seg": "l3",
+   "text": "Kilometer.",
+   "start": 10.925,
+   "end": 11.4,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w30",
+   "seg": "l4",
+   "text": "Acht",
+   "start": 11.65,
+   "end": 11.867,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w31",
+   "seg": "l4",
+   "text": "Minuten",
+   "start": 11.867,
+   "end": 12.371,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w32",
+   "seg": "l4",
+   "text": "und",
+   "start": 12.371,
+   "end": 12.587,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w33",
+   "seg": "l4",
+   "text": "neunzehn",
+   "start": 12.587,
+   "end": 13.163,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w34",
+   "seg": "l4",
+   "text": "Sekunden",
+   "start": 13.163,
+   "end": 13.74,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w35",
+   "seg": "l4",
+   "text": "lang",
+   "start": 13.74,
+   "end": 13.956,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w36",
+   "seg": "l4",
+   "text": "scheint",
+   "start": 13.956,
+   "end": 14.316,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w37",
+   "seg": "l4",
+   "text": "sie",
+   "start": 14.316,
+   "end": 14.46,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w38",
+   "seg": "l4",
+   "text": "einfach",
+   "start": 14.46,
+   "end": 14.892,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w39",
+   "seg": "l4",
+   "text": "weiter.",
+   "start": 14.892,
+   "end": 15.253,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w40",
+   "seg": "l5",
+   "text": "Auch",
+   "start": 15.453,
+   "end": 15.66,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w41",
+   "seg": "l5",
+   "text": "ihre",
+   "start": 15.66,
+   "end": 15.868,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w42",
+   "seg": "l5",
+   "text": "Schwerkraft",
+   "start": 15.868,
+   "end": 16.492,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w43",
+   "seg": "l5",
+   "text": "hält",
+   "start": 16.492,
+   "end": 16.769,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w44",
+   "seg": "l5",
+   "text": "uns",
+   "start": 16.769,
+   "end": 16.977,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w45",
+   "seg": "l5",
+   "text": "genau",
+   "start": 16.977,
+   "end": 17.323,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w46",
+   "seg": "l5",
+   "text": "so",
+   "start": 17.323,
+   "end": 17.461,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w47",
+   "seg": "l5",
+   "text": "lange",
+   "start": 17.461,
+   "end": 17.738,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w48",
+   "seg": "l5",
+   "text": "fest.",
+   "start": 17.738,
+   "end": 18.016,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w49",
+   "seg": "l6",
+   "text": "Dann:",
+   "start": 18.416,
+   "end": 18.756,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w50",
+   "seg": "l6",
+   "text": "Dunkelheit.",
+   "start": 18.996,
+   "end": 19.636,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w51",
+   "seg": "d1",
+   "text": "Die",
+   "start": 20.236,
+   "end": 20.377,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w52",
+   "seg": "d1",
+   "text": "Erde",
+   "start": 20.377,
+   "end": 20.658,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w53",
+   "seg": "d1",
+   "text": "verliert",
+   "start": 20.658,
+   "end": 21.149,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w54",
+   "seg": "d1",
+   "text": "ihren",
+   "start": 21.149,
+   "end": 21.43,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w55",
+   "seg": "d1",
+   "text": "Halt",
+   "start": 21.43,
+   "end": 21.711,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w56",
+   "seg": "d1",
+   "text": "und",
+   "start": 21.711,
+   "end": 21.922,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w57",
+   "seg": "d1",
+   "text": "rast",
+   "start": 21.922,
+   "end": 22.203,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w58",
+   "seg": "d1",
+   "text": "geradeaus",
+   "start": 22.203,
+   "end": 22.835,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w59",
+   "seg": "d1",
+   "text": "ins",
+   "start": 22.835,
+   "end": 23.045,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w60",
+   "seg": "d1",
+   "text": "All.",
+   "start": 23.045,
+   "end": 23.186,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w61",
+   "seg": "d2",
+   "text": "Mit",
+   "start": 23.336,
+   "end": 23.524,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w62",
+   "seg": "d2",
+   "text": "dreißig",
+   "start": 23.524,
+   "end": 24.028,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w63",
+   "seg": "d2",
+   "text": "Kilometern",
+   "start": 24.028,
+   "end": 24.594,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w64",
+   "seg": "d2",
+   "text": "pro",
+   "start": 24.594,
+   "end": 24.783,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w65",
+   "seg": "d2",
+   "text": "Sekunde.",
+   "start": 24.783,
+   "end": 25.223,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w66",
+   "seg": "d3",
+   "text": "Der",
+   "start": 25.523,
+   "end": 25.701,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w67",
+   "seg": "d3",
+   "text": "Mond",
+   "start": 25.701,
+   "end": 25.939,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w68",
+   "seg": "d3",
+   "text": "wird",
+   "start": 25.939,
+   "end": 26.176,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w69",
+   "seg": "d3",
+   "text": "schwarz.",
+   "start": 26.176,
+   "end": 26.532,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w70",
+   "seg": "d3",
+   "text": "Doch",
+   "start": 26.532,
+   "end": 26.71,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w71",
+   "seg": "d3",
+   "text": "am",
+   "start": 26.71,
+   "end": 26.828,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w72",
+   "seg": "d3",
+   "text": "Himmel",
+   "start": 26.828,
+   "end": 27.125,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w73",
+   "seg": "d3",
+   "text": "leuchtet",
+   "start": 27.125,
+   "end": 27.599,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w74",
+   "seg": "d3",
+   "text": "noch",
+   "start": 27.599,
+   "end": 27.777,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w75",
+   "seg": "d3",
+   "text": "etwas.",
+   "start": 27.777,
+   "end": 28.074,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w76",
+   "seg": "d4",
+   "text": "Jupiter.",
+   "start": 28.374,
+   "end": 28.834,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w77",
+   "seg": "d4",
+   "text": "Noch",
+   "start": 29.054,
+   "end": 29.226,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w78",
+   "seg": "d4",
+   "text": "über",
+   "start": 29.226,
+   "end": 29.398,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w79",
+   "seg": "d4",
+   "text": "eine",
+   "start": 29.398,
+   "end": 29.627,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w80",
+   "seg": "d4",
+   "text": "Stunde",
+   "start": 29.627,
+   "end": 29.971,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w81",
+   "seg": "d4",
+   "text": "lang.",
+   "start": 29.971,
+   "end": 30.143,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w82",
+   "seg": "d5",
+   "text": "Saturn",
+   "start": 30.293,
+   "end": 30.67,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w83",
+   "seg": "d5",
+   "text": "sogar",
+   "start": 30.67,
+   "end": 30.985,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w84",
+   "seg": "d5",
+   "text": "über",
+   "start": 30.985,
+   "end": 31.173,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w85",
+   "seg": "d5",
+   "text": "zwei",
+   "start": 31.173,
+   "end": 31.488,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w86",
+   "seg": "d5",
+   "text": "Stunden.",
+   "start": 31.488,
+   "end": 31.928,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w87",
+   "seg": "d6",
+   "text": "Es",
+   "start": 32.128,
+   "end": 32.264,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w88",
+   "seg": "d6",
+   "text": "ist",
+   "start": 32.264,
+   "end": 32.445,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w89",
+   "seg": "d6",
+   "text": "das",
+   "start": 32.445,
+   "end": 32.627,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w90",
+   "seg": "d6",
+   "text": "letzte",
+   "start": 32.627,
+   "end": 32.944,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w91",
+   "seg": "d6",
+   "text": "Sonnenlicht,",
+   "start": 32.944,
+   "end": 33.488,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w92",
+   "seg": "d6",
+   "text": "das",
+   "start": 33.698,
+   "end": 33.891,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w93",
+   "seg": "d6",
+   "text": "wir",
+   "start": 33.891,
+   "end": 34.084,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w94",
+   "seg": "d6",
+   "text": "je",
+   "start": 34.084,
+   "end": 34.229,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w95",
+   "seg": "d6",
+   "text": "sehen.",
+   "start": 34.229,
+   "end": 34.518,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w96",
+   "seg": "c1",
+   "text": "Dann",
+   "start": 35.018,
+   "end": 35.22,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w97",
+   "seg": "c1",
+   "text": "kommt",
+   "start": 35.22,
+   "end": 35.489,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w98",
+   "seg": "c1",
+   "text": "die",
+   "start": 35.489,
+   "end": 35.624,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w99",
+   "seg": "c1",
+   "text": "Kälte.",
+   "start": 35.624,
+   "end": 35.961,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w100",
+   "seg": "c2",
+   "text": "Nach",
+   "start": 36.161,
+   "end": 36.384,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w101",
+   "seg": "c2",
+   "text": "einer",
+   "start": 36.384,
+   "end": 36.682,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w102",
+   "seg": "c2",
+   "text": "Woche:",
+   "start": 36.682,
+   "end": 36.981,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w103",
+   "seg": "c2",
+   "text": "im",
+   "start": 37.221,
+   "end": 37.347,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w104",
+   "seg": "c2",
+   "text": "Schnitt",
+   "start": 37.347,
+   "end": 37.601,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w105",
+   "seg": "c2",
+   "text": "unter",
+   "start": 37.601,
+   "end": 37.854,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w106",
+   "seg": "c2",
+   "text": "minus",
+   "start": 37.854,
+   "end": 38.171,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w107",
+   "seg": "c2",
+   "text": "achtzehn",
+   "start": 38.171,
+   "end": 38.551,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w108",
+   "seg": "c2",
+   "text": "Grad.",
+   "start": 38.551,
+   "end": 38.805,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w109",
+   "seg": "c3",
+   "text": "Nach",
+   "start": 39.005,
+   "end": 39.226,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w110",
+   "seg": "c3",
+   "text": "einem",
+   "start": 39.226,
+   "end": 39.594,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w111",
+   "seg": "c3",
+   "text": "Jahr:",
+   "start": 39.594,
+   "end": 39.815,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w112",
+   "seg": "c3",
+   "text": "unter",
+   "start": 40.025,
+   "end": 40.243,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w113",
+   "seg": "c3",
+   "text": "minus",
+   "start": 40.243,
+   "end": 40.517,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w114",
+   "seg": "c3",
+   "text": "dreiundsiebzig.",
+   "start": 40.517,
+   "end": 41.336,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w115",
+   "seg": "c4",
+   "text": "Pflanzen",
+   "start": 41.586,
+   "end": 42.059,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w116",
+   "seg": "c4",
+   "text": "sterben.",
+   "start": 42.059,
+   "end": 42.426,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w117",
+   "seg": "c4",
+   "text": "Die",
+   "start": 42.636,
+   "end": 42.775,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w118",
+   "seg": "c4",
+   "text": "Meere",
+   "start": 42.775,
+   "end": 43.051,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w119",
+   "seg": "c4",
+   "text": "frieren",
+   "start": 43.051,
+   "end": 43.466,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w120",
+   "seg": "c4",
+   "text": "zu.",
+   "start": 43.466,
+   "end": 43.674,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w121",
+   "seg": "s1",
+   "text": "Aber",
+   "start": 44.124,
+   "end": 44.31,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w122",
+   "seg": "s1",
+   "text": "unter",
+   "start": 44.31,
+   "end": 44.559,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w123",
+   "seg": "s1",
+   "text": "dem",
+   "start": 44.559,
+   "end": 44.745,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w124",
+   "seg": "s1",
+   "text": "Eis",
+   "start": 44.745,
+   "end": 44.932,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w125",
+   "seg": "s1",
+   "text": "bleibt",
+   "start": 44.932,
+   "end": 45.305,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w126",
+   "seg": "s1",
+   "text": "das",
+   "start": 45.305,
+   "end": 45.491,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w127",
+   "seg": "s1",
+   "text": "Wasser",
+   "start": 45.491,
+   "end": 45.74,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w128",
+   "seg": "s1",
+   "text": "noch",
+   "start": 45.74,
+   "end": 45.927,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w129",
+   "seg": "s1",
+   "text": "lange",
+   "start": 45.927,
+   "end": 46.175,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w130",
+   "seg": "s1",
+   "text": "flüssig.",
+   "start": 46.175,
+   "end": 46.61,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w131",
+   "seg": "s2",
+   "text": "Und",
+   "start": 46.81,
+   "end": 46.93,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w132",
+   "seg": "s2",
+   "text": "tief",
+   "start": 46.93,
+   "end": 47.05,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w133",
+   "seg": "s2",
+   "text": "unten,",
+   "start": 47.05,
+   "end": 47.25,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w134",
+   "seg": "s2",
+   "text": "an",
+   "start": 47.4,
+   "end": 47.43,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w135",
+   "seg": "s2",
+   "text": "heißen",
+   "start": 47.43,
+   "end": 47.517,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w136",
+   "seg": "s2",
+   "text": "Quellen",
+   "start": 47.517,
+   "end": 47.605,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w137",
+   "seg": "s2",
+   "text": "am",
+   "start": 47.605,
+   "end": 47.634,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w138",
+   "seg": "s2",
+   "text": "Meeresgrund,",
+   "start": 47.634,
+   "end": 47.78,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w139",
+   "seg": "s2",
+   "text": "leben",
+   "start": 48.07,
+   "end": 48.61,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w140",
+   "seg": "s2",
+   "text": "Bakterien,",
+   "start": 48.61,
+   "end": 49.69,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w141",
+   "seg": "s2",
+   "text": "die",
+   "start": 50.0,
+   "end": 50.199,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w142",
+   "seg": "s2",
+   "text": "nie",
+   "start": 50.199,
+   "end": 50.397,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w143",
+   "seg": "s2",
+   "text": "Sonnenlicht",
+   "start": 50.397,
+   "end": 51.39,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w144",
+   "seg": "s2",
+   "text": "gebraucht",
+   "start": 51.39,
+   "end": 52.184,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w145",
+   "seg": "s2",
+   "text": "haben.",
+   "start": 52.184,
+   "end": 52.68,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w146",
+   "seg": "p1",
+   "text": "Die",
+   "start": 53.18,
+   "end": 53.303,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w147",
+   "seg": "p1",
+   "text": "letzten",
+   "start": 53.303,
+   "end": 53.736,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w148",
+   "seg": "p1",
+   "text": "Überlebenden",
+   "start": 53.736,
+   "end": 54.417,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w149",
+   "seg": "p1",
+   "text": "der",
+   "start": 54.417,
+   "end": 54.602,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w150",
+   "seg": "p1",
+   "text": "Erde?",
+   "start": 54.602,
+   "end": 54.85,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w151",
+   "seg": "p1",
+   "text": "Leben",
+   "start": 55.11,
+   "end": 55.472,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w152",
+   "seg": "p1",
+   "text": "in",
+   "start": 55.472,
+   "end": 55.617,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w153",
+   "seg": "p1",
+   "text": "der",
+   "start": 55.617,
+   "end": 55.834,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w154",
+   "seg": "p1",
+   "text": "Tiefsee.",
+   "start": 55.834,
+   "end": 56.196,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w155",
+   "seg": "x1",
+   "text": "Was",
+   "start": 56.696,
+   "end": 56.878,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w156",
+   "seg": "x1",
+   "text": "soll",
+   "start": 56.878,
+   "end": 57.06,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w157",
+   "seg": "x1",
+   "text": "ich",
+   "start": 57.06,
+   "end": 57.242,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w158",
+   "seg": "x1",
+   "text": "als",
+   "start": 57.242,
+   "end": 57.424,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w159",
+   "seg": "x1",
+   "text": "Nächstes",
+   "start": 57.424,
+   "end": 57.909,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w160",
+   "seg": "x1",
+   "text": "simulieren?",
+   "start": 57.909,
+   "end": 58.456,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w161",
+   "seg": "x1",
+   "text": "Schreib",
+   "start": 58.456,
+   "end": 58.759,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w162",
+   "seg": "x1",
+   "text": "es",
+   "start": 58.759,
+   "end": 58.88,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w163",
+   "seg": "x1",
+   "text": "in",
+   "start": 58.88,
+   "end": 59.002,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w164",
+   "seg": "x1",
+   "text": "die",
+   "start": 59.002,
+   "end": 59.123,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w165",
+   "seg": "x1",
+   "text": "Kommentare.",
+   "start": 59.123,
+   "end": 59.669,
+   "hl": false,
+   "cap": false
+  }
+ ]
+}
