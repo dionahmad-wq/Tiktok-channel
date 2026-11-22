@@ -1,0 +1,84 @@
+<!-- Durchgehendes HUD (begraben → rettung): Zeit unter dem Schnee, Überlebenschance (Brugger et al. 2001), Status, Alarm. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #hud-alarm { position: absolute; inset: 0; opacity: 0;
+      background: radial-gradient(75% 55% at 50% 55%, rgba(255, 40, 40, 0) 40%, rgba(255, 40, 40, 0.5) 100%); }
+    #hud-card { left: 90px; width: 900px; top: 396px; padding: 24px 34px 26px; }
+    #hud-top { display: flex; justify-content: space-between; align-items: flex-end; }
+    #hud-top .blk { display: flex; flex-direction: column; gap: 10px; }
+    #hud-top .blk.r { align-items: flex-end; }
+    #hud-clock { font: 900 92px/0.9 "Inter", sans-serif; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    #hud-status { font: 900 28px/1 "Inter", sans-serif; letter-spacing: 0.08em; padding: 12px 16px; border-radius: 12px; white-space: nowrap;
+      background: rgba(255, 90, 78, 0.16); border: 2px solid rgba(255, 90, 78, 0.6); color: var(--coral); }
+    #hud-status.ok { background: rgba(62, 214, 192, 0.14); border-color: rgba(62, 214, 192, 0.6); color: var(--teal); }
+    .hud-bar { margin-top: 22px; }
+    .hud-bar .lbl { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .hud-bar .v { font: 900 30px/1 "Inter", sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .hud-bar .trk { height: 18px; border-radius: 9px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+    .hud-bar .fill { height: 100%; width: 100%; border-radius: 9px; transform-origin: 0 50%; }
+    #hud-mode { position: absolute; right: 28px; top: -24px; }
+  </style>
+  <div id="root" data-composition-id="hud" data-width="1080" data-height="1920">
+    <div id="hud-alarm"></div>
+    <div class="ui-head ui">
+      <div class="ui-pill" id="hud-pill">Phase 2 · <em>Verschüttet</em></div>
+      <div class="ui-segs"><i class="on"></i><i id="hud-s2"></i><i id="hud-s3"></i><i id="hud-s4"></i></div>
+    </div>
+    <div id="hud-card" class="ui-card ui">
+      <div id="hud-mode" class="ui-ff">⏩ ZEITRAFFER</div>
+      <div id="hud-top">
+        <div class="blk"><div class="ui-label">Zeit unter dem Schnee</div><div id="hud-clock">0:00</div></div>
+        <div class="blk r"><div class="ui-label">Status</div><div id="hud-status">VERSCHÜTTET</div></div>
+      </div>
+      <div class="hud-bar"><div class="lbl"><div class="ui-label">Überlebenschance</div><div class="v c-teal" id="hud-v">100 %</div></div>
+        <div class="trk"><div class="fill" id="hud-f" style="background: linear-gradient(90deg, #2BB3A0, #3ED6C0)"></div></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("hud"), G0 = VT.slots.hud.start, sl = VT.slots;
+      const $ = (id) => document.getElementById(id);
+      const phases = [["begraben", "Phase 2 · <em>Verschüttet</em>"], ["kurve", "Phase 3 · <em>Die Kurve</em>"], ["rettung", "Phase 4 · <em>Die Rettung</em>"]];
+      const tStart = LAW.g("b3", 4, "end"), tSignal = LAW.g("e3", 1), tFound = LAW.g("e4", 3);
+      const S = { t: 0 };
+      let last = -1;
+      function draw() {
+        const gt = G0 + S.t, T = LAW.T(gt);
+        const p = Math.max(0, phases.findIndex(([id]) => gt >= sl[id].start && gt < sl[id].end + 0.001));
+        if (p !== last) {
+          $("hud-pill").innerHTML = phases[p][1];
+          ["hud-s2", "hud-s3", "hud-s4"].forEach((id, i) => $(id).className = i <= p ? "on" : "");
+          last = p;
+        }
+        const found = gt >= tFound;
+        $("hud-clock").textContent = SIM.clock(T * 60);
+        $("hud-clock").style.color = found ? "var(--teal)" : "";
+        const sv = LAW.surv(T);
+        $("hud-f").style.transform = `scaleX(${sv / 100})`;
+        $("hud-v").textContent = Math.round(sv) + " %";
+        let st = "VERSCHÜTTET · 1 M", ok = false;
+        if (p === 1) st = "ATEMLUFT WIRD KNAPP";
+        if (p === 2) st = gt >= tSignal ? "SIGNAL GEORTET" : "SUCHE LÄUFT";
+        if (found) { st = "BEFREIT ✓"; ok = true; }
+        $("hud-status").textContent = st;
+        $("hud-status").className = ok ? "ok" : "";
+        const running = gt > tStart && !found;
+        $("hud-mode").style.opacity = running ? 1 : 0;
+        let a = 0;
+        if (p === 2 && !found) {
+          const k = SIM.clamp((gt - sl.rettung.start) / (tFound - sl.rettung.start), 0, 1);
+          a = (0.2 + 0.55 * k) * SIM.pulse(gt, 70 + 75 * k);
+        }
+        $("hud-alarm").style.opacity = a;
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#hud-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.6);
+      tl.fromTo("#hud-clock", { scale: 1 }, { scale: 1.18, duration: 0.15, yoyo: true, repeat: 1 }, tStart - G0);
+      tl.fromTo("#hud-clock", { scale: 1 }, { scale: 1.25, duration: 0.18, yoyo: true, repeat: 1 }, tFound - G0);
+      draw();
+      window.__timelines["hud"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,1437 @@
+{
+ "duration": 50.011,
+ "scenes": {
+  "hook": {
+   "start": 0.15,
+   "end": 6.021
+  },
+  "rennen": {
+   "start": 6.571,
+   "end": 14.611
+  },
+  "begraben": {
+   "start": 15.161,
+   "end": 21.686
+  },
+  "kurve": {
+   "start": 22.186,
+   "end": 31.635
+  },
+  "rettung": {
+   "start": 32.135,
+   "end": 42.62
+  },
+  "punch": {
+   "start": 43.12,
+   "end": 46.188
+  },
+  "outro": {
+   "start": 46.688,
+   "end": 49.411
+  }
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "scene": "hook",
+   "text": "Eine Lawine rast auf dich zu.",
+   "start": 0.15,
+   "end": 1.526
+  },
+  {
+   "id": "h2",
+   "scene": "hook",
+   "text": "Mit über hundert Kilometern pro Stunde.",
+   "start": 1.676,
+   "end": 3.584
+  },
+  {
+   "id": "h3",
+   "scene": "hook",
+   "text": "Und das Tödlichste passiert erst, wenn sie stoppt.",
+   "start": 3.784,
+   "end": 6.021
+  },
+  {
+   "id": "r1",
+   "scene": "rennen",
+   "text": "Du fährst um dein Leben. Sechzig Kilometer pro Stunde.",
+   "start": 6.571,
+   "end": 9.287
+  },
+  {
+   "id": "r2",
+   "scene": "rennen",
+   "text": "Die Lawine: doppelt so schnell.",
+   "start": 9.437,
+   "end": 11.036
+  },
+  {
+   "id": "r3",
+   "scene": "rennen",
+   "text": "Zweihundert Meter Vorsprung. Nach zwölf Sekunden hat sie dich.",
+   "start": 11.236,
+   "end": 14.611
+  },
+  {
+   "id": "b1",
+   "scene": "begraben",
+   "text": "Du wirst mitgerissen. Dann: Stille.",
+   "start": 15.161,
+   "end": 17.098
+  },
+  {
+   "id": "b2",
+   "scene": "begraben",
+   "text": "Der Schnee wird hart wie Beton. Du kannst keinen Finger bewegen.",
+   "start": 17.398,
+   "end": 20.293
+  },
+  {
+   "id": "b3",
+   "scene": "begraben",
+   "text": "Ab jetzt läuft die Uhr.",
+   "start": 20.493,
+   "end": 21.686
+  },
+  {
+   "id": "k1",
+   "scene": "kurve",
+   "text": "In den ersten Minuten überleben noch über neunzig Prozent.",
+   "start": 22.186,
+   "end": 25.054
+  },
+  {
+   "id": "k2",
+   "scene": "kurve",
+   "text": "Doch nach etwa achtzehn Minuten stürzt die Kurve ab.",
+   "start": 25.204,
+   "end": 27.731
+  },
+  {
+   "id": "k3",
+   "scene": "kurve",
+   "text": "Nach fünfunddreißig Minuten lebt nur noch jeder Dritte.",
+   "start": 27.881,
+   "end": 30.368
+  },
+  {
+   "id": "k4",
+   "scene": "kurve",
+   "text": "Die meisten ersticken.",
+   "start": 30.568,
+   "end": 31.635
+  },
+  {
+   "id": "e1",
+   "scene": "rettung",
+   "text": "Deine einzige echte Chance: deine Freunde.",
+   "start": 32.135,
+   "end": 34.34
+  },
+  {
+   "id": "e2",
+   "scene": "rettung",
+   "text": "Mit Suchgerät, Sonde und Schaufel.",
+   "start": 34.49,
+   "end": 36.32
+  },
+  {
+   "id": "e3",
+   "scene": "rettung",
+   "text": "Sie orten dein Signal. Sie graben.",
+   "start": 36.47,
+   "end": 38.402
+  },
+  {
+   "id": "e4",
+   "scene": "rettung",
+   "text": "Nach vierzehn Minuten: Luft.",
+   "start": 38.602,
+   "end": 40.224
+  },
+  {
+   "id": "e5",
+   "scene": "rettung",
+   "text": "Vier Minuten, bevor die Kurve abstürzt.",
+   "start": 40.474,
+   "end": 42.62
+  },
+  {
+   "id": "p1",
+   "scene": "punch",
+   "text": "Unter einer Lawine zählt nur eins: die erste Viertelstunde.",
+   "start": 43.12,
+   "end": 46.188
+  },
+  {
+   "id": "x1",
+   "scene": "outro",
+   "text": "Was soll ich als Nächstes simulieren? Schreib es in die Kommentare.",
+   "start": 46.688,
+   "end": 49.411
+  }
+ ],
+ "words": [
+  {
+   "id": "w0",
+   "seg": "h1",
+   "text": "Eine",
+   "start": 0.15,
+   "end": 0.379,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w1",
+   "seg": "h1",
+   "text": "Lawine",
+   "start": 0.379,
+   "end": 0.724,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w2",
+   "seg": "h1",
+   "text": "rast",
+   "start": 0.724,
+   "end": 0.953,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w3",
+   "seg": "h1",
+   "text": "auf",
+   "start": 0.953,
+   "end": 1.125,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w4",
+   "seg": "h1",
+   "text": "dich",
+   "start": 1.125,
+   "end": 1.354,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w5",
+   "seg": "h1",
+   "text": "zu.",
+   "start": 1.354,
+   "end": 1.526,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w6",
+   "seg": "h2",
+   "text": "Mit",
+   "start": 1.676,
+   "end": 1.867,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w7",
+   "seg": "h2",
+   "text": "über",
+   "start": 1.867,
+   "end": 2.058,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w8",
+   "seg": "h2",
+   "text": "hundert",
+   "start": 2.058,
+   "end": 2.44,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w9",
+   "seg": "h2",
+   "text": "Kilometern",
+   "start": 2.44,
+   "end": 3.012,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w10",
+   "seg": "h2",
+   "text": "pro",
+   "start": 3.012,
+   "end": 3.203,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w11",
+   "seg": "h2",
+   "text": "Stunde.",
+   "start": 3.203,
+   "end": 3.584,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w12",
+   "seg": "h3",
+   "text": "Und",
+   "start": 3.784,
+   "end": 3.94,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w13",
+   "seg": "h3",
+   "text": "das",
+   "start": 3.94,
+   "end": 4.096,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w14",
+   "seg": "h3",
+   "text": "Tödlichste",
+   "start": 4.096,
+   "end": 4.615,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w15",
+   "seg": "h3",
+   "text": "passiert",
+   "start": 4.615,
+   "end": 4.927,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w16",
+   "seg": "h3",
+   "text": "erst,",
+   "start": 4.927,
+   "end": 5.134,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w17",
+   "seg": "h3",
+   "text": "wenn",
+   "start": 5.394,
+   "end": 5.582,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w18",
+   "seg": "h3",
+   "text": "sie",
+   "start": 5.582,
+   "end": 5.708,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w19",
+   "seg": "h3",
+   "text": "stoppt.",
+   "start": 5.708,
+   "end": 6.021,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w20",
+   "seg": "r1",
+   "text": "Du",
+   "start": 6.571,
+   "end": 6.683,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w21",
+   "seg": "r1",
+   "text": "fährst",
+   "start": 6.683,
+   "end": 6.964,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w22",
+   "seg": "r1",
+   "text": "um",
+   "start": 6.964,
+   "end": 7.076,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w23",
+   "seg": "r1",
+   "text": "dein",
+   "start": 7.076,
+   "end": 7.301,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w24",
+   "seg": "r1",
+   "text": "Leben.",
+   "start": 7.301,
+   "end": 7.581,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w25",
+   "seg": "r1",
+   "text": "Sechzig",
+   "start": 7.841,
+   "end": 8.342,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w26",
+   "seg": "r1",
+   "text": "Kilometer",
+   "start": 8.342,
+   "end": 8.786,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w27",
+   "seg": "r1",
+   "text": "pro",
+   "start": 8.786,
+   "end": 8.953,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w28",
+   "seg": "r1",
+   "text": "Stunde.",
+   "start": 8.953,
+   "end": 9.287,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w29",
+   "seg": "r2",
+   "text": "Die",
+   "start": 9.437,
+   "end": 9.577,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w30",
+   "seg": "r2",
+   "text": "Lawine:",
+   "start": 9.577,
+   "end": 9.997,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w31",
+   "seg": "r2",
+   "text": "doppelt",
+   "start": 10.307,
+   "end": 10.671,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w32",
+   "seg": "r2",
+   "text": "so",
+   "start": 10.671,
+   "end": 10.793,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w33",
+   "seg": "r2",
+   "text": "schnell.",
+   "start": 10.793,
+   "end": 11.036,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w34",
+   "seg": "r3",
+   "text": "Zweihundert",
+   "start": 11.236,
+   "end": 11.915,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w35",
+   "seg": "r3",
+   "text": "Meter",
+   "start": 11.915,
+   "end": 12.162,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w36",
+   "seg": "r3",
+   "text": "Vorsprung.",
+   "start": 12.162,
+   "end": 12.656,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w37",
+   "seg": "r3",
+   "text": "Nach",
+   "start": 12.916,
+   "end": 13.111,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w38",
+   "seg": "r3",
+   "text": "zwölf",
+   "start": 13.111,
+   "end": 13.502,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w39",
+   "seg": "r3",
+   "text": "Sekunden",
+   "start": 13.502,
+   "end": 14.024,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w40",
+   "seg": "r3",
+   "text": "hat",
+   "start": 14.024,
+   "end": 14.22,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w41",
+   "seg": "r3",
+   "text": "sie",
+   "start": 14.22,
+   "end": 14.35,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w42",
+   "seg": "r3",
+   "text": "dich.",
+   "start": 14.35,
+   "end": 14.611,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w43",
+   "seg": "b1",
+   "text": "Du",
+   "start": 15.161,
+   "end": 15.316,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w44",
+   "seg": "b1",
+   "text": "wirst",
+   "start": 15.316,
+   "end": 15.703,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w45",
+   "seg": "b1",
+   "text": "mitgerissen.",
+   "start": 15.703,
+   "end": 16.478,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w46",
+   "seg": "b1",
+   "text": "Dann:",
+   "start": 16.478,
+   "end": 16.71,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w47",
+   "seg": "b1",
+   "text": "Stille.",
+   "start": 16.71,
+   "end": 17.098,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w48",
+   "seg": "b2",
+   "text": "Der",
+   "start": 17.398,
+   "end": 17.578,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w49",
+   "seg": "b2",
+   "text": "Schnee",
+   "start": 17.578,
+   "end": 17.758,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w50",
+   "seg": "b2",
+   "text": "wird",
+   "start": 17.758,
+   "end": 17.998,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w51",
+   "seg": "b2",
+   "text": "hart",
+   "start": 17.998,
+   "end": 18.238,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w52",
+   "seg": "b2",
+   "text": "wie",
+   "start": 18.238,
+   "end": 18.358,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w53",
+   "seg": "b2",
+   "text": "Beton.",
+   "start": 18.358,
+   "end": 18.658,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w54",
+   "seg": "b2",
+   "text": "Du",
+   "start": 18.898,
+   "end": 19.014,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w55",
+   "seg": "b2",
+   "text": "kannst",
+   "start": 19.014,
+   "end": 19.305,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w56",
+   "seg": "b2",
+   "text": "keinen",
+   "start": 19.305,
+   "end": 19.653,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w57",
+   "seg": "b2",
+   "text": "Finger",
+   "start": 19.653,
+   "end": 19.886,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w58",
+   "seg": "b2",
+   "text": "bewegen.",
+   "start": 19.886,
+   "end": 20.293,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w59",
+   "seg": "b3",
+   "text": "Ab",
+   "start": 20.493,
+   "end": 20.642,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w60",
+   "seg": "b3",
+   "text": "jetzt",
+   "start": 20.642,
+   "end": 21.015,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w61",
+   "seg": "b3",
+   "text": "läuft",
+   "start": 21.015,
+   "end": 21.388,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w62",
+   "seg": "b3",
+   "text": "die",
+   "start": 21.388,
+   "end": 21.537,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w63",
+   "seg": "b3",
+   "text": "Uhr.",
+   "start": 21.537,
+   "end": 21.686,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w64",
+   "seg": "k1",
+   "text": "In",
+   "start": 22.186,
+   "end": 22.303,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w65",
+   "seg": "k1",
+   "text": "den",
+   "start": 22.303,
+   "end": 22.479,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w66",
+   "seg": "k1",
+   "text": "ersten",
+   "start": 22.479,
+   "end": 22.83,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w67",
+   "seg": "k1",
+   "text": "Minuten",
+   "start": 22.83,
+   "end": 23.24,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w68",
+   "seg": "k1",
+   "text": "überleben",
+   "start": 23.24,
+   "end": 23.708,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w69",
+   "seg": "k1",
+   "text": "noch",
+   "start": 23.708,
+   "end": 23.883,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w70",
+   "seg": "k1",
+   "text": "über",
+   "start": 23.883,
+   "end": 24.059,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w71",
+   "seg": "k1",
+   "text": "neunzig",
+   "start": 24.059,
+   "end": 24.585,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w72",
+   "seg": "k1",
+   "text": "Prozent.",
+   "start": 24.585,
+   "end": 25.054,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w73",
+   "seg": "k2",
+   "text": "Doch",
+   "start": 25.204,
+   "end": 25.398,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w74",
+   "seg": "k2",
+   "text": "nach",
+   "start": 25.398,
+   "end": 25.592,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w75",
+   "seg": "k2",
+   "text": "etwa",
+   "start": 25.592,
+   "end": 25.852,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w76",
+   "seg": "k2",
+   "text": "achtzehn",
+   "start": 25.852,
+   "end": 26.24,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w77",
+   "seg": "k2",
+   "text": "Minuten",
+   "start": 26.24,
+   "end": 26.694,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w78",
+   "seg": "k2",
+   "text": "stürzt",
+   "start": 26.694,
+   "end": 27.148,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w79",
+   "seg": "k2",
+   "text": "die",
+   "start": 27.148,
+   "end": 27.277,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w80",
+   "seg": "k2",
+   "text": "Kurve",
+   "start": 27.277,
+   "end": 27.601,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w81",
+   "seg": "k2",
+   "text": "ab.",
+   "start": 27.601,
+   "end": 27.731,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w82",
+   "seg": "k3",
+   "text": "Nach",
+   "start": 27.881,
+   "end": 28.054,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w83",
+   "seg": "k3",
+   "text": "fünfunddreißig",
+   "start": 28.054,
+   "end": 28.864,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w84",
+   "seg": "k3",
+   "text": "Minuten",
+   "start": 28.864,
+   "end": 29.269,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w85",
+   "seg": "k3",
+   "text": "lebt",
+   "start": 29.269,
+   "end": 29.501,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w86",
+   "seg": "k3",
+   "text": "nur",
+   "start": 29.501,
+   "end": 29.674,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w87",
+   "seg": "k3",
+   "text": "noch",
+   "start": 29.674,
+   "end": 29.848,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w88",
+   "seg": "k3",
+   "text": "jeder",
+   "start": 29.848,
+   "end": 30.079,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w89",
+   "seg": "k3",
+   "text": "Dritte.",
+   "start": 30.079,
+   "end": 30.368,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w90",
+   "seg": "k4",
+   "text": "Die",
+   "start": 30.568,
+   "end": 30.694,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w91",
+   "seg": "k4",
+   "text": "meisten",
+   "start": 30.694,
+   "end": 31.133,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w92",
+   "seg": "k4",
+   "text": "ersticken.",
+   "start": 31.133,
+   "end": 31.635,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w93",
+   "seg": "e1",
+   "text": "Deine",
+   "start": 32.135,
+   "end": 32.4,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w94",
+   "seg": "e1",
+   "text": "einzige",
+   "start": 32.4,
+   "end": 32.824,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w95",
+   "seg": "e1",
+   "text": "echte",
+   "start": 32.824,
+   "end": 33.089,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w96",
+   "seg": "e1",
+   "text": "Chance:",
+   "start": 33.089,
+   "end": 33.355,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w97",
+   "seg": "e1",
+   "text": "deine",
+   "start": 33.655,
+   "end": 33.94,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w98",
+   "seg": "e1",
+   "text": "Freunde.",
+   "start": 33.94,
+   "end": 34.34,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w99",
+   "seg": "e2",
+   "text": "Mit",
+   "start": 34.49,
+   "end": 34.7,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w100",
+   "seg": "e2",
+   "text": "Suchgerät,",
+   "start": 34.7,
+   "end": 35.26,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w101",
+   "seg": "e2",
+   "text": "Sonde",
+   "start": 35.42,
+   "end": 35.741,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w102",
+   "seg": "e2",
+   "text": "und",
+   "start": 35.741,
+   "end": 35.934,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w103",
+   "seg": "e2",
+   "text": "Schaufel.",
+   "start": 35.934,
+   "end": 36.32,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w104",
+   "seg": "e3",
+   "text": "Sie",
+   "start": 36.47,
+   "end": 36.604,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w105",
+   "seg": "e3",
+   "text": "orten",
+   "start": 36.604,
+   "end": 36.939,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w106",
+   "seg": "e3",
+   "text": "dein",
+   "start": 36.939,
+   "end": 37.208,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w107",
+   "seg": "e3",
+   "text": "Signal.",
+   "start": 37.208,
+   "end": 37.61,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w108",
+   "seg": "e3",
+   "text": "Sie",
+   "start": 37.77,
+   "end": 37.928,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w109",
+   "seg": "e3",
+   "text": "graben.",
+   "start": 37.928,
+   "end": 38.402,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w110",
+   "seg": "e4",
+   "text": "Nach",
+   "start": 38.602,
+   "end": 38.791,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w111",
+   "seg": "e4",
+   "text": "vierzehn",
+   "start": 38.791,
+   "end": 39.232,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w112",
+   "seg": "e4",
+   "text": "Minuten:",
+   "start": 39.232,
+   "end": 39.672,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w113",
+   "seg": "e4",
+   "text": "Luft.",
+   "start": 39.872,
+   "end": 40.224,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w114",
+   "seg": "e5",
+   "text": "Vier",
+   "start": 40.474,
+   "end": 40.687,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w115",
+   "seg": "e5",
+   "text": "Minuten,",
+   "start": 40.687,
+   "end": 41.184,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w116",
+   "seg": "e5",
+   "text": "bevor",
+   "start": 41.354,
+   "end": 41.655,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w117",
+   "seg": "e5",
+   "text": "die",
+   "start": 41.655,
+   "end": 41.776,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w118",
+   "seg": "e5",
+   "text": "Kurve",
+   "start": 41.776,
+   "end": 42.078,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w119",
+   "seg": "e5",
+   "text": "abstürzt.",
+   "start": 42.078,
+   "end": 42.62,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w120",
+   "seg": "p1",
+   "text": "Unter",
+   "start": 43.12,
+   "end": 43.402,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w121",
+   "seg": "p1",
+   "text": "einer",
+   "start": 43.402,
+   "end": 43.684,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w122",
+   "seg": "p1",
+   "text": "Lawine",
+   "start": 43.684,
+   "end": 44.106,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w123",
+   "seg": "p1",
+   "text": "zählt",
+   "start": 44.106,
+   "end": 44.458,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w124",
+   "seg": "p1",
+   "text": "nur",
+   "start": 44.458,
+   "end": 44.669,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w125",
+   "seg": "p1",
+   "text": "eins:",
+   "start": 44.669,
+   "end": 44.95,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w126",
+   "seg": "p1",
+   "text": "die",
+   "start": 45.11,
+   "end": 45.224,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w127",
+   "seg": "p1",
+   "text": "erste",
+   "start": 45.224,
+   "end": 45.507,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w128",
+   "seg": "p1",
+   "text": "Viertelstunde.",
+   "start": 45.507,
+   "end": 46.188,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w129",
+   "seg": "x1",
+   "text": "Was",
+   "start": 46.688,
+   "end": 46.854,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w130",
+   "seg": "x1",
+   "text": "soll",
+   "start": 46.854,
+   "end": 47.021,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w131",
+   "seg": "x1",
+   "text": "ich",
+   "start": 47.021,
+   "end": 47.188,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w132",
+   "seg": "x1",
+   "text": "als",
+   "start": 47.188,
+   "end": 47.355,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w133",
+   "seg": "x1",
+   "text": "Nächstes",
+   "start": 47.355,
+   "end": 47.799,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w134",
+   "seg": "x1",
+   "text": "simulieren?",
+   "start": 47.799,
+   "end": 48.3,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w135",
+   "seg": "x1",
+   "text": "Schreib",
+   "start": 48.3,
+   "end": 48.578,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w136",
+   "seg": "x1",
+   "text": "es",
+   "start": 48.578,
+   "end": 48.689,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w137",
+   "seg": "x1",
+   "text": "in",
+   "start": 48.689,
+   "end": 48.8,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w138",
+   "seg": "x1",
+   "text": "die",
+   "start": 48.8,
+   "end": 48.911,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w139",
+   "seg": "x1",
+   "text": "Kommentare.",
+   "start": 48.911,
+   "end": 49.411,
+   "hl": false,
+   "cap": false
+  }
+ ]
+}

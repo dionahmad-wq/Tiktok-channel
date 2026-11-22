@@ -1,0 +1,60 @@
+<!-- Szene 1 · Hook: Lawine + Tempo + offene Schleife („das Tödlichste passiert erst, wenn sie stoppt“) -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #hk-stage { position: absolute; inset: 0; }
+    #hk-world { position: absolute; inset: 0; transform: rotate(20deg); transform-origin: 540px 1040px; }
+    #hk-svg { position: absolute; left: -400px; top: 0; width: 1880px; height: 1920px; overflow: visible; }
+    #hk-card { left: 90px; width: 900px; top: 330px; padding: 30px 30px 36px; text-align: center; }
+    #hk-l1 { font: 900 60px/1.05 "Inter", sans-serif; color: var(--ink); letter-spacing: -0.01em; }
+    #hk-l2 { font: 900 120px/1 "Inter", sans-serif; color: var(--amber); margin-top: 12px; letter-spacing: -0.03em;
+      text-shadow: 0 0 36px rgba(255, 181, 71, 0.55); }
+    #hk-warn { position: absolute; left: 0; right: 0; top: 700px; display: flex; justify-content: center; }
+    #hk-warn div { font: 900 40px/1 "Inter", sans-serif; letter-spacing: 0.05em; color: #fff; background: var(--coral);
+      padding: 16px 24px; border-radius: 16px; box-shadow: 0 0 50px rgba(255, 90, 78, 0.7); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-stage">
+      <div id="hk-world">
+        <svg id="hk-svg" viewBox="-400 0 1880 1920">
+          <g id="hk-far"></g>
+          <rect x="-400" y="1040" width="1880" height="900" fill="#AEBCD6" />
+          <line x1="-400" y1="1040" x2="1480" y2="1040" stroke="#E6EEF9" stroke-width="5" />
+          <g id="hk-trees"></g>
+          <g id="hk-cloud"></g>
+        </svg>
+        <div id="hk-skier" class="sim-actor ui"></div>
+      </div>
+    </div>
+    <div id="hk-card" class="ui-card ui">
+      <div id="hk-l1">EINE LAWINE RAST<br />AUF DICH ZU.</div>
+      <div id="hk-l2">120 KM/H</div>
+    </div>
+    <div id="hk-warn" class="ui"><div id="hk-warn-c">TÖDLICH WIRD ES, WENN SIE STOPPT</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("hook");
+      const $ = (id) => document.getElementById(id);
+      const sk = SIM.runner($("hk-skier"));
+      $("hk-skier").querySelector("svg").insertAdjacentHTML("beforeend", '<line x1="-14" y1="99" x2="78" y2="99" stroke="#3ED6C0" stroke-width="6" stroke-linecap="round"/>');
+      [[-250, 150], [-60, 120], [180, 170], [420, 130], [980, 160], [1180, 120]].forEach(([x, h]) => $("hk-trees").insertAdjacentHTML("beforeend", LAW.pine(x, 1040, h, "#16302A")));
+      for (let i = 0; i < 24; i++) $("hk-far").insertAdjacentHTML("beforeend", LAW.pine(-380 + i * 80, 1034, 60 + (i % 4) * 14, "#1B2436"));
+      const cloud = LAW.cloud($("hk-cloud"));
+      const S = { t: 0 };
+      function draw() {
+        cloud.draw(330 + 30 * S.t, 1040, S.t, 1.2);
+        sk.pose(S.t * 2.5, 0.25);
+        sk.place(760, 1036, 1, 0);
+      }
+      const tKill = VT.word("h3", 7);
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#hk-l2", { scale: 1 }, { scale: 1.1, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, VT.word("h2", 2));
+      tl.fromTo("#hk-warn-c", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.out" }, tKill - 0.03);
+      SIM.shake(tl, "#hk-stage", tKill, 20);
+      draw();
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

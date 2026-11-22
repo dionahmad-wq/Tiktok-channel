@@ -1,0 +1,101 @@
+<!-- Szene 2 · Das Rennen: Skifahrer 60 km/h vs. Lawine 120 km/h, 200 m Vorsprung → 200 / (33,3 − 16,7) = 12 s -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #rn-stage { position: absolute; inset: 0; }
+    #rn-world { position: absolute; inset: 0; transform: rotate(20deg); transform-origin: 540px 1040px; }
+    #rn-svg { position: absolute; left: -400px; top: 0; width: 1880px; height: 1920px; overflow: visible; }
+    #rn-card { left: 90px; width: 900px; top: 396px; padding: 24px 34px; }
+    #rn-top { display: flex; justify-content: space-between; align-items: flex-end; }
+    #rn-top .blk { display: flex; flex-direction: column; gap: 12px; }
+    #rn-top .blk.r { align-items: flex-end; }
+    #rn-bars { margin-top: 22px; display: flex; flex-direction: column; gap: 12px; }
+    .rn-row { display: flex; align-items: center; gap: 14px; }
+    .rn-row .who { width: 170px; font: 900 24px/1 "Inter", sans-serif; letter-spacing: 0.1em; white-space: nowrap; }
+    .rn-row .trk { flex: 1; }
+    .rn-row .val { width: 160px; text-align: right; font: 900 32px/1 "Inter", sans-serif; white-space: nowrap; }
+    #rn-white { position: absolute; inset: 0; background: #EEF3FB; opacity: 0; }
+    #rn-skier { }
+  </style>
+  <div id="root" data-composition-id="rennen" data-width="1080" data-height="1920">
+    <div id="rn-stage">
+      <div id="rn-world">
+        <svg id="rn-svg" viewBox="-400 0 1880 1920">
+          <g id="rn-far"></g>
+          <rect x="-400" y="1040" width="1880" height="900" fill="#AEBCD6" />
+          <line x1="-400" y1="1040" x2="1480" y2="1040" stroke="#E6EEF9" stroke-width="5" />
+          <g id="rn-trees"></g>
+          <g id="rn-cloud"></g>
+        </svg>
+        <div id="rn-skier" class="sim-actor ui"></div>
+        <div id="rn-tag" class="sim-tag ui" style="--c: var(--coral)"><b>B</b><span>LAWINE</span></div>
+      </div>
+    </div>
+    <div class="ui-head ui" id="rn-head">
+      <div class="ui-pill">Phase 1 · <em>Das Rennen</em></div>
+      <div class="ui-segs"><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div id="rn-card" class="ui-card ui">
+      <div id="rn-top">
+        <div class="blk"><div class="ui-label">Zeit</div><div class="ui-mid" id="rn-v-t">0,0 s</div></div>
+        <div class="blk r"><div class="ui-label">Vorsprung</div><div class="ui-big c-coral"><span id="rn-v-gap">200</span><span class="ui-unit">m</span></div></div>
+      </div>
+      <div id="rn-bars">
+        <div class="rn-row"><div class="who c-coral">B · LAWINE</div><div class="trk"><div id="rn-bar-b" class="ui-bar coral" style="width: 480px"></div></div><div class="val c-coral">120 <span class="ui-unit">km/h</span></div></div>
+        <div class="rn-row"><div class="who c-teal">A · DU</div><div class="trk"><div id="rn-bar-a" class="ui-bar teal" style="width: 240px"></div></div><div class="val c-teal">60 <span class="ui-unit">km/h</span></div></div>
+      </div>
+    </div>
+    <div id="rn-white"></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("rennen");
+      const $ = (id) => document.getElementById(id);
+      const VA = 120 / 3.6, VS = 60 / 3.6, SX = 3.0, GY = 1040, AX = 790;
+      const sk = SIM.runner($("rn-skier"));
+      $("rn-skier").querySelector(".sim-badge span").textContent = "DU";
+      $("rn-skier").querySelector("svg").insertAdjacentHTML("beforeend", '<line x1="-14" y1="99" x2="78" y2="99" stroke="#3ED6C0" stroke-width="6" stroke-linecap="round"/>');
+      // Bäume (Pool) + ferne Bäume
+      const trees = [];
+      for (let i = 0; i < 18; i++) { const g = SIM.el("g", {}, $("rn-trees")); g.innerHTML = LAW.pine(0, GY, 120 + (i % 3) * 30, "#16302A"); trees.push(g); }
+      const far = [];
+      for (let i = 0; i < 26; i++) { const g = SIM.el("g", {}, $("rn-far")); g.innerHTML = LAW.pine(0, GY - 6, 60 + (i % 4) * 14, "#1B2436"); far.push(g); }
+      const cloud = LAW.cloud($("rn-cloud"));
+      const t0 = VT.seg("r1"), tHit = VT.word("r3", 8);
+      const simT = (t) => SIM.keys([[0, -1.5], [t0, 0], [tHit, 12], [L, 12.6]], t);
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t, T = simT(t);
+        const xs = VS * Math.max(0, T) + (T < 0 ? VS * T : 0);
+        const gap = Math.max(0, 200 - (VA - VS) * Math.max(0, T));
+        const toX = (X) => AX + (X - xs) * SX;
+        trees.forEach((g, i) => {
+          const X = Math.floor((xs - 140) / 22) * 22 + i * 22;
+          g.setAttribute("transform", `translate(${toX(X) + ((i * 37) % 11)} 0)`);
+        });
+        far.forEach((g, i) => {
+          const X = Math.floor((xs * 0.4 - 300) / 30) * 30 + i * 30;
+          g.setAttribute("transform", `translate(${AX + (X - xs * 0.4) * SX * 0.9} 0)`);
+        });
+        const fx = toX(xs - gap);
+        cloud.draw(fx, GY, t, 1.15);
+        $("rn-tag").style.transform = `translate(${Math.max(250, fx - 120)}px, ${GY - 210}px)`;
+        sk.pose(t * 2.5, 0.25);
+        sk.place(AX, GY - 4, 1, 0);
+        $("rn-skier").style.opacity = gap <= 0 ? 0 : 1;
+        $("rn-v-t").textContent = SIM.fmtDec(Math.max(0, T), 1) + " s";
+        $("rn-v-gap").textContent = SIM.fmtInt(gap);
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#rn-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#rn-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#rn-bar-a", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, VT.word("r1", 4));
+      tl.fromTo("#rn-bar-b", { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power3.out" }, VT.word("r2", 2));
+      tl.fromTo("#rn-white", { opacity: 0 }, { opacity: 1, duration: 0.12 }, tHit);
+      SIM.shake(tl, "#rn-stage", tHit - 0.05, 26);
+      draw();
+      window.__timelines["rennen"] = tl;
+    })();
+  </script>
+</template>

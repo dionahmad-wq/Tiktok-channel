@@ -1,0 +1,75 @@
+<!-- Szene 4 · Die Kurve: Überleben nach Verschüttungsdauer (Brugger et al. 2001): 91 % bis 18 min, 34 % bei 35 min.
+     Häufigste Todesursache: Ersticken. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ku-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .ku-tag { position: absolute; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.08em; white-space: nowrap; }
+    #ku-dead { position: absolute; left: 0; right: 0; top: 1268px; display: flex; justify-content: center; }
+    #ku-dead div { font: 900 36px/1 "Inter", sans-serif; letter-spacing: 0.06em; color: #fff; background: var(--coral);
+      padding: 12px 22px; border-radius: 14px; box-shadow: 0 0 40px rgba(255, 90, 78, 0.6); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="kurve" data-width="1080" data-height="1920">
+    <svg id="ku-svg" viewBox="0 0 1080 1920">
+      <rect x="120" y="740" width="860" height="520" rx="26" fill="rgba(17,16,32,.82)" stroke="rgba(255,255,255,.08)" stroke-width="2" />
+      <rect id="ku-red" x="0" y="790" width="0" height="400" fill="rgba(255,90,78,.12)" />
+      <g id="ku-axes"></g>
+      <path id="ku-line" fill="none" stroke="#3ED6C0" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+      <line id="ku-tip" y1="790" y2="1190" stroke="#FF5A4E" stroke-width="3" stroke-dasharray="10 8" opacity="0" />
+      <circle id="ku-dot" r="12" fill="#FFB547" style="filter: drop-shadow(0 0 10px rgba(255,181,71,.9))" />
+      <circle id="ku-you" r="10" fill="#3ED6C0" stroke="#0B0B14" stroke-width="3" />
+    </svg>
+    <div id="ku-v" class="ku-tag ui c-amber">100 %</div>
+    <div id="ku-l-tip" class="ku-tag ui c-coral" style="opacity: 0">KIPPPUNKT</div>
+    <div id="ku-l-you" class="ku-tag ui c-teal">DU</div>
+    <div id="ku-dead" class="ui"><div id="ku-dead-c">TODESURSACHE NR. 1: ERSTICKEN</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("kurve"), G0 = VT.slots.kurve.start;
+      const $ = (id) => document.getElementById(id);
+      const X0 = 200, X1 = 940, Y0 = 1190, Y1 = 790, MMAX = 40;
+      const X = (m) => X0 + (X1 - X0) * (m / MMAX), Y = (v) => Y0 - (Y0 - Y1) * (v / 100);
+      const ax = $("ku-axes");
+      SIM.el("line", { x1: X0, y1: Y0, x2: X1, y2: Y0, stroke: "#5B5875", "stroke-width": 3 }, ax);
+      SIM.el("line", { x1: X0, y1: Y0, x2: X0, y2: Y1, stroke: "#5B5875", "stroke-width": 3 }, ax);
+      [0, 10, 20, 30, 40].forEach((m) => {
+        const t = SIM.el("text", { x: X(m), y: Y0 + 40, "text-anchor": "middle", fill: "#8A8FA8", "font-family": "Inter", "font-weight": 800, "font-size": 26 }, ax);
+        t.textContent = m + (m === 40 ? " min" : "");
+      });
+      [0, 50, 100].forEach((v) => {
+        const t = SIM.el("text", { x: X0 - 14, y: Y(v) + 9, "text-anchor": "end", fill: "#8A8FA8", "font-family": "Inter", "font-weight": 800, "font-size": 26 }, ax);
+        t.textContent = v + "%";
+        SIM.el("line", { x1: X0, y1: Y(v), x2: X1, y2: Y(v), stroke: "rgba(255,255,255,.06)", "stroke-width": 2 }, ax);
+      });
+      const tTip = VT.word("k2", 3), t35 = VT.word("k3", 1), tDead = VT.word("k4", 2);
+      const cur = (t) => SIM.keys([[0.1, 0], [VT.seg("k1", "end"), 10], [tTip, 18], [t35, 35, "inOut"], [VT.seg("k4", "end"), 40]], t);
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t, m = cur(t);
+        let d = "";
+        for (let x = 0; x <= m + 0.001; x += 0.25) d += (d ? " L" : "M") + X(x).toFixed(1) + " " + Y(LAW.surv(x)).toFixed(1);
+        $("ku-line").setAttribute("d", d);
+        const v = LAW.surv(m);
+        $("ku-line").setAttribute("stroke", m > 18 ? "#FF5A4E" : "#3ED6C0");
+        $("ku-dot").setAttribute("cx", X(m)); $("ku-dot").setAttribute("cy", Y(v));
+        $("ku-v").textContent = Math.round(v) + " %";
+        $("ku-v").style.transform = `translate(${Math.min(X(m) + 18, 880)}px, ${Y(v) - 50}px)`;
+        const show = t >= tTip - 0.1;
+        $("ku-tip").setAttribute("x1", X(18)); $("ku-tip").setAttribute("x2", X(18)); $("ku-tip").setAttribute("opacity", show ? 1 : 0);
+        $("ku-red").setAttribute("x", X(18)); $("ku-red").setAttribute("width", show ? X1 - X(18) : 0);
+        $("ku-l-tip").style.opacity = show ? 1 : 0;
+        $("ku-l-tip").style.transform = `translate(${X(18) + 12}px, ${Y1 + 8}px)`;
+        const ym = LAW.T(G0 + t);
+        $("ku-you").setAttribute("cx", X(ym)); $("ku-you").setAttribute("cy", Y(LAW.surv(ym)));
+        $("ku-l-you").style.transform = `translate(${X(ym) - 20}px, ${Y(LAW.surv(ym)) + 22}px)`;
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#ku-svg", { opacity: 0 }, { opacity: 1, duration: 0.35 }, 0);
+      tl.fromTo("#ku-dead-c", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.out" }, tDead - 0.05);
+      draw();
+      window.__timelines["kurve"] = tl;
+    })();
+  </script>
+</template>

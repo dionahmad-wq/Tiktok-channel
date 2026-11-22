@@ -1,0 +1,53 @@
+<!-- Szene 3 · Verschüttet: Lawinenschnee verdichtet beim Stillstand („wie Beton“), ~1 m tief, Atemhöhle vor dem Gesicht. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #bg-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #bg-white { position: absolute; inset: 0; background: #EEF3FB; }
+    #bg-person { }
+    .bg-tag { position: absolute; font: 900 28px/1 "Inter", sans-serif; letter-spacing: 0.1em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="begraben" data-width="1080" data-height="1920">
+    <svg id="bg-svg" viewBox="0 0 1080 1920">
+      <g id="bg-snow"></g>
+      <g id="bg-depth" opacity="0">
+        <line x1="250" y1="815" x2="250" y2="1060" stroke="#0B1424" stroke-width="4" />
+        <line x1="232" y1="815" x2="268" y2="815" stroke="#0B1424" stroke-width="4" />
+        <line x1="232" y1="1060" x2="268" y2="1060" stroke="#0B1424" stroke-width="4" />
+      </g>
+      <ellipse id="bg-air" cx="560" cy="1040" rx="46" ry="34" fill="#0B1424" stroke="#3ED6C0" stroke-width="3" opacity="0" />
+      <g id="bg-cracks" opacity="0" stroke="#4E6386" stroke-width="3" fill="none">
+        <path d="M120 900 L180 960 L160 1020 L220 1090" /><path d="M820 880 L780 950 L830 1010 L790 1080" /><path d="M420 1180 L480 1220 L460 1280" />
+      </g>
+    </svg>
+    <div id="bg-person" class="sim-actor ui"></div>
+    <div id="bg-l-depth" class="bg-tag ui" style="left: 280px; top: 920px; color: #0B1424">~1 M SCHNEE</div>
+    <div id="bg-l-beton" class="bg-tag ui" style="left: 640px; top: 1180px; color: #0B1424">HART WIE BETON</div>
+    <div id="bg-white"></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("begraben");
+      const $ = (id) => document.getElementById(id);
+      SNOWSEC($("bg-snow"), 4);
+      const p = SIM.runner($("bg-person"), SIM.C.teal);
+      $("bg-person").querySelector(".sim-badge").style.display = "none";
+      $("bg-person").style.transformOrigin = "30px 50px";
+      const S = { t: 0 };
+      function draw() {
+        p.pose(0.25, 0.7);
+        $("bg-person").style.transform = `translate(${600 - 30}px, ${1080 - 50}px) rotate(-75deg) scale(1.15)`;
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#bg-white", { opacity: 1 }, { opacity: 0, duration: 1.2, ease: "power2.in" }, VT.word("b1", 3));
+      tl.fromTo("#bg-depth", { opacity: 0 }, { opacity: 1, duration: 0.3 }, VT.word("b1", 3) + 0.8);
+      tl.fromTo("#bg-l-depth", { opacity: 0 }, { opacity: 1, duration: 0.3 }, VT.word("b1", 3) + 0.8);
+      tl.fromTo("#bg-air", { opacity: 0 }, { opacity: 1, duration: 0.4 }, VT.word("b1", 4));
+      tl.fromTo("#bg-cracks", { opacity: 0 }, { opacity: 1, duration: 0.1 }, VT.word("b2", 5));
+      tl.fromTo("#bg-l-beton", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.out" }, VT.word("b2", 5));
+      draw();
+      window.__timelines["begraben"] = tl;
+    })();
+  </script>
+</template>

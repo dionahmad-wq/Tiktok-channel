@@ -1,0 +1,265 @@
+{
+ "title": "Eine Lawine rast auf dich zu – wie lange überlebst du?",
+ "speed": 0.93,
+ "fx": "dramatic",
+ "lead_in": 0.15,
+ "segments": [
+  {
+   "id": "h1",
+   "scene": "hook",
+   "text": "Eine *Lawine* rast auf dich zu.",
+   "pause": 0.15
+  },
+  {
+   "id": "h2",
+   "scene": "hook",
+   "text": "Mit über *hundert* Kilometern pro Stunde.",
+   "pause": 0.2
+  },
+  {
+   "id": "h3",
+   "scene": "hook",
+   "text": "Und das Tödlichste passiert erst, wenn sie *stoppt.*",
+   "speed": 1.08,
+   "pause": 0.55
+  },
+  {
+   "id": "r1",
+   "scene": "rennen",
+   "text": "Du fährst um dein Leben. *Sechzig* Kilometer pro Stunde.",
+   "pause": 0.15
+  },
+  {
+   "id": "r2",
+   "scene": "rennen",
+   "text": "Die Lawine: *doppelt* so schnell.",
+   "pause": 0.2
+  },
+  {
+   "id": "r3",
+   "scene": "rennen",
+   "text": "Zweihundert Meter Vorsprung. Nach zwölf Sekunden hat sie *dich.*",
+   "pause": 0.55
+  },
+  {
+   "id": "b1",
+   "scene": "begraben",
+   "text": "Du wirst mitgerissen. Dann: *Stille.*",
+   "speed": 1.1,
+   "pause": 0.3
+  },
+  {
+   "id": "b2",
+   "scene": "begraben",
+   "text": "Der Schnee wird hart wie *Beton.* Du kannst keinen Finger bewegen.",
+   "pause": 0.2
+  },
+  {
+   "id": "b3",
+   "scene": "begraben",
+   "text": "Ab jetzt läuft die *Uhr.*",
+   "speed": 1.1,
+   "pause": 0.5
+  },
+  {
+   "id": "k1",
+   "scene": "kurve",
+   "text": "In den ersten Minuten überleben noch über *neunzig* Prozent.",
+   "pause": 0.15
+  },
+  {
+   "id": "k2",
+   "scene": "kurve",
+   "text": "Doch nach etwa *achtzehn* Minuten stürzt die Kurve ab.",
+   "pause": 0.15
+  },
+  {
+   "id": "k3",
+   "scene": "kurve",
+   "text": "Nach *fünfunddreißig* Minuten lebt nur noch jeder *Dritte.*",
+   "pause": 0.2
+  },
+  {
+   "id": "k4",
+   "scene": "kurve",
+   "text": "Die meisten *ersticken.*",
+   "speed": 1.1,
+   "pause": 0.5
+  },
+  {
+   "id": "e1",
+   "scene": "rettung",
+   "text": "Deine einzige echte Chance: deine *Freunde.*",
+   "pause": 0.15
+  },
+  {
+   "id": "e2",
+   "scene": "rettung",
+   "text": "Mit Suchgerät, Sonde und Schaufel.",
+   "pause": 0.15
+  },
+  {
+   "id": "e3",
+   "scene": "rettung",
+   "text": "Sie orten dein Signal. Sie *graben.*",
+   "pause": 0.2
+  },
+  {
+   "id": "e4",
+   "scene": "rettung",
+   "text": "Nach *vierzehn* Minuten: *Luft.*",
+   "speed": 1.1,
+   "pause": 0.25
+  },
+  {
+   "id": "e5",
+   "scene": "rettung",
+   "text": "Vier Minuten, bevor die Kurve abstürzt.",
+   "pause": 0.5
+  },
+  {
+   "id": "p1",
+   "scene": "punch",
+   "text": "Unter einer Lawine zählt nur eins: die erste Viertelstunde.",
+   "caption": false,
+   "speed": 1.03,
+   "pause": 0.5
+  },
+  {
+   "id": "x1",
+   "scene": "outro",
+   "text": "Was soll ich als Nächstes simulieren? Schreib es in die Kommentare.",
+   "caption": false,
+   "pause": 0.6
+  }
+ ],
+ "spans": {
+  "hud": [
+   "begraben",
+   "rettung"
+  ]
+ },
+ "sfx": [
+  {
+   "sound": "impact",
+   "at": [
+    "h3",
+    7
+   ],
+   "vol": 0.85
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "r1"
+   ],
+   "offset": -0.45,
+   "vol": 0.5
+  },
+  {
+   "sound": "riser",
+   "until": [
+    "r3",
+    8
+   ],
+   "dur": 2.5,
+   "vol": 0.55
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "r3",
+    8
+   ],
+   "vol": 0.95
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "b2",
+    5
+   ],
+   "vol": 0.5,
+   "dur": 1.0
+  },
+  {
+   "sound": "tick",
+   "at": [
+    "b3",
+    4
+   ],
+   "every": 1.0,
+   "until": [
+    "k4",
+    2,
+    "end"
+   ],
+   "vol": 0.45
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "k1"
+   ],
+   "offset": -0.45,
+   "vol": 0.45
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "k4",
+    2
+   ],
+   "vol": 0.6,
+   "dur": 1.0
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "e1"
+   ],
+   "offset": -0.45,
+   "vol": 0.5
+  },
+  {
+   "sound": "heartbeat",
+   "at": [
+    "e1"
+   ],
+   "until": [
+    "e4",
+    3
+   ],
+   "bpm": [
+    70,
+    145
+   ],
+   "vol": 0.8
+  },
+  {
+   "sound": "riser",
+   "until": [
+    "e4",
+    3
+   ],
+   "dur": 2.0,
+   "vol": 0.5
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "e4",
+    3
+   ],
+   "vol": 0.8
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "p1",
+    8
+   ],
+   "vol": 0.9
+  }
+ ]
+}

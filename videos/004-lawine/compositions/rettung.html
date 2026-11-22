@@ -1,0 +1,90 @@
+<!-- Szene 5 · Kameradenrettung: LVS (Suchgerät) orten, Sonde, Schaufel. Befreit nach 14 min – vor dem Kipppunkt (18 min). -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #re-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #re-flash { position: absolute; inset: 0; background: radial-gradient(55% 40% at 55% 55%, rgba(62, 214, 192, 0.5), rgba(62, 214, 192, 0)); opacity: 0; }
+    .re-chip { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    .re-chip div { font: 900 42px/1 "Inter", sans-serif; letter-spacing: 0.04em; padding: 16px 26px; border-radius: 16px; white-space: nowrap; }
+    #re-c1 { top: 720px; } #re-c1 div { color: #0b0b14; background: var(--teal); box-shadow: 0 0 46px rgba(62, 214, 192, 0.7); }
+    #re-c2 { top: 1250px; } #re-c2 div { color: #0b0b14; background: var(--amber); box-shadow: 0 0 40px rgba(255, 181, 71, 0.6); }
+    .re-tag { position: absolute; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.1em; white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="rettung" data-width="1080" data-height="1920">
+    <svg id="re-svg" viewBox="0 0 1080 1920">
+      <g id="re-snow"></g>
+      <g id="re-rings"></g>
+      <rect id="re-hole" x="540" y="808" width="130" height="0" rx="14" fill="#0B1424" />
+      <line id="re-probe" x1="560" y1="760" x2="560" y2="760" stroke="#FFE2A8" stroke-width="5" stroke-linecap="round" />
+      <g id="re-flakes"></g>
+    </svg>
+    <div id="re-person" class="sim-actor ui"></div>
+    <div id="re-f1" class="sim-actor ui"></div>
+    <div id="re-f2" class="sim-actor ui"></div>
+    <div id="re-l-sig" class="re-tag ui c-teal" style="left: 700px; top: 1100px; opacity: 0">◂ SIGNAL</div>
+    <div id="re-flash"></div>
+    <div id="re-c1" class="re-chip ui"><div id="re-c1c">LUFT ✓ NACH 14 MINUTEN</div></div>
+    <div id="re-c2" class="re-chip ui"><div id="re-c2c">4 MIN VOR DEM KIPPPUNKT</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("rettung");
+      const $ = (id) => document.getElementById(id);
+      SNOWSEC($("re-snow"), 6);
+      const SURF = 812, PX = 600, PY = 1080;
+      const per = SIM.runner($("re-person"));
+      $("re-person").querySelector(".sim-badge").style.display = "none";
+      $("re-person").style.transformOrigin = "30px 50px";
+      const f1 = SIM.runner($("re-f1"), SIM.C.amber, "FREUND", "B");
+      const f2 = SIM.runner($("re-f2"), SIM.C.amber, "FREUNDIN", "C");
+      const rings = [];
+      for (let i = 0; i < 3; i++) rings.push(SIM.el("circle", { cx: PX, cy: PY - 40, fill: "none", stroke: "#3ED6C0", "stroke-width": 3 }, $("re-rings")));
+      const flakes = [], rr = SIM.rng(8);
+      for (let i = 0; i < 18; i++) flakes.push({ el: SIM.el("circle", { r: 4 + rr() * 5, fill: "#EEF4FC" }, $("re-flakes")), d: rr(), s: rr() < 0.5 ? -1 : 1 });
+      const tSig = VT.seg("e2"), tGo = VT.seg("e2"), tProbe = VT.word("e3", 1), tDig = VT.word("e3", 4), tAir = VT.word("e4", 3);
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t;
+        per.pose(0.25, 0.7);
+        $("re-person").style.transform = `translate(${PX - 30}px, ${PY - 50}px) rotate(-75deg) scale(1.15)`;
+        // Freunde laufen über die Oberfläche zur Fundstelle
+        const k = SIM.ease.inOut(SIM.clamp((t - tGo) / (tProbe - tGo), 0, 1));
+        const x1 = SIM.lerp(150, 520, k), x2 = SIM.lerp(930, 720, k);
+        const walking = k > 0 && k < 1 ? 1 : 0;
+        f1.pose(t * 1.6, walking); f1.place(x1, SURF + 2, 1, 0);
+        f2.pose(t * 1.6 + 0.5, walking); f2.place(x2, SURF - 2, 1, 0);
+        // LVS-Signal
+        rings.forEach((r, i) => {
+          const q = ((((t - tSig) * 0.8 + i / 3) % 1) + 1) % 1;
+          const on = t >= tSig && t < tAir ? 1 : 0;
+          r.setAttribute("r", 30 + q * 260);
+          r.setAttribute("opacity", on * 0.8 * (1 - q));
+        });
+        $("re-l-sig").style.opacity = t >= tSig && t < tProbe ? 1 : 0;
+        // Sonde
+        const pk = SIM.clamp((t - tProbe) / 0.5, 0, 1) * (t < tDig + 0.4 ? 1 : 0);
+        $("re-probe").setAttribute("y1", SURF - 50);
+        $("re-probe").setAttribute("y2", SURF - 50 + pk * (PY - SURF - 10));
+        // Graben bis zum Gesicht
+        const dk = SIM.ease.out(SIM.clamp((t - tDig) / (tAir - tDig), 0, 1));
+        $("re-hole").setAttribute("height", dk * (PY - SURF - 10));
+        flakes.forEach((f) => {
+          const q = ((((t - tDig) * 1.3 + f.d) % 1) + 1) % 1;
+          const on = t > tDig && t < tAir + 0.3 ? 1 : 0;
+          f.el.setAttribute("cx", 605 + f.s * (40 + q * 200));
+          f.el.setAttribute("cy", SURF - 30 - Math.sin(q * Math.PI) * 140);
+          f.el.setAttribute("opacity", on * (1 - q));
+        });
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#re-flash", { opacity: 0 }, { opacity: 1, duration: 0.1 }, tAir);
+      tl.to("#re-flash", { opacity: 0.25, duration: 0.9 }, tAir + 0.1);
+      tl.fromTo("#re-c1c", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power4.out" }, tAir + 0.03);
+      tl.fromTo("#re-c2c", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, VT.seg("e5") + 0.1);
+      SIM.shake(tl, "#re-svg", tAir, 12, 6);
+      draw();
+      window.__timelines["rettung"] = tl;
+    })();
+  </script>
+</template>
