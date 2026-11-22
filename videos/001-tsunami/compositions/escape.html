@@ -1,0 +1,113 @@
+<!-- Szene 5 · Lösung: 150 m zum Hochhaus + 5. Stock (≈1:14) – Welle am Haus erst nach 1:43 -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #esc-world { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #esc-card { left: 90px; width: 900px; top: 396px; padding: 24px 34px; }
+    #esc-clock { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .esc-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; border-top: 2px solid var(--line); }
+    .esc-row .who { display: flex; align-items: center; gap: 12px; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.08em; white-space: nowrap; }
+    .esc-row .who b { width: 36px; height: 36px; border-radius: 50%; color: #0b0b14; font: 900 20px/36px "Inter", sans-serif; text-align: center; }
+    .esc-row .t { font: 900 46px/1 "Inter", sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    #esc-dist { position: absolute; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; }
+    #esc-dist span { font: 900 26px/1 "Inter", sans-serif; color: var(--amber); margin-bottom: 8px; white-space: nowrap; }
+    #esc-dist i { display: block; height: 3px; background: var(--amber); box-shadow: 0 0 12px rgba(255, 181, 71, 0.7); }
+    #esc-safe { position: absolute; left: 0; top: 0; font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.1em; color: #0b0b14;
+      background: var(--teal); padding: 10px 16px; border-radius: 12px; box-shadow: 0 0 30px rgba(62, 214, 192, 0.7); white-space: nowrap; }
+    #esc-floor { position: absolute; top: 0; font: 900 20px/1 "Inter", sans-serif; letter-spacing: 0.1em; color: var(--teal); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="escape" data-width="1080" data-height="1920">
+    <svg id="esc-world"></svg>
+    <div id="esc-wave-tag" class="sim-tag ui" style="--c: var(--coral)"><b>B</b><span>WELLE</span></div>
+    <div id="esc-you" class="sim-actor ui"></div>
+    <div id="esc-dist" class="ui"><span>150 m</span><i id="esc-dist-line"></i></div>
+    <div id="esc-floor" class="ui">5. STOCK · 15 m →</div>
+    <div id="esc-safe" class="ui">✓ SICHER</div>
+
+    <div id="esc-head" class="ui-head ui">
+      <div class="ui-pill">Phase 3 · <em>Nicht weiter, sondern höher</em></div>
+      <div class="ui-segs"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+    </div>
+
+    <div id="esc-card" class="ui-card ui">
+      <div id="esc-clock"><div class="ui-label">Zeit</div><div class="ui-mid" id="esc-v-time">0:00</div></div>
+      <div class="esc-row"><div class="who c-teal"><b style="background: var(--teal)">A</b>DU IM 5. STOCK</div><div class="t c-teal" id="esc-v-you">–:––</div></div>
+      <div class="esc-row"><div class="who c-coral"><b style="background: var(--coral)">B</b>WELLE AM HAUS</div><div class="t c-coral" id="esc-v-wave">–:––</div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("escape");
+      const VW = 40 / 3.6, VY = 15 / 3.6, HOUSE = 150, FLOOR = 34, LEVEL5 = 5 * FLOOR;
+      const T_DOOR = HOUSE / VY; // 36 s
+      const T_UP = 74, T_WAVE = (1000 + HOUSE) / VW; // 103,5 s
+      const $ = (id) => document.getElementById(id);
+      const svg = $("esc-world");
+      const world = new SIM.LandWorld(svg, { ground: 1200, seed: 31 });
+      const G = world.G, SX = 0.62, CAM = -425, ANCHOR = 470;
+      world.cam = CAM; world.sx = SX; world.anchor = ANCHOR;
+
+      // Hochhaus (vor der Stadt, hinter der Welle)
+      const hx = world.toScreen(HOUSE), bw = 120;
+      const house = SIM.el("g", {});
+      svg.insertBefore(house, world.ground);
+      SIM.el("rect", { x: hx - 10, y: G - 7 * FLOOR, width: bw, height: 7 * FLOOR, fill: "#1E1B2C", stroke: "#4A4463", "stroke-width": 3 }, house);
+      for (let f = 0; f < 7; f++) {
+        SIM.el("line", { x1: hx - 10, x2: hx - 10 + bw, y1: G - f * FLOOR, y2: G - f * FLOOR, stroke: "#4A4463", "stroke-width": 2 }, house);
+        for (let w = 0; w < 4; w++)
+          SIM.el("rect", { x: hx + 2 + w * 26, y: G - (f + 1) * FLOOR + 10, width: 16, height: 14, fill: f === 5 ? "#3ED6C0" : "#FFB547", opacity: f === 5 ? 0.0 : 0.25 + ((f + w) % 3) * 0.12, class: f === 5 ? "esc-win5" : "" }, house);
+      }
+      const win5 = house.querySelectorAll(".esc-win5");
+
+      const you = SIM.runner($("esc-you"));
+      const tag = $("esc-wave-tag"), vT = $("esc-v-time"), vY = $("esc-v-you"), vW = $("esc-v-wave");
+      const safe = $("esc-safe"), dist = $("esc-dist"), distLine = $("esc-dist-line"), floorLbl = $("esc-floor");
+      const yx0 = world.toScreen(0);
+      dist.style.left = yx0 + "px"; dist.style.top = G - 250 + "px";
+      distLine.style.width = hx - 10 - yx0 + "px";
+      floorLbl.style.right = 1080 - (hx - 22) + "px"; floorLbl.style.top = G - LEVEL5 - 24 + "px";
+      safe.style.left = hx - 20 + "px"; safe.style.top = G - LEVEL5 - 120 + "px";
+
+      const a0 = VT.seg("e3"), a1 = VT.seg("e3", "end"), a2 = VT.word("e4", 9, "end");
+      const S = { t: 0 };
+      function simT(t) {
+        return SIM.keys([[a0, 0], [a1, T_UP], [a2, T_WAVE], [L, 112]], t);
+      }
+      function draw() {
+        const t = S.t, T = simT(t);
+        const wX = -1000 + VW * T;
+        world.draw({ cam: CAM, sx: SX, anchor: ANCHOR, waveX: wX, waveH: 150, t });
+        const fx = world.toScreen(wX);
+        tag.style.transform = `translate(${SIM.clamp(fx - 120, 20, hx - 440)}px, ${G - 150 - 86}px)`;
+
+        // Du: rennen bis zur Tür, dann Treppe hoch
+        let x, lift = 0, amp = 0;
+        if (T <= 0) { x = 0; amp = 0.1; }
+        else if (T < T_DOOR) { x = VY * T; amp = 1; }
+        else { x = HOUSE + 2; lift = LEVEL5 * SIM.clamp((T - T_DOOR) / (T_UP - T_DOOR), 0, 1); amp = T < T_UP ? 0.7 : 0.05; }
+        you.pose((T * VY) / 1.6, amp);
+        you.place(world.toScreen(x) + (T >= T_DOOR ? 40 : 0), G - lift, T >= T_DOOR ? 0.42 : 1);
+
+        you.host.querySelector(".sim-badge").style.opacity = T >= T_DOOR ? 0 : 1;
+        const up = T >= T_UP;
+        win5.forEach((w) => w.setAttribute("opacity", up ? 0.9 : 0));
+        vT.textContent = SIM.clock(Math.max(0, T));
+        vY.textContent = up ? "1:14 ✓" : "–:––";
+        vW.textContent = T >= T_WAVE ? "1:43" : "–:––";
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#esc-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#esc-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#esc-dist", { opacity: 0 }, { opacity: 1, duration: 0.3 }, VT.word("e2", 4));
+      tl.to("#esc-dist", { opacity: 0, duration: 0.3 }, a0 + 0.8);
+      tl.fromTo("#esc-floor", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.3 }, VT.seg("e3"));
+      tl.fromTo("#esc-v-you", { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 1 }, a1);
+      tl.fromTo("#esc-v-wave", { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 1 }, a2);
+      tl.fromTo("#esc-safe", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, a2 + 0.2);
+      draw();
+      window.__timelines["escape"] = tl;
+    })();
+  </script>
+</template>

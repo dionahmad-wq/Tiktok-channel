@@ -1,0 +1,98 @@
+<!-- Szene 3 · Das Rennen: Welle 40 km/h vs. Du 15 km/h, 1 km Vorsprung → nach 2:24 eingeholt -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #race-world { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #race-card { left: 90px; width: 900px; top: 396px; height: 300px; padding: 26px 34px; }
+    #race-top { display: flex; align-items: flex-end; justify-content: space-between; }
+    #race-top .blk { display: flex; flex-direction: column; gap: 12px; }
+    #race-top .blk.r { align-items: flex-end; }
+    #race-ff { position: absolute; right: 28px; top: -22px; }
+    #race-bars { margin-top: 26px; display: flex; flex-direction: column; gap: 14px; }
+    .race-row { display: flex; align-items: center; gap: 14px; }
+    .race-row .who { width: 150px; display: flex; align-items: center; gap: 10px; font: 900 22px/1 "Inter", sans-serif; letter-spacing: 0.1em; }
+    .race-row .who b { width: 34px; height: 34px; border-radius: 50%; color: #0b0b14; font: 900 20px/34px "Inter", sans-serif; text-align: center; }
+    .race-row .track { flex: 1; }
+    .race-row .val { width: 150px; text-align: right; font: 900 34px/1 "Inter", sans-serif; }
+    #race-caught { position: absolute; left: 0; right: 0; top: 740px; display: flex; justify-content: center; }
+    #race-caught div { font: 900 54px/1 "Inter", sans-serif; letter-spacing: 0.02em; color: #fff; background: var(--coral);
+      padding: 18px 30px; border-radius: 20px; box-shadow: 0 0 50px rgba(255, 90, 78, 0.6); white-space: nowrap; }
+    #race-flash { position: absolute; inset: 0; background: radial-gradient(70% 50% at 50% 55%, rgba(255, 90, 78, 0) 30%, rgba(255, 60, 50, 0.45) 100%); opacity: 0; }
+  </style>
+  <div id="root" data-composition-id="race" data-width="1080" data-height="1920">
+    <svg id="race-world"></svg>
+    <div id="race-wave-tag" class="sim-tag ui" style="--c: var(--coral)"><b>B</b><span>WELLE</span></div>
+    <div id="race-you" class="sim-actor ui"></div>
+    <div id="race-flash"></div>
+
+    <div id="race-head" class="ui-head ui">
+      <div class="ui-pill">Phase 2 · <em>Das Rennen</em></div>
+      <div class="ui-segs"><i class="on"></i><i class="on"></i><i></i></div>
+    </div>
+
+    <div id="race-card" class="ui-card ui">
+      <div id="race-ff" class="ui-ff">⏩ ZEITRAFFER</div>
+      <div id="race-top">
+        <div class="blk"><div class="ui-label">Zeit</div><div class="ui-mid" id="race-v-time">0:00</div></div>
+        <div class="blk r"><div class="ui-label">Abstand</div><div class="ui-big c-coral"><span id="race-v-gap">1.000</span><span class="ui-unit">m</span></div></div>
+      </div>
+      <div id="race-bars">
+        <div class="race-row"><div class="who c-coral"><b style="background: var(--coral)">B</b>WELLE</div>
+          <div class="track"><div id="race-bar-b" class="ui-bar coral" style="width: 440px"></div></div><div class="val c-coral">40 <span class="ui-unit">km/h</span></div></div>
+        <div class="race-row"><div class="who c-teal"><b style="background: var(--teal)">A</b>DU</div>
+          <div class="track"><div id="race-bar-a" class="ui-bar teal" style="width: 165px"></div></div><div class="val c-teal">15 <span class="ui-unit">km/h</span></div></div>
+      </div>
+    </div>
+
+    <div id="race-caught" class="ui"><div id="race-caught-chip">ERWISCHT NACH 2:24</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("race");
+      const VW = 40 / 3.6, VY = 15 / 3.6; // m/s
+      const world = new SIM.LandWorld(document.getElementById("race-world"), { ground: 1200, seed: 23 });
+      const you = SIM.runner(document.getElementById("race-you"));
+      const $ = (id) => document.getElementById(id);
+      const tag = $("race-wave-tag"), vT = $("race-v-time"), vG = $("race-v-gap");
+
+      const a0 = VT.seg("r3"), a1 = VT.word("r4", 2, "end"), a2 = VT.word("r5", 2, "end"), a3 = VT.word("r6", 6);
+      const S = { t: 0 };
+      function simT(t) {
+        return SIM.keys([[0, -6], [a0, 0], [a1, 60], [a2, 120], [a3, 144], [L, 147]], t);
+      }
+      function draw() {
+        const t = S.t, T = simT(t);
+        const yX = Math.max(0, VY * T);
+        const wX = -1000 + VW * T;
+        const gap = Math.max(0, yX - wX);
+        const sx = SIM.clamp(620 / Math.max(gap, 1), 0.62, 2.0);
+        const cam = (yX + wX) / 2;
+        world.draw({ cam, sx, anchor: 470, waveX: wX, waveH: 170, t });
+        const fx = world.toScreen(wX);
+        tag.style.transform = `translate(${Math.max(20, fx - 120)}px, ${world.G - 170 - 86}px)`;
+        const running = T > 0 && T < 144 ? 1 : 0.1;
+        you.pose(yX / 1.6, running);
+        you.place(world.toScreen(yX), world.G, 1, running * Math.abs(Math.sin((yX / 1.6) * Math.PI * 2)) * 4);
+        you.host.style.opacity = T >= 144 ? Math.max(0.15, 1 - (T - 144) * 0.5) : 1;
+        vT.textContent = SIM.clock(Math.max(0, T));
+        vG.textContent = SIM.fmtInt(Math.min(1000, gap));
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#race-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#race-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#race-bar-b", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, VT.seg("r1") + 0.2);
+      tl.fromTo("#race-bar-a", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, VT.word("r3", 4));
+      tl.fromTo("#race-ff", { opacity: 0 }, { opacity: 1, duration: 0.2 }, a0 + 0.3);
+      tl.to("#race-ff", { opacity: 0, duration: 0.2 }, a3);
+      tl.fromTo("#race-flash", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.out" }, a3);
+      tl.to("#race-flash", { opacity: 0.5, duration: 0.6 }, a3 + 0.15);
+      tl.fromTo("#race-caught-chip", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, a3 + 0.05);
+      tl.fromTo("#race-v-gap", { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 1 }, a1);
+      tl.fromTo("#race-v-gap", { scale: 1 }, { scale: 1.2, duration: 0.15, yoyo: true, repeat: 1 }, a2);
+      draw();
+      window.__timelines["race"] = tl;
+    })();
+  </script>
+</template>

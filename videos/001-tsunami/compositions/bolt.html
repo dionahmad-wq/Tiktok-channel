@@ -1,0 +1,66 @@
+<!-- Szene 4 · Vergleich: Welle 40 vs. Usain Bolt 37,6 (Ø 100 m Weltrekord) vs. Du 15 km/h -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #bolt-world { position: absolute; inset: 0; width: 1080px; height: 1920px; opacity: 0.55; }
+    #bolt-head { }
+    #bolt-card { left: 90px; width: 900px; top: 400px; padding: 34px 34px 38px; }
+    #bolt-title { font: 900 40px/1.1 "Inter", sans-serif; color: var(--ink); margin-bottom: 30px; }
+    .bolt-row { margin-bottom: 26px; }
+    .bolt-row .top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+    .bolt-row .name { font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.1em; white-space: nowrap; }
+    .bolt-row .num { font: 900 46px/1 "Inter", sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    #bolt-watch { position: absolute; right: 34px; top: 26px; display: flex; align-items: center; gap: 12px; }
+    #bolt-watch span { font: 900 34px/1 "Inter", sans-serif; color: var(--amber); font-variant-numeric: tabular-nums; }
+    #bolt-note { font: 800 22px/1.3 "Inter", sans-serif; color: var(--mute); letter-spacing: 0.04em; }
+  </style>
+  <div id="root" data-composition-id="bolt" data-width="1080" data-height="1920">
+    <svg id="bolt-world"></svg>
+    <div id="bolt-head" class="ui-head ui"><div class="ui-pill"><em>Vergleich</em> · Top-Speed</div></div>
+
+    <div id="bolt-card" class="ui-card ui">
+      <div id="bolt-title">Wer ist schneller?</div>
+      <div id="bolt-watch">
+        <svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="29" r="21" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="6" />
+          <circle id="bolt-ring" cx="27" cy="29" r="21" fill="none" stroke="#FFB547" stroke-width="6" stroke-linecap="round" stroke-dasharray="132" stroke-dashoffset="132" transform="rotate(-90 27 29)" />
+          <rect x="23" y="0" width="8" height="6" rx="2" fill="#FFB547" /></svg>
+        <span id="bolt-sec">0,00 s</span>
+      </div>
+      <div class="bolt-row"><div class="top"><div class="name c-coral">B · TSUNAMI AN DER KÜSTE</div><div class="num c-coral">40 <span class="ui-unit">km/h</span></div></div>
+        <div id="bolt-bar-w" class="ui-bar coral" style="width: 832px"></div></div>
+      <div class="bolt-row"><div class="top"><div class="name c-amber">USAIN BOLT · WELTREKORD</div><div class="num c-amber"><span id="bolt-v">37,6</span> <span class="ui-unit">km/h</span></div></div>
+        <div id="bolt-bar-b" class="ui-bar amber" style="width: 782px"></div></div>
+      <div class="bolt-row"><div class="top"><div class="name c-teal">A · DU</div><div class="num c-teal">15 <span class="ui-unit">km/h</span></div></div>
+        <div id="bolt-bar-a" class="ui-bar teal" style="width: 312px"></div></div>
+      <div id="bolt-note">Ø-Tempo beim 100-m-Weltrekord: 9,58 s</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("bolt");
+      const world = new SIM.LandWorld(document.getElementById("bolt-world"), { ground: 1200, seed: 23 });
+      world.draw({ cam: 200, sx: 0.9, anchor: 540, waveX: null, t: 0 });
+      const sec = document.getElementById("bolt-sec"), ring = document.getElementById("bolt-ring");
+      const w0 = VT.word("b3", 3), w1 = VT.seg("b3", "end") + 0.2;
+      const S = { t: 0 };
+      function draw() {
+        const k = SIM.clamp((S.t - w0) / (w1 - w0), 0, 1);
+        sec.textContent = SIM.fmtDec(9.58 * k, 2) + " s";
+        ring.setAttribute("stroke-dashoffset", 132 * (1 - k));
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#bolt-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#bolt-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#bolt-bar-w", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0.25);
+      tl.fromTo("#bolt-bar-a", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out" }, 0.4);
+      tl.fromTo("#bolt-bar-b", { scaleX: 0 }, { scaleX: 1, duration: 1.0, ease: "power3.out" }, VT.word("b1", 1));
+      tl.fromTo("#bolt-v", { scale: 1 }, { scale: 1.25, duration: 0.16, yoyo: true, repeat: 1 }, VT.word("b2", 5));
+      tl.fromTo("#bolt-watch", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.25 }, w0 - 0.2);
+      // Nach ~10 s ist Bolts Sprint vorbei → Balken fällt ab
+      tl.to("#bolt-bar-b", { scaleX: 0.55, opacity: 0.45, duration: 0.6, ease: "power2.in" }, w1 - 0.1);
+      draw();
+      window.__timelines["bolt"] = tl;
+    })();
+  </script>
+</template>

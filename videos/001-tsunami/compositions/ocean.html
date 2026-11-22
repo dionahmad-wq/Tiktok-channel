@@ -1,0 +1,138 @@
+<!-- Szene 2 · Offenes Meer → Küste: Tempo = √(g·Tiefe), Welle wird langsamer und höher -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #ocean-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #ocean-card { left: 90px; width: 900px; top: 400px; height: 200px; display: flex; }
+    #ocean-card .col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+    #ocean-card .col + .col { border-left: 2px solid var(--line); }
+    #ocean-wave-tag { z-index: 3; }
+    #ocean-plane { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 10px; }
+    #ocean-plane span { font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.12em; color: var(--amber); white-space: nowrap; }
+    #ocean-coast { position: absolute; left: 740px; top: 1296px; }
+    #ocean-open { position: absolute; left: 130px; top: 1296px; }
+    .ocean-lbl { font: 800 26px/1 "Inter", sans-serif; letter-spacing: 0.16em; color: var(--mute); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="ocean" data-width="1080" data-height="1920">
+    <svg id="ocean-svg" viewBox="0 0 1080 1920">
+      <defs>
+        <linearGradient id="oc-water" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2560A6" /><stop offset=".3" stop-color="#143A6E" /><stop offset="1" stop-color="#071830" />
+        </linearGradient>
+        <linearGradient id="oc-bed" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2B2438" /><stop offset="1" stop-color="#0D0B14" />
+        </linearGradient>
+      </defs>
+      <g id="ocean-quake"></g>
+      <path id="ocean-water" fill="url(#oc-water)" />
+      <path id="ocean-surface" fill="none" stroke="#6FAEF0" stroke-width="3" opacity=".75" />
+      <path id="ocean-crest" fill="none" stroke="#FF5A4E" stroke-width="5" stroke-linecap="round" style="filter: drop-shadow(0 0 10px rgba(255,90,78,.85))" />
+      <path id="ocean-bed" fill="url(#oc-bed)" stroke="#433A57" stroke-width="3" />
+      <g id="ocean-land"></g>
+      <line id="ocean-depth" stroke="#FFB547" stroke-width="2" stroke-dasharray="6 8" opacity=".7" />
+    </svg>
+
+    <div id="ocean-head" class="ui-head ui">
+      <div class="ui-pill">Phase 1 · <em>Der Weg zur Küste</em></div>
+      <div class="ui-segs"><i class="on"></i><i></i><i></i></div>
+    </div>
+
+    <div id="ocean-card" class="ui-card ui">
+      <div class="col"><div class="ui-label">Tiefe</div><div class="ui-mid"><span id="ocean-v-depth">5.000</span><span class="ui-unit">m</span></div></div>
+      <div class="col"><div class="ui-label">Tempo</div><div class="ui-big c-coral"><span id="ocean-v-speed">797</span><span class="ui-unit">km/h</span></div></div>
+      <div class="col"><div class="ui-label">Höhe</div><div class="ui-mid c-amber"><span id="ocean-v-height">&lt; 1</span><span class="ui-unit">m</span></div></div>
+    </div>
+
+    <div id="ocean-wave-tag" class="sim-tag ui" style="--c: var(--coral)"><b>B</b><span>TSUNAMI</span></div>
+    <div id="ocean-plane" class="ui">
+      <svg width="74" height="40" viewBox="0 0 74 40"><path d="M2 22 L58 18 Q72 18 72 22 Q72 26 58 26 L2 24 Z M30 20 L44 2 L50 2 L42 20 Z M30 26 L44 38 L50 38 L42 26 Z M4 22 L10 10 L15 10 L13 22 Z" fill="#FFB547" /></svg>
+      <span>FLUGZEUG ≈ 800 KM/H</span>
+    </div>
+    <div id="ocean-open" class="ocean-lbl ui">OFFENES MEER</div>
+    <div id="ocean-coast" class="ocean-lbl ui">KÜSTE</div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("ocean");
+      const SURF = 950, BED = 1270, COAST = 930, SHELF = 520;
+      const $ = (id) => document.getElementById(id);
+      const water = $("ocean-water"), surf = $("ocean-surface"), crest = $("ocean-crest"), depthLine = $("ocean-depth");
+      const vD = $("ocean-v-depth"), vS = $("ocean-v-speed"), vH = $("ocean-v-height");
+      const tag = $("ocean-wave-tag"), plane = $("ocean-plane");
+
+      // Meeresboden (Darstellung) und reale Tiefe (Physik)
+      const bedY = (x) => (x <= SHELF ? BED : SURF + 4 + (BED - SURF) * Math.pow(SIM.clamp((COAST - x) / (COAST - SHELF), 0, 1), 0.8));
+      const depth = (x) => (x <= SHELF ? 5000 : Math.max(8, 5000 * Math.pow(SIM.clamp((COAST - x) / (COAST - SHELF), 0, 1), 2.6)));
+      let bed = `M-20 1200 L-20 ${BED}`;
+      for (let x = -20; x <= 1100; x += 10) bed += ` L${x} ${x >= COAST ? SURF - 10 - Math.min(40, (x - COAST) * 0.4) : bedY(x)}`;
+      $("ocean-bed").setAttribute("d", bed + " L1100 1200 Z");
+
+      // Küstenort (Häuser + Palmen) – statisch
+      const land = $("ocean-land"), r = SIM.rng(5);
+      for (let i = 0, x = 950; i < 6; i++) {
+        const w = 18 + r() * 16, h = 20 + r() * 46;
+        SIM.el("rect", { x, y: SURF - 22 - h - (x - COAST) * 0.4, width: w, height: h + 6, fill: "#16131F" }, land);
+        for (let k = 0; k < 2; k++) SIM.el("rect", { x: x + 5 + k * 8, y: SURF - 12 - h - (x - COAST) * 0.4 + 6, width: 4, height: 6, fill: "#FFB547", opacity: 0.6 }, land);
+        x += w + 6;
+      }
+
+      // Bebenwellen am Ursprung
+      const quake = $("ocean-quake"), rings = [];
+      for (let i = 0; i < 3; i++) rings.push(SIM.el("circle", { cx: 70, cy: SURF, r: 0, fill: "none", stroke: "#FF5A4E", "stroke-width": 3 }, quake));
+
+      const t0 = VT.seg("o1"), tShelf = VT.seg("o3", "end"), tSlow = VT.seg("o4"), tCoast = VT.word("o6", 4);
+      const tH1 = VT.seg("o5"), tH2 = VT.seg("o6"), tH3 = VT.word("o7", 4);
+      const tPlaneIn = VT.seg("o2") - 0.2, tPlaneOut = VT.seg("o2", "end") + 0.5;
+      const S = { t: 0 };
+
+      function draw() {
+        const t = S.t;
+        const xw = SIM.keys([[t0, 70], [tShelf, SHELF], [tSlow, SHELF + 14], [tCoast, 890, "out3"]], t);
+        const k = SIM.clamp((xw - SHELF) / (890 - SHELF), 0, 1);
+        const grow = SIM.keys([[tH1, 0], [tH3, 1, "out"]], t);
+        const A = 7 + 40 * k * k + 46 * grow;
+        const w = 80 - 46 * k;
+        const wob = (x) => 2.2 * Math.sin(x / 31 + t * 2.4);
+        const yAt = (x) => SURF - A * Math.exp(-Math.pow((x - xw) / w, 2)) - (x > xw ? 0 : 0) + wob(x);
+
+        let s = "", c = "";
+        for (let x = -20; x <= COAST + 4; x += 5) {
+          const y = yAt(x);
+          s += (x === -20 ? "M" : " L") + x + " " + y.toFixed(1);
+          if (Math.abs(x - xw) < 2.2 * w) c += (c ? " L" : "M") + x + " " + y.toFixed(1);
+        }
+        surf.setAttribute("d", s);
+        crest.setAttribute("d", c);
+        water.setAttribute("d", s + ` L${COAST + 4} 1200 L-20 1200 Z`);
+        depthLine.setAttribute("x1", xw); depthLine.setAttribute("x2", xw);
+        depthLine.setAttribute("y1", SURF + 8); depthLine.setAttribute("y2", bedY(xw) - 4);
+
+        const d = depth(xw);
+        const v = Math.sqrt(9.81 * d) * 3.6;
+        vD.textContent = SIM.fmtInt(d >= 100 ? Math.round(d / 10) * 10 : d);
+        vS.textContent = SIM.fmtInt(v);
+        const h = SIM.keys([[tH1, 0.6], [tH2, 4, "inOut"], [tH3, 10, "out"]], t);
+        vH.textContent = h < 1 ? "< 1" : t >= tH3 ? "10+" : SIM.fmtInt(h);
+
+        tag.style.transform = `translate(${SIM.clamp(xw - 70, 125, 760)}px, ${SURF - A - 72}px)`;
+        const pk = SIM.clamp((t - tPlaneIn) / 0.3, 0, 1) * (1 - SIM.clamp((t - tPlaneOut) / 0.3, 0, 1));
+        plane.style.opacity = pk;
+        plane.style.transform = `translate(${xw - 40}px, ${SURF - A - 190}px)`;
+
+        rings.forEach((ring, i) => {
+          const rr = SIM.clamp((t - t0 - i * 0.35) / 1.6, 0, 1);
+          ring.setAttribute("r", 10 + rr * 120);
+          ring.setAttribute("opacity", rr > 0 && rr < 1 ? 0.8 * (1 - rr) : 0);
+        });
+      }
+
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#ocean-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#ocean-head", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 0);
+      tl.fromTo("#ocean-v-height", { scale: 1 }, { scale: 1.25, duration: 0.18, yoyo: true, repeat: 1, ease: "power2.out" }, tH3);
+      draw();
+      window.__timelines["ocean"] = tl;
+    })();
+  </script>
+</template>

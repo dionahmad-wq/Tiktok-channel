@@ -57,5 +57,6 @@ Schatten**, mittig im Bild. Starker Hook („6 views“ → „2.6 million views
 | Untertitel | Wort-für-Wort-synchron, 2–4 Wörter, Keyword farbig |
 | Outro | Frage an die Community („Was soll ich als Nächstes simulieren?“) |
 
-## Technik-Pipeline (wie in Referenz B gezeigt)
-Claude Code → Remotion-Projekt (React) → ElevenLabs-Stimme → Untertitel-Timing → Render (MP4).
+## Technik-Pipeline (unser Kanal)
+Claude Code → **HyperFrames** (HTML + GSAP, deterministisch gerendert) → deutsche Stimme (Piper „Thorsten“,
+optional ElevenLabs) → wortgenaue Untertitel → MP4. Komplette Anleitung: `.claude/skills/tiktok-sim-video/SKILL.md`.

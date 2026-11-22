@@ -1,0 +1,55 @@
+/* sim.css – gemeinsames HUD-Design (Stil: kurzsimuliert). In index.html per <link> geladen. */
+:root {
+  --teal: #3ED6C0; --coral: #FF5A4E; --amber: #FFB547; --ink: #F4F5FA; --mute: #8A8FA8;
+  --card: rgba(17, 16, 32, 0.86); --line: rgba(255, 255, 255, 0.09);
+}
+.ui { font-family: "Inter", sans-serif; color: var(--ink); }
+
+/* Kopfzeile: Phase-Pill + Segment-Fortschritt (zentriert, y ≈ 300) */
+.ui-head { position: absolute; left: 0; right: 0; top: 296px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.ui-pill {
+  font: 900 24px/1 "Inter", sans-serif; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 12px 22px; border-radius: 999px; background: rgba(10, 10, 20, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.16); color: var(--ink); white-space: nowrap;
+}
+.ui-pill em { font-style: normal; color: var(--amber); }
+.ui-segs { display: flex; gap: 8px; }
+.ui-segs i { display: block; width: 64px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); }
+.ui-segs i.on { background: var(--amber); box-shadow: 0 0 10px rgba(255, 181, 71, 0.6); }
+
+/* Karten */
+.ui-card {
+  position: absolute; background: var(--card); border: 2px solid var(--line); border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+.ui-label { font: 800 24px/1 "Inter", sans-serif; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mute); white-space: nowrap; }
+.ui-big { font: 900 72px/1 "Inter", sans-serif; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ui-mid { font: 900 46px/1 "Inter", sans-serif; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ui-unit { font-size: 0.45em; font-weight: 800; margin-left: 6px; letter-spacing: 0; }
+.c-teal { color: var(--teal); } .c-coral { color: var(--coral); } .c-amber { color: var(--amber); } .c-mute { color: var(--mute); }
+
+/* Balkenvergleich */
+.ui-bar { height: 34px; border-radius: 10px; transform-origin: 0 50%; }
+.ui-bar.teal { background: linear-gradient(90deg, #2BB3A0, var(--teal)); box-shadow: 0 0 18px rgba(62, 214, 192, 0.45); }
+.ui-bar.coral { background: linear-gradient(90deg, #D9443A, var(--coral)); box-shadow: 0 0 18px rgba(255, 90, 78, 0.45); }
+.ui-bar.amber { background: linear-gradient(90deg, #E39A2F, var(--amber)); box-shadow: 0 0 18px rgba(255, 181, 71, 0.45); }
+
+/* Buchstaben-Badge über Akteuren */
+.sim-badge { position: absolute; left: 50%; bottom: 100%; margin-bottom: 14px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.sim-badge b { width: 38px; height: 38px; border-radius: 50%; background: var(--c); color: #0B0B14;
+  font: 900 22px/38px "Inter", sans-serif; text-align: center; box-shadow: 0 0 16px var(--c); }
+.sim-badge span { font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.12em; color: var(--c); }
+.sim-actor { position: absolute; left: 0; top: 0; transform-origin: 0 0; width: 60px; height: 100px; }
+
+/* Schwebendes Label (z. B. Welle) */
+.sim-tag { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.sim-tag b { width: 38px; height: 38px; border-radius: 50%; background: var(--c); color: #0B0B14;
+  font: 900 22px/38px "Inter", sans-serif; text-align: center; box-shadow: 0 0 16px var(--c); }
+.sim-tag span { font: 900 26px/1 "Inter", sans-serif; letter-spacing: 0.12em; color: var(--c); }
+
+/* Badge "ZEITRAFFER" */
+.ui-ff { font: 900 24px/1 "Inter", sans-serif; letter-spacing: 0.14em; color: var(--ink); padding: 10px 16px;
+  border-radius: 10px; background: rgba(255, 255, 255, 0.08); border: 2px solid rgba(255, 255, 255, 0.18); white-space: nowrap; }
+
+.ui-big span, .ui-mid span, .num span, .t { display: inline-block; }

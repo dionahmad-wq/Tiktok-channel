@@ -1,0 +1,154 @@
+{
+ "title": "Kannst du einem Tsunami davonrennen?",
+ "speed": 0.9,
+ "lead_in": 0.25,
+ "segments": [
+  {
+   "id": "h1",
+   "scene": "hook",
+   "text": "Kannst du einem *Tsunami* *davonrennen?*",
+   "pause": 0.2
+  },
+  {
+   "id": "h2",
+   "scene": "hook",
+   "text": "Wir simulieren es.",
+   "pause": 0.35
+  },
+  {
+   "id": "o1",
+   "scene": "ocean",
+   "text": "Auf offenem Meer rast ein Tsunami mit bis zu *achthundert* *Kilometern* pro Stunde.",
+   "pause": 0.15
+  },
+  {
+   "id": "o2",
+   "scene": "ocean",
+   "text": "So schnell wie ein *Flugzeug.*",
+   "pause": 0.2
+  },
+  {
+   "id": "o3",
+   "scene": "ocean",
+   "text": "Aber er ist dort kaum *einen* *Meter* hoch.",
+   "pause": 0.3
+  },
+  {
+   "id": "o4",
+   "scene": "ocean",
+   "text": "Je flacher das Wasser, desto *langsamer* wird die Welle.",
+   "pause": 0.15
+  },
+  {
+   "id": "o5",
+   "scene": "ocean",
+   "text": "Und desto *höher* türmt sie sich auf.",
+   "pause": 0.25
+  },
+  {
+   "id": "o6",
+   "scene": "ocean",
+   "text": "An der Küste: nur noch rund *vierzig* Kilometer pro Stunde.",
+   "pause": 0.15
+  },
+  {
+   "id": "o7",
+   "scene": "ocean",
+   "text": "Aber oft mehr als *zehn* *Meter* hoch.",
+   "pause": 0.35
+  },
+  {
+   "id": "r1",
+   "scene": "race",
+   "text": "Du stehst am Strand und siehst sie kommen.",
+   "pause": 0.1
+  },
+  {
+   "id": "r2",
+   "scene": "race",
+   "text": "Noch *einen* *Kilometer* entfernt.",
+   "pause": 0.2
+  },
+  {
+   "id": "r3",
+   "scene": "race",
+   "text": "Du rennst los, mit *fünfzehn* Kilometern pro Stunde.",
+   "pause": 0.25
+  },
+  {
+   "id": "r4",
+   "scene": "race",
+   "text": "Nach einer Minute: noch knapp *sechshundert* *Meter* Abstand.",
+   "pause": 0.2
+  },
+  {
+   "id": "r5",
+   "scene": "race",
+   "text": "Nach zwei Minuten: nur noch *hundertsiebzig.*",
+   "pause": 0.2
+  },
+  {
+   "id": "r6",
+   "scene": "race",
+   "text": "Nach zwei Minuten und vierundzwanzig Sekunden *hat* *sie* *dich.*",
+   "pause": 0.9
+  },
+  {
+   "id": "b1",
+   "scene": "bolt",
+   "text": "Selbst *Usain* *Bolt* wäre zu langsam.",
+   "pause": 0.15,
+   "say": "Selbst Jussein Bolt wäre zu langsam."
+  },
+  {
+   "id": "b2",
+   "scene": "bolt",
+   "text": "Er schafft im Schnitt knapp *achtunddreißig* Kilometer pro Stunde.",
+   "pause": 0.1
+  },
+  {
+   "id": "b3",
+   "scene": "bolt",
+   "text": "Und das nur *zehn* *Sekunden* lang.",
+   "pause": 0.4
+  },
+  {
+   "id": "e1",
+   "scene": "escape",
+   "text": "Die Lösung ist nicht *weiter,* sondern *höher.*",
+   "pause": 0.2
+  },
+  {
+   "id": "e2",
+   "scene": "escape",
+   "text": "Das nächste stabile Hochhaus: *hundertfünfzig* *Meter* entfernt.",
+   "pause": 0.15
+  },
+  {
+   "id": "e3",
+   "scene": "escape",
+   "text": "*Fünfter* *Stock.* Nach gut einer Minute bist du oben.",
+   "pause": 0.15
+  },
+  {
+   "id": "e4",
+   "scene": "escape",
+   "text": "Die Welle erreicht das Haus erst nach einer *Minute* *dreiundvierzig.*",
+   "pause": 0.4
+  },
+  {
+   "id": "p1",
+   "scene": "punch",
+   "text": "Also merk dir: Nicht weg. Nach oben.",
+   "pause": 0.45,
+   "caption": false
+  },
+  {
+   "id": "x1",
+   "scene": "outro",
+   "text": "Was soll ich als *Nächstes* simulieren? Schreib es in die *Kommentare.*",
+   "pause": 0.6,
+   "caption": false
+  }
+ ]
+}
