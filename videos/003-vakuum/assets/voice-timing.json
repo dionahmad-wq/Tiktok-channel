@@ -1,0 +1,1387 @@
+{
+ "duration": 49.404,
+ "scenes": {
+  "hook": {
+   "start": 0.15,
+   "end": 6.03
+  },
+  "lunge": {
+   "start": 6.58,
+   "end": 15.233
+  },
+  "ohnmacht": {
+   "start": 15.733,
+   "end": 23.015
+  },
+  "mythos": {
+   "start": 23.515,
+   "end": 28.971
+  },
+  "rettung": {
+   "start": 29.421,
+   "end": 42.009
+  },
+  "punch": {
+   "start": 42.559,
+   "end": 45.386
+  },
+  "outro": {
+   "start": 45.886,
+   "end": 48.804
+  }
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "scene": "hook",
+   "text": "Du treibst ohne Raumanzug im All.",
+   "start": 0.15,
+   "end": 1.971
+  },
+  {
+   "id": "h2",
+   "scene": "hook",
+   "text": "Du hast etwa neunzig Sekunden.",
+   "start": 2.171,
+   "end": 3.712
+  },
+  {
+   "id": "h3",
+   "scene": "hook",
+   "text": "Und ein einziger Fehler tötet dich sofort.",
+   "start": 3.962,
+   "end": 6.03
+  },
+  {
+   "id": "f1",
+   "scene": "lunge",
+   "text": "Fast jeder würde instinktiv die Luft anhalten.",
+   "start": 6.58,
+   "end": 8.876
+  },
+  {
+   "id": "f2",
+   "scene": "lunge",
+   "text": "Genau das wäre tödlich.",
+   "start": 9.126,
+   "end": 10.57
+  },
+  {
+   "id": "f3",
+   "scene": "lunge",
+   "text": "Die Luft in deiner Lunge dehnt sich aus und zerreißt sie.",
+   "start": 10.77,
+   "end": 13.34
+  },
+  {
+   "id": "f4",
+   "scene": "lunge",
+   "text": "Also: sofort ausatmen.",
+   "start": 13.59,
+   "end": 15.233
+  },
+  {
+   "id": "o1",
+   "scene": "ohnmacht",
+   "text": "Sekunde zehn. Dein Blut verliert den Sauerstoff.",
+   "start": 15.733,
+   "end": 18.059
+  },
+  {
+   "id": "o2",
+   "scene": "ohnmacht",
+   "text": "Die Spucke auf deiner Zunge beginnt zu kochen.",
+   "start": 18.259,
+   "end": 20.233
+  },
+  {
+   "id": "o3",
+   "scene": "ohnmacht",
+   "text": "Nach etwa fünfzehn Sekunden: alles wird schwarz.",
+   "start": 20.483,
+   "end": 23.015
+  },
+  {
+   "id": "m1",
+   "scene": "mythos",
+   "text": "Aber du explodierst nicht. Und du erfrierst auch nicht sofort.",
+   "start": 23.515,
+   "end": 26.436
+  },
+  {
+   "id": "m2",
+   "scene": "mythos",
+   "text": "Deine Haut hält dich zusammen. Du schwillst nur an.",
+   "start": 26.636,
+   "end": 28.971
+  },
+  {
+   "id": "r1",
+   "scene": "rettung",
+   "text": "Jetzt zählt jede Sekunde. Dein Herz schlägt noch.",
+   "start": 29.421,
+   "end": 31.682
+  },
+  {
+   "id": "r2",
+   "scene": "rettung",
+   "text": "Bekommst du innerhalb von etwa neunzig Sekunden wieder Luftdruck, kannst du überleben.",
+   "start": 31.882,
+   "end": 35.895
+  },
+  {
+   "id": "r3",
+   "scene": "rettung",
+   "text": "In unserer Simulation schließt sich die Luftschleuse nach vierundachtzig Sekunden.",
+   "start": 36.145,
+   "end": 40.191
+  },
+  {
+   "id": "r4",
+   "scene": "rettung",
+   "text": "Sechs Sekunden vor Schluss.",
+   "start": 40.491,
+   "end": 42.009
+  },
+  {
+   "id": "p1",
+   "scene": "punch",
+   "text": "Also merk dir: Nicht Luft anhalten. Ausatmen.",
+   "start": 42.559,
+   "end": 45.386
+  },
+  {
+   "id": "x1",
+   "scene": "outro",
+   "text": "Was soll ich als Nächstes simulieren? Schreib es in die Kommentare.",
+   "start": 45.886,
+   "end": 48.804
+  }
+ ],
+ "words": [
+  {
+   "id": "w0",
+   "seg": "h1",
+   "text": "Du",
+   "start": 0.15,
+   "end": 0.29,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w1",
+   "seg": "h1",
+   "text": "treibst",
+   "start": 0.29,
+   "end": 0.78,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w2",
+   "seg": "h1",
+   "text": "ohne",
+   "start": 0.78,
+   "end": 0.99,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w3",
+   "seg": "h1",
+   "text": "Raumanzug",
+   "start": 0.99,
+   "end": 1.691,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w4",
+   "seg": "h1",
+   "text": "im",
+   "start": 1.691,
+   "end": 1.831,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w5",
+   "seg": "h1",
+   "text": "All.",
+   "start": 1.831,
+   "end": 1.971,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w6",
+   "seg": "h2",
+   "text": "Du",
+   "start": 2.171,
+   "end": 2.285,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w7",
+   "seg": "h2",
+   "text": "hast",
+   "start": 2.285,
+   "end": 2.513,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w8",
+   "seg": "h2",
+   "text": "etwa",
+   "start": 2.513,
+   "end": 2.742,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w9",
+   "seg": "h2",
+   "text": "neunzig",
+   "start": 2.742,
+   "end": 3.255,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w10",
+   "seg": "h2",
+   "text": "Sekunden.",
+   "start": 3.255,
+   "end": 3.712,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w11",
+   "seg": "h3",
+   "text": "Und",
+   "start": 3.962,
+   "end": 4.15,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w12",
+   "seg": "h3",
+   "text": "ein",
+   "start": 4.15,
+   "end": 4.338,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w13",
+   "seg": "h3",
+   "text": "einziger",
+   "start": 4.338,
+   "end": 4.84,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w14",
+   "seg": "h3",
+   "text": "Fehler",
+   "start": 4.84,
+   "end": 5.09,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w15",
+   "seg": "h3",
+   "text": "tötet",
+   "start": 5.09,
+   "end": 5.404,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w16",
+   "seg": "h3",
+   "text": "dich",
+   "start": 5.404,
+   "end": 5.654,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w17",
+   "seg": "h3",
+   "text": "sofort.",
+   "start": 5.654,
+   "end": 6.03,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w18",
+   "seg": "f1",
+   "text": "Fast",
+   "start": 6.58,
+   "end": 6.829,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w19",
+   "seg": "f1",
+   "text": "jeder",
+   "start": 6.829,
+   "end": 7.077,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w20",
+   "seg": "f1",
+   "text": "würde",
+   "start": 7.077,
+   "end": 7.387,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w21",
+   "seg": "f1",
+   "text": "instinktiv",
+   "start": 7.387,
+   "end": 8.007,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w22",
+   "seg": "f1",
+   "text": "die",
+   "start": 8.007,
+   "end": 8.131,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w23",
+   "seg": "f1",
+   "text": "Luft",
+   "start": 8.131,
+   "end": 8.379,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w24",
+   "seg": "f1",
+   "text": "anhalten.",
+   "start": 8.379,
+   "end": 8.876,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w25",
+   "seg": "f2",
+   "text": "Genau",
+   "start": 9.126,
+   "end": 9.506,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w26",
+   "seg": "f2",
+   "text": "das",
+   "start": 9.506,
+   "end": 9.734,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w27",
+   "seg": "f2",
+   "text": "wäre",
+   "start": 9.734,
+   "end": 10.038,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w28",
+   "seg": "f2",
+   "text": "tödlich.",
+   "start": 10.038,
+   "end": 10.57,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w29",
+   "seg": "f3",
+   "text": "Die",
+   "start": 10.77,
+   "end": 10.892,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w30",
+   "seg": "f3",
+   "text": "Luft",
+   "start": 10.892,
+   "end": 11.137,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w31",
+   "seg": "f3",
+   "text": "in",
+   "start": 11.137,
+   "end": 11.259,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w32",
+   "seg": "f3",
+   "text": "deiner",
+   "start": 11.259,
+   "end": 11.565,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w33",
+   "seg": "f3",
+   "text": "Lunge",
+   "start": 11.565,
+   "end": 11.81,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w34",
+   "seg": "f3",
+   "text": "dehnt",
+   "start": 11.81,
+   "end": 12.055,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w35",
+   "seg": "f3",
+   "text": "sich",
+   "start": 12.055,
+   "end": 12.3,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w36",
+   "seg": "f3",
+   "text": "aus",
+   "start": 12.3,
+   "end": 12.483,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w37",
+   "seg": "f3",
+   "text": "und",
+   "start": 12.483,
+   "end": 12.667,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w38",
+   "seg": "f3",
+   "text": "zerreißt",
+   "start": 12.667,
+   "end": 13.217,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w39",
+   "seg": "f3",
+   "text": "sie.",
+   "start": 13.217,
+   "end": 13.34,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w40",
+   "seg": "f4",
+   "text": "Also:",
+   "start": 13.59,
+   "end": 13.93,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w41",
+   "seg": "f4",
+   "text": "sofort",
+   "start": 14.18,
+   "end": 14.631,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w42",
+   "seg": "f4",
+   "text": "ausatmen.",
+   "start": 14.631,
+   "end": 15.233,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w43",
+   "seg": "o1",
+   "text": "Sekunde",
+   "start": 15.733,
+   "end": 16.179,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w44",
+   "seg": "o1",
+   "text": "zehn.",
+   "start": 16.179,
+   "end": 16.433,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w45",
+   "seg": "o1",
+   "text": "Dein",
+   "start": 16.583,
+   "end": 16.81,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w46",
+   "seg": "o1",
+   "text": "Blut",
+   "start": 16.81,
+   "end": 17.037,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w47",
+   "seg": "o1",
+   "text": "verliert",
+   "start": 17.037,
+   "end": 17.435,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w48",
+   "seg": "o1",
+   "text": "den",
+   "start": 17.435,
+   "end": 17.605,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w49",
+   "seg": "o1",
+   "text": "Sauerstoff.",
+   "start": 17.605,
+   "end": 18.059,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w50",
+   "seg": "o2",
+   "text": "Die",
+   "start": 18.259,
+   "end": 18.375,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w51",
+   "seg": "o2",
+   "text": "Spucke",
+   "start": 18.375,
+   "end": 18.665,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w52",
+   "seg": "o2",
+   "text": "auf",
+   "start": 18.665,
+   "end": 18.84,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w53",
+   "seg": "o2",
+   "text": "deiner",
+   "start": 18.84,
+   "end": 19.13,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w54",
+   "seg": "o2",
+   "text": "Zunge",
+   "start": 19.13,
+   "end": 19.42,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w55",
+   "seg": "o2",
+   "text": "beginnt",
+   "start": 19.42,
+   "end": 19.769,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w56",
+   "seg": "o2",
+   "text": "zu",
+   "start": 19.769,
+   "end": 19.943,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w57",
+   "seg": "o2",
+   "text": "kochen.",
+   "start": 19.943,
+   "end": 20.233,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w58",
+   "seg": "o3",
+   "text": "Nach",
+   "start": 20.483,
+   "end": 20.67,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w59",
+   "seg": "o3",
+   "text": "etwa",
+   "start": 20.67,
+   "end": 20.918,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w60",
+   "seg": "o3",
+   "text": "fünfzehn",
+   "start": 20.918,
+   "end": 21.416,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w61",
+   "seg": "o3",
+   "text": "Sekunden:",
+   "start": 21.416,
+   "end": 21.913,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w62",
+   "seg": "o3",
+   "text": "alles",
+   "start": 22.213,
+   "end": 22.442,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w63",
+   "seg": "o3",
+   "text": "wird",
+   "start": 22.442,
+   "end": 22.671,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w64",
+   "seg": "o3",
+   "text": "schwarz.",
+   "start": 22.671,
+   "end": 23.015,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w65",
+   "seg": "m1",
+   "text": "Aber",
+   "start": 23.515,
+   "end": 23.675,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w66",
+   "seg": "m1",
+   "text": "du",
+   "start": 23.675,
+   "end": 23.782,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w67",
+   "seg": "m1",
+   "text": "explodierst",
+   "start": 23.782,
+   "end": 24.368,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w68",
+   "seg": "m1",
+   "text": "nicht.",
+   "start": 24.368,
+   "end": 24.635,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w69",
+   "seg": "m1",
+   "text": "Und",
+   "start": 24.985,
+   "end": 25.146,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w70",
+   "seg": "m1",
+   "text": "du",
+   "start": 25.146,
+   "end": 25.254,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w71",
+   "seg": "m1",
+   "text": "erfrierst",
+   "start": 25.254,
+   "end": 25.684,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w72",
+   "seg": "m1",
+   "text": "auch",
+   "start": 25.684,
+   "end": 25.845,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w73",
+   "seg": "m1",
+   "text": "nicht",
+   "start": 25.845,
+   "end": 26.114,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w74",
+   "seg": "m1",
+   "text": "sofort.",
+   "start": 26.114,
+   "end": 26.436,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w75",
+   "seg": "m2",
+   "text": "Deine",
+   "start": 26.636,
+   "end": 26.898,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w76",
+   "seg": "m2",
+   "text": "Haut",
+   "start": 26.898,
+   "end": 27.108,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w77",
+   "seg": "m2",
+   "text": "hält",
+   "start": 27.108,
+   "end": 27.318,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w78",
+   "seg": "m2",
+   "text": "dich",
+   "start": 27.318,
+   "end": 27.527,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w79",
+   "seg": "m2",
+   "text": "zusammen.",
+   "start": 27.527,
+   "end": 27.946,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w80",
+   "seg": "m2",
+   "text": "Du",
+   "start": 28.106,
+   "end": 28.239,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w81",
+   "seg": "m2",
+   "text": "schwillst",
+   "start": 28.239,
+   "end": 28.638,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w82",
+   "seg": "m2",
+   "text": "nur",
+   "start": 28.638,
+   "end": 28.838,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w83",
+   "seg": "m2",
+   "text": "an.",
+   "start": 28.838,
+   "end": 28.971,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w84",
+   "seg": "r1",
+   "text": "Jetzt",
+   "start": 29.421,
+   "end": 29.673,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w85",
+   "seg": "r1",
+   "text": "zählt",
+   "start": 29.673,
+   "end": 29.926,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w86",
+   "seg": "r1",
+   "text": "jede",
+   "start": 29.926,
+   "end": 30.127,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w87",
+   "seg": "r1",
+   "text": "Sekunde.",
+   "start": 30.127,
+   "end": 30.481,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w88",
+   "seg": "r1",
+   "text": "Dein",
+   "start": 30.651,
+   "end": 30.893,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w89",
+   "seg": "r1",
+   "text": "Herz",
+   "start": 30.893,
+   "end": 31.197,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w90",
+   "seg": "r1",
+   "text": "schlägt",
+   "start": 31.197,
+   "end": 31.5,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w91",
+   "seg": "r1",
+   "text": "noch.",
+   "start": 31.5,
+   "end": 31.682,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w92",
+   "seg": "r2",
+   "text": "Bekommst",
+   "start": 31.882,
+   "end": 32.286,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w93",
+   "seg": "r2",
+   "text": "du",
+   "start": 32.286,
+   "end": 32.401,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w94",
+   "seg": "r2",
+   "text": "innerhalb",
+   "start": 32.401,
+   "end": 32.805,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w95",
+   "seg": "r2",
+   "text": "von",
+   "start": 32.805,
+   "end": 32.978,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w96",
+   "seg": "r2",
+   "text": "etwa",
+   "start": 32.978,
+   "end": 33.209,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w97",
+   "seg": "r2",
+   "text": "neunzig",
+   "start": 33.209,
+   "end": 33.728,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w98",
+   "seg": "r2",
+   "text": "Sekunden",
+   "start": 33.728,
+   "end": 34.189,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w99",
+   "seg": "r2",
+   "text": "wieder",
+   "start": 34.189,
+   "end": 34.42,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w100",
+   "seg": "r2",
+   "text": "Luftdruck,",
+   "start": 34.42,
+   "end": 34.882,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w101",
+   "seg": "r2",
+   "text": "kannst",
+   "start": 35.052,
+   "end": 35.333,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w102",
+   "seg": "r2",
+   "text": "du",
+   "start": 35.333,
+   "end": 35.445,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w103",
+   "seg": "r2",
+   "text": "überleben.",
+   "start": 35.445,
+   "end": 35.895,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w104",
+   "seg": "r3",
+   "text": "In",
+   "start": 36.145,
+   "end": 36.271,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w105",
+   "seg": "r3",
+   "text": "unserer",
+   "start": 36.271,
+   "end": 36.651,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w106",
+   "seg": "r3",
+   "text": "Simulation",
+   "start": 36.651,
+   "end": 37.346,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w107",
+   "seg": "r3",
+   "text": "schließt",
+   "start": 37.346,
+   "end": 37.662,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w108",
+   "seg": "r3",
+   "text": "sich",
+   "start": 37.662,
+   "end": 37.915,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w109",
+   "seg": "r3",
+   "text": "die",
+   "start": 37.915,
+   "end": 38.042,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w110",
+   "seg": "r3",
+   "text": "Luftschleuse",
+   "start": 38.042,
+   "end": 38.674,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w111",
+   "seg": "r3",
+   "text": "nach",
+   "start": 38.674,
+   "end": 38.864,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w112",
+   "seg": "r3",
+   "text": "vierundachtzig",
+   "start": 38.864,
+   "end": 39.686,
+   "hl": true,
+   "cap": true
+  },
+  {
+   "id": "w113",
+   "seg": "r3",
+   "text": "Sekunden.",
+   "start": 39.686,
+   "end": 40.191,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w114",
+   "seg": "r4",
+   "text": "Sechs",
+   "start": 40.491,
+   "end": 40.811,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w115",
+   "seg": "r4",
+   "text": "Sekunden",
+   "start": 40.811,
+   "end": 41.45,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w116",
+   "seg": "r4",
+   "text": "vor",
+   "start": 41.45,
+   "end": 41.689,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w117",
+   "seg": "r4",
+   "text": "Schluss.",
+   "start": 41.689,
+   "end": 42.009,
+   "hl": false,
+   "cap": true
+  },
+  {
+   "id": "w118",
+   "seg": "p1",
+   "text": "Also",
+   "start": 42.559,
+   "end": 42.872,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w119",
+   "seg": "p1",
+   "text": "merk",
+   "start": 42.872,
+   "end": 43.184,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w120",
+   "seg": "p1",
+   "text": "dir:",
+   "start": 43.184,
+   "end": 43.419,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w121",
+   "seg": "p1",
+   "text": "Nicht",
+   "start": 43.649,
+   "end": 43.931,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w122",
+   "seg": "p1",
+   "text": "Luft",
+   "start": 43.931,
+   "end": 44.157,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w123",
+   "seg": "p1",
+   "text": "anhalten.",
+   "start": 44.157,
+   "end": 44.609,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w124",
+   "seg": "p1",
+   "text": "Ausatmen.",
+   "start": 44.769,
+   "end": 45.386,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w125",
+   "seg": "x1",
+   "text": "Was",
+   "start": 45.886,
+   "end": 46.065,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w126",
+   "seg": "x1",
+   "text": "soll",
+   "start": 46.065,
+   "end": 46.243,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w127",
+   "seg": "x1",
+   "text": "ich",
+   "start": 46.243,
+   "end": 46.422,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w128",
+   "seg": "x1",
+   "text": "als",
+   "start": 46.422,
+   "end": 46.601,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w129",
+   "seg": "x1",
+   "text": "Nächstes",
+   "start": 46.601,
+   "end": 47.077,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w130",
+   "seg": "x1",
+   "text": "simulieren?",
+   "start": 47.077,
+   "end": 47.613,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w131",
+   "seg": "x1",
+   "text": "Schreib",
+   "start": 47.613,
+   "end": 47.911,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w132",
+   "seg": "x1",
+   "text": "es",
+   "start": 47.911,
+   "end": 48.03,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w133",
+   "seg": "x1",
+   "text": "in",
+   "start": 48.03,
+   "end": 48.149,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w134",
+   "seg": "x1",
+   "text": "die",
+   "start": 48.149,
+   "end": 48.268,
+   "hl": false,
+   "cap": false
+  },
+  {
+   "id": "w135",
+   "seg": "x1",
+   "text": "Kommentare.",
+   "start": 48.268,
+   "end": 48.804,
+   "hl": false,
+   "cap": false
+  }
+ ]
+}

@@ -81,6 +81,12 @@ def main():
         end = total if i == len(scene_ids) - 1 else round(t["scenes"][scene_ids[i + 1]]["start"] - CUT_LEAD, 3)
         slots[sid] = {"start": start, "end": end}
 
+    # Overlays über mehrere Szenen (z. B. durchgehendes HUD): "spans": {"hud": ["szeneA", "szeneB"]}
+    spec_path = os.path.join(proj, "script.json")
+    spans = json.load(open(spec_path, encoding="utf-8")).get("spans", {}) if os.path.exists(spec_path) else {}
+    for host, (a, b) in spans.items():
+        slots[host] = {"start": slots[a]["start"], "end": slots[b]["end"]}
+
     # 1) timing.js
     vt = {"total": total, "slots": slots, "segments": {}, "words": t["words"]}
     for s in t["segments"]:
@@ -106,11 +112,11 @@ def main():
         start = max(0.1, g[0]["start"] - 0.06)
         nxt = groups[gi + 1][0]["start"] - 0.06 if gi + 1 < len(groups) else total
         end = min(nxt, g[-1]["end"] + 0.35)
-        spans = []
+        word_spans = []
         for w in g:
             cls = ' class="hl"' if w.get("hl") else ""
-            spans.append(f"<span{cls}>{html.escape(w['text'])}</span>")
-        parts.append(f'    <div class="cg" id="cap-{gi}">{" ".join(spans)}</div>')
+            word_spans.append(f"<span{cls}>{html.escape(w['text'])}</span>")
+        parts.append(f'    <div class="cg" id="cap-{gi}">{" ".join(word_spans)}</div>')
         tl.append(
             f'    tl.fromTo("#cap-{gi}", {{opacity: 0, y: 14, scale: 0.96}}, '
             f'{{opacity: 1, y: 0, scale: 1, duration: 0.12, ease: "power2.out"}}, {start:.3f});\n'
@@ -151,6 +157,9 @@ def main():
     doc = patch_element(doc, "voice", data_start=0, data_duration=round(t["duration"], 3))
     for sid, s in slots.items():
         doc = patch_element(doc, sid, data_start=s["start"], data_duration=round(s["end"] - s["start"], 3))
+    for host in spans:
+        doc = patch_element(doc, host, data_start=slots[host]["start"],
+                            data_duration=round(slots[host]["end"] - slots[host]["start"], 3))
     open(ip, "w", encoding="utf-8").write(doc)
 
     print(f"Gesamtlänge {total} s · {len(groups)} Untertitel-Gruppen")

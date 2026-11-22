@@ -1,0 +1,72 @@
+<!-- Szene 5 · Die Rettung: Überleben möglich bei Rückkompression innerhalb ~90 s. Rettung nach 84 s (fiktives Szenario). -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #re-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #re-flash { position: absolute; inset: 0; background: radial-gradient(60% 45% at 60% 55%, rgba(62, 214, 192, 0.55), rgba(62, 214, 192, 0)); opacity: 0; }
+    #re-saved { position: absolute; left: 0; right: 0; top: 760px; display: flex; justify-content: center; }
+    #re-saved div { font: 900 50px/1 "Inter", sans-serif; letter-spacing: 0.04em; color: #0b0b14; background: var(--teal);
+      padding: 18px 30px; border-radius: 18px; box-shadow: 0 0 50px rgba(62, 214, 192, 0.7); white-space: nowrap; }
+    #re-lbl { position: absolute; left: 560px; top: 880px; font: 900 28px/1 "Inter", sans-serif; letter-spacing: 0.1em; color: var(--amber); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="rettung" data-width="1080" data-height="1920">
+    <svg id="re-svg" viewBox="0 0 1080 1920">
+      <g id="re-station"></g>
+      <line id="re-tether" stroke="#FFB547" stroke-width="3" stroke-dasharray="8 8" />
+      <rect id="re-door" x="606" y="1014" width="60" height="0" rx="10" fill="#FFB547" />
+    </svg>
+    <div id="re-person" class="sim-actor ui"></div>
+    <div id="re-rescuer" class="sim-actor ui"></div>
+    <div id="re-lbl" class="ui">LUFTSCHLEUSE ▾</div>
+    <div id="re-flash"></div>
+    <div id="re-saved" class="ui"><div id="re-saved-c">GERETTET · NOCH 6 S</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("rettung");
+      const $ = (id) => document.getElementById(id);
+      $("re-station").innerHTML = VAC.station(600, 1060);
+      const DOOR = { x: 636, y: 1060 };
+      const p = VAC.person($("re-person"));
+      const rh = $("re-rescuer");
+      const r = VAC.person(rh, SIM.C.amber);
+      rh.querySelector("svg").insertAdjacentHTML("beforeend", '<circle cx="30" cy="13" r="17" fill="none" stroke="#FFE2A8" stroke-width="3" opacity=".9"/>');
+      const tGo = VT.seg("r1") + 0.3, tGrab = VT.seg("r2", "end"), tSave = VT.word("r3", 8);
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t;
+        const P0 = { x: 250 + 10 * t, y: 1080 + 12 * Math.sin(t * 0.7) };
+        let rx, ry, px = P0.x, py = P0.y;
+        if (t < tGo) { rx = DOOR.x; ry = DOOR.y; }
+        else if (t < tGrab) { const k = SIM.ease.inOut((t - tGo) / (tGrab - tGo)); rx = SIM.lerp(DOOR.x, P0.x + 70, k); ry = SIM.lerp(DOOR.y, P0.y - 20, k); }
+        else {
+          const k = SIM.ease.inOut(SIM.clamp((t - tGrab) / (tSave - 0.15 - tGrab), 0, 1));
+          const gx = P0.x + 70, gy = P0.y - 20;
+          rx = SIM.lerp(gx, DOOR.x, k); ry = SIM.lerp(gy, DOOR.y, k);
+          px = rx - 70; py = ry + 20;
+        }
+        const inside = t >= tSave - 0.15;
+        p.set(px, py, 1.25, -15 + 18 * t, t);
+        r.set(rx, ry, 1.15, 10 * Math.sin(t), t);
+        $("re-person").style.opacity = inside ? 0 : 1;
+        rh.style.opacity = t < tGo - 0.2 || inside ? 0 : 1;
+        const tth = $("re-tether");
+        tth.setAttribute("x1", DOOR.x); tth.setAttribute("y1", DOOR.y);
+        tth.setAttribute("x2", rx); tth.setAttribute("y2", ry);
+        tth.setAttribute("opacity", t >= tGo && !inside ? 0.9 : 0);
+        const dk = SIM.clamp((t - tSave + 0.15) / 0.2, 0, 1);
+        $("re-door").setAttribute("height", 92 * dk);
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#re-lbl", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.2);
+      tl.to("#re-lbl", { opacity: 0, duration: 0.3 }, tGo + 1.5);
+      tl.fromTo("#re-flash", { opacity: 0 }, { opacity: 1, duration: 0.1 }, tSave);
+      tl.to("#re-flash", { opacity: 0.3, duration: 0.9 }, tSave + 0.1);
+      tl.fromTo("#re-saved-c", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.out" }, tSave + 0.05);
+      SIM.shake(tl, "#re-svg", tSave, 14, 6);
+      draw();
+      window.__timelines["rettung"] = tl;
+    })();
+  </script>
+</template>

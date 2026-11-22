@@ -1,0 +1,263 @@
+{
+ "title": "Wie lange überlebst du ohne Raumanzug im All?",
+ "speed": 0.93,
+ "fx": "dramatic",
+ "lead_in": 0.15,
+ "segments": [
+  {
+   "id": "h1",
+   "scene": "hook",
+   "text": "Du treibst ohne Raumanzug im *All.*",
+   "pause": 0.2
+  },
+  {
+   "id": "h2",
+   "scene": "hook",
+   "text": "Du hast etwa *neunzig* *Sekunden.*",
+   "speed": 1.05,
+   "pause": 0.25
+  },
+  {
+   "id": "h3",
+   "scene": "hook",
+   "text": "Und ein einziger Fehler tötet dich *sofort.*",
+   "speed": 1.08,
+   "pause": 0.55
+  },
+  {
+   "id": "f1",
+   "scene": "lunge",
+   "text": "Fast jeder würde instinktiv die *Luft* *anhalten.*",
+   "pause": 0.25
+  },
+  {
+   "id": "f2",
+   "scene": "lunge",
+   "text": "Genau das wäre *tödlich.*",
+   "speed": 1.1,
+   "pause": 0.2
+  },
+  {
+   "id": "f3",
+   "scene": "lunge",
+   "text": "Die Luft in deiner Lunge dehnt sich aus und *zerreißt* sie.",
+   "pause": 0.25
+  },
+  {
+   "id": "f4",
+   "scene": "lunge",
+   "text": "Also: sofort *ausatmen.*",
+   "speed": 1.08,
+   "pause": 0.5
+  },
+  {
+   "id": "o1",
+   "scene": "ohnmacht",
+   "text": "Sekunde *zehn.* Dein Blut verliert den Sauerstoff.",
+   "pause": 0.2
+  },
+  {
+   "id": "o2",
+   "scene": "ohnmacht",
+   "text": "Die Spucke auf deiner Zunge beginnt zu *kochen.*",
+   "pause": 0.25
+  },
+  {
+   "id": "o3",
+   "scene": "ohnmacht",
+   "text": "Nach etwa *fünfzehn* Sekunden: alles wird *schwarz.*",
+   "speed": 1.05,
+   "pause": 0.5
+  },
+  {
+   "id": "m1",
+   "scene": "mythos",
+   "text": "Aber du *explodierst* nicht. Und du *erfrierst* auch nicht sofort.",
+   "pause": 0.2
+  },
+  {
+   "id": "m2",
+   "scene": "mythos",
+   "text": "Deine Haut hält dich zusammen. Du schwillst nur an.",
+   "pause": 0.45
+  },
+  {
+   "id": "r1",
+   "scene": "rettung",
+   "text": "Jetzt zählt jede Sekunde. Dein Herz schlägt *noch.*",
+   "pause": 0.2
+  },
+  {
+   "id": "r2",
+   "scene": "rettung",
+   "text": "Bekommst du innerhalb von etwa *neunzig* Sekunden wieder Luftdruck, kannst du *überleben.*",
+   "pause": 0.25
+  },
+  {
+   "id": "r3",
+   "scene": "rettung",
+   "text": "In unserer Simulation schließt sich die Luftschleuse nach *vierundachtzig* Sekunden.",
+   "pause": 0.3
+  },
+  {
+   "id": "r4",
+   "scene": "rettung",
+   "text": "Sechs Sekunden vor Schluss.",
+   "speed": 1.1,
+   "pause": 0.55
+  },
+  {
+   "id": "p1",
+   "scene": "punch",
+   "text": "Also merk dir: Nicht Luft anhalten. Ausatmen.",
+   "caption": false,
+   "speed": 1.05,
+   "pause": 0.5
+  },
+  {
+   "id": "x1",
+   "scene": "outro",
+   "text": "Was soll ich als Nächstes simulieren? Schreib es in die Kommentare.",
+   "caption": false,
+   "pause": 0.6
+  }
+ ],
+ "sfx": [
+  {
+   "sound": "drone",
+   "at": "start",
+   "until": "end",
+   "vol": 0.1
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "h3",
+    6
+   ],
+   "offset": -0.02,
+   "vol": 0.9
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "f1"
+   ],
+   "offset": -0.45,
+   "vol": 0.5
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "f3",
+    9
+   ],
+   "vol": 0.8,
+   "dur": 1.2
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "o1"
+   ],
+   "offset": -0.45,
+   "vol": 0.5
+  },
+  {
+   "sound": "heartbeat",
+   "at": [
+    "o1"
+   ],
+   "until": [
+    "o3",
+    6,
+    "end"
+   ],
+   "bpm": [
+    95,
+    55
+   ],
+   "vol": 0.75
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "m1"
+   ],
+   "offset": -0.45,
+   "vol": 0.5
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "m1",
+    2
+   ],
+   "vol": 0.55,
+   "dur": 1.0
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "m1",
+    6
+   ],
+   "vol": 0.55,
+   "dur": 1.0
+  },
+  {
+   "sound": "whoosh",
+   "at": [
+    "r1"
+   ],
+   "offset": -0.45,
+   "vol": 0.5
+  },
+  {
+   "sound": "heartbeat",
+   "at": [
+    "r1"
+   ],
+   "until": [
+    "r3",
+    8
+   ],
+   "bpm": [
+    60,
+    150
+   ],
+   "vol": 0.85
+  },
+  {
+   "sound": "riser",
+   "until": [
+    "r3",
+    8
+   ],
+   "dur": 3.0,
+   "vol": 0.55
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "r3",
+    8
+   ],
+   "vol": 0.9
+  },
+  {
+   "sound": "impact",
+   "at": [
+    "p1",
+    6
+   ],
+   "vol": 0.9
+  }
+ ],
+ "spans": {
+  "hud": [
+   "lunge",
+   "rettung"
+  ]
+ }
+}

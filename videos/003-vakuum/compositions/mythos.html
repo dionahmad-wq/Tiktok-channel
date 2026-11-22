@@ -1,0 +1,43 @@
+<!-- Szene 4 · Mythen: Kein Explodieren (Haut hält), kein Sofort-Erfrieren (Vakuum isoliert), Schwellung durch Ebullismus. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #my-stage { position: absolute; inset: 0; }
+    .my-card { position: absolute; left: 150px; width: 780px; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 28px; border-radius: 22px; background: rgba(17, 16, 32, 0.9); border: 2px solid rgba(255, 90, 78, 0.5); }
+    .my-card .q { font: 900 38px/1 "Inter", sans-serif; color: var(--ink); white-space: nowrap; }
+    .my-card .x { font: 900 38px/1 "Inter", sans-serif; color: var(--coral); white-space: nowrap; }
+    #my-c1 { top: 760px; } #my-c2 { top: 870px; }
+    #my-swell { position: absolute; left: 650px; top: 1150px; font: 900 30px/1 "Inter", sans-serif; letter-spacing: 0.1em; color: var(--teal); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="mythos" data-width="1080" data-height="1920">
+    <div id="my-stage">
+      <div id="my-person" class="sim-actor ui"></div>
+      <div id="my-c1" class="my-card ui"><div class="q">EXPLODIEREN?</div><div class="x">✗ FALSCH</div></div>
+      <div id="my-c2" class="my-card ui"><div class="q">SOFORT ERFRIEREN?</div><div class="x">✗ FALSCH</div></div>
+      <div id="my-swell" class="ui">◂ SCHWILLT AN</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("mythos");
+      const p = VAC.person(document.getElementById("my-person"));
+      const t1 = VT.word("m1", 2), t2 = VT.word("m1", 6), tSw = VT.word("m2", 6);
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t;
+        const sw = 1 + 0.16 * SIM.clamp((t - tSw + 0.6) / 1.2, 0, 1);
+        p.set(500, 1250 + 8 * Math.sin(t), 1.6 * sw, 8 + 10 * t, t);
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#my-c1", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.out" }, t1 - 0.05);
+      tl.fromTo("#my-c2", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.out" }, t2 - 0.05);
+      SIM.shake(tl, "#my-stage", t1, 12, 6);
+      SIM.shake(tl, "#my-stage", t2, 12, 6);
+      tl.fromTo("#my-swell", { opacity: 0, x: 14 }, { opacity: 1, x: 0, duration: 0.3 }, tSw - 0.4);
+      draw();
+      window.__timelines["mythos"] = tl;
+    })();
+  </script>
+</template>

@@ -27,6 +27,23 @@ Ein gutes Thema hat **alle** diese Eigenschaften:
 
 Wenn der Nutzer kein Thema nennt: wähle selbst und sag in einem Satz, warum.
 
+## 1b. Spannung – Pflicht für jedes Video
+Jedes Video erfüllt **alle** Punkte (Vorbild: `videos/003-vakuum/`):
+1. **Hook in 3 Sätzen (≤ 6 s):** *Du* + Lebensgefahr/Extrem + **Zeitlimit** + **offene Schleife**
+   („Du hast 90 Sekunden. Und ein einziger Fehler tötet dich sofort.“). Bild 0 zeigt die Frage + die Zahl.
+2. **Tickende Uhr:** ein durchgehender Timer/Countdown im HUD (eigene Komposition über alle Szenen per
+   `"spans": {"hud": ["szeneA","szeneB"]}`), dazu ein schrumpfender Balken („Überlebensfenster“, „Abstand“).
+3. **Zeitlupe / Zeitraffer** sichtbar machen (Badge `◀◀ ZEITLUPE` / `⏩ ZEITRAFFER`) – Zeit wird zum Drama.
+4. **Re-Hook alle 8–12 s:** neue Phase mit Phasen-Pill, Wendung oder Mythos-Brecher („Aber du explodierst nicht.“).
+5. **Fehler/Gefahr zeigen:** rote Alarm-Vignette (pulsiert mit `SIM.pulse`), Warn-Chip, `SIM.shake` bei Einschlägen.
+6. **Knappes Finale:** Auflösung in letzter Sekunde, Restzeit nennen („Sechs Sekunden vor Schluss.“).
+7. **Pointe = Handlung/Erkenntnis** in 1–2 Wörtern, riesig, mit Impact („AUSATMEN.“).
+8. **Länge 45–60 s.** Lieber kürzer und dichter: alle 2–3 s eine neue visuelle Information.
+9. **Sound ist Pflicht** (`sfx` in script.json, siehe Schritt 4b): Drone-Bett, Whoosh vor jedem
+   Szenenwechsel, Impact auf Schlüsselwörtern, Herzschlag (schneller werdend) in kritischen Phasen,
+   Riser in die Auflösung.
+10. **Stimme:** `"fx": "dramatic"`, kurze Sätze, `speed` 1.05–1.2 auf Schlüsselsätzen, `pause` 0.5 vor Wendungen.
+
 ## 2. Fakten & Rechnung
 Jede Zahl im Video muss stimmen. Rechne die Simulation selbst nach (Physik-Formeln, offizielle Werte)
 und runde ehrlich („rund“, „knapp“, „bis zu“). Schreibe die Rechnung als Kommentar oben in die
@@ -64,6 +81,17 @@ python3 $S/tts_de.py script.json assets   # → assets/voice.wav + voice-timing.
 python3 $S/sync_timing.py .               # → assets/timing.js, compositions/captions.html, Host-Zeiten in index.html
 ```
 `sync_timing.py` nach **jeder** Skriptänderung erneut laufen lassen; Szenen-Längen folgen der Stimme.
+
+### 4b. Sounddesign
+In `index.html` im `#root` die Marker `<!-- SFX:BEGIN -->` / `<!-- SFX:END -->` setzen, in script.json
+eine `"sfx"`-Liste anlegen (Format und Klänge: Kopf von `scripts/sfx.py`), dann:
+```bash
+python3 $S/sfx.py .        # erzeugt assets/sfx/*.wav und setzt die <audio>-Tags
+```
+Pegel-Richtwerte: Stimme `data-volume` 1.4, Drone 0.1 (≈ 12 dB unter Stimme), Herzschlag 0.75–0.85,
+Impact 0.8–0.9, Whoosh 0.5, Riser 0.55. Nach dem Rendern messen (Ziel −14 LUFS, Spitze ≤ −1 dB) und in
+einer Sprechpause prüfen, dass das Bett leiser ist als die Stimme. Die Klänge sind synthetisch und nur
+gemessen, nicht gehört – das dem Nutzer so sagen.
 
 ## 5. Szenen schreiben (`compositions/<szene>.html`)
 Muster (siehe `videos/001-tsunami/compositions/race.html`):

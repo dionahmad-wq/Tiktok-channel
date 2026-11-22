@@ -1,0 +1,73 @@
+<!-- Szene 2 · Der Fehler: Luft anhalten → Lungenüberdehnung (pulmonales Barotrauma). Ausatmen rettet. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #lu-stage { position: absolute; inset: 0; }
+    #lu-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    .lu-chip { position: absolute; left: 0; right: 0; display: flex; justify-content: center; }
+    .lu-chip div { font: 900 40px/1 "Inter", sans-serif; letter-spacing: 0.05em; padding: 14px 24px; border-radius: 14px; white-space: nowrap; }
+    #lu-bad { top: 1260px; } #lu-bad div { color: #fff; background: var(--coral); box-shadow: 0 0 40px rgba(255, 90, 78, 0.6); }
+    #lu-good { top: 1260px; } #lu-good div { color: #0b0b14; background: var(--teal); box-shadow: 0 0 40px rgba(62, 214, 192, 0.6); }
+  </style>
+  <div id="root" data-composition-id="lunge" data-width="1080" data-height="1920">
+    <div id="lu-stage">
+      <svg id="lu-svg" viewBox="0 0 1080 1920">
+        <g id="lu-lungs">
+          <path d="M540 760 L540 880" stroke="#C9C3E0" stroke-width="22" stroke-linecap="round" fill="none" />
+          <path d="M540 870 Q500 890 470 920 M540 870 Q580 890 610 920" stroke="#C9C3E0" stroke-width="14" stroke-linecap="round" fill="none" />
+          <path id="lu-l" d="M505 900 C420 880 360 960 352 1060 C344 1160 380 1215 440 1215 C490 1215 512 1180 515 1120 L520 940 Z" fill="#FF8C8C" />
+          <path id="lu-r" d="M575 900 C660 880 720 960 728 1060 C736 1160 700 1215 640 1215 C590 1215 568 1180 565 1120 L560 940 Z" fill="#FF8C8C" />
+          <g id="lu-warn" opacity="0" fill="none" stroke="#FF5A4E" stroke-width="7" style="filter: drop-shadow(0 0 14px rgba(255,90,78,.9))">
+            <path d="M505 900 C420 880 360 960 352 1060 C344 1160 380 1215 440 1215 C490 1215 512 1180 515 1120 L520 940 Z" />
+            <path d="M575 900 C660 880 720 960 728 1060 C736 1160 700 1215 640 1215 C590 1215 568 1180 565 1120 L560 940 Z" />
+          </g>
+          <g id="lu-cracks" opacity="0" stroke="#2A0710" stroke-width="5" fill="none" stroke-linecap="round">
+            <path d="M400 990 L430 1030 L410 1070 L445 1110" /><path d="M690 1000 L660 1040 L685 1085 L650 1130" />
+          </g>
+          <g id="lu-ok" opacity="0" fill="none" stroke="#3ED6C0" stroke-width="7" style="filter: drop-shadow(0 0 14px rgba(62,214,192,.9))">
+            <path d="M505 900 C420 880 360 960 352 1060 C344 1160 380 1215 440 1215 C490 1215 512 1180 515 1120 L520 940 Z" />
+            <path d="M575 900 C660 880 720 960 728 1060 C736 1160 700 1215 640 1215 C590 1215 568 1180 565 1120 L560 940 Z" />
+          </g>
+        </g>
+        <g id="lu-air"></g>
+      </svg>
+    </div>
+    <div id="lu-bad" class="lu-chip ui"><div id="lu-bad-c">LUFT ANHALTEN = TÖDLICH</div></div>
+    <div id="lu-good" class="lu-chip ui"><div id="lu-good-c">AUSATMEN ✓</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("lunge");
+      const tHold = VT.word("f1", 5), tDead = VT.word("f2", 3), tRip = VT.word("f3", 9), tOut = VT.word("f4", 2);
+      const air = [];
+      for (let i = 0; i < 14; i++) air.push(SIM.el("circle", { cx: 540, cy: 760, r: 6 + (i % 4) * 3, fill: "#DDEBFF" }, document.getElementById("lu-air")));
+      const S = { t: 0 };
+      function draw() {
+        const k = SIM.clamp((S.t - tOut) / 1.4, 0, 1);
+        air.forEach((c, i) => {
+          const q = (k * 1.6 + i / 14) % 1;
+          c.setAttribute("cy", 760 - q * 220);
+          c.setAttribute("cx", 540 + Math.sin(i * 2.3) * 60 * q);
+          c.setAttribute("opacity", k > 0 && k < 1 ? 0.8 * (1 - q) : 0);
+        });
+      }
+      const O = { transformOrigin: "540px 1050px" };
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#lu-lungs", { scale: 0.92, ...O }, { scale: 1.05, duration: 0.9, ease: "sine.inOut" }, 0);
+      tl.to("#lu-lungs", { scale: 1.26, duration: 2.2, ease: "power1.in", ...O }, tHold - 0.4);
+      tl.fromTo("#lu-warn", { opacity: 0 }, { opacity: 1, duration: 0.2 }, tDead - 0.1);
+      tl.fromTo("#lu-bad-c", { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.out" }, tDead - 0.05);
+      tl.to("#lu-lungs", { scale: 1.36, duration: 0.15, ease: "power4.out", ...O }, tRip);
+      tl.fromTo("#lu-cracks", { opacity: 0 }, { opacity: 1, duration: 0.06 }, tRip);
+      SIM.shake(tl, "#lu-stage", tRip, 24);
+      tl.to("#lu-bad-c", { opacity: 0, duration: 0.2 }, tOut - 0.3);
+      tl.to("#lu-lungs", { scale: 0.86, duration: 1.2, ease: "power2.out", ...O }, tOut);
+      tl.to(["#lu-cracks", "#lu-warn"], { opacity: 0, duration: 0.4 }, tOut);
+      tl.fromTo("#lu-ok", { opacity: 0 }, { opacity: 1, duration: 0.4 }, tOut + 0.2);
+      tl.fromTo("#lu-good-c", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, tOut);
+      draw();
+      window.__timelines["lunge"] = tl;
+    })();
+  </script>
+</template>

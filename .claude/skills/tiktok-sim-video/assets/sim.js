@@ -246,5 +246,20 @@
     });
   };
 
+  // ---------- Spannung ----------
+  /** Kamera-Wackeln: fügt der Timeline n kurze Stöße auf `target` bei `at` hinzu (deterministisch). */
+  SIM.shake = (tl, target, at, amp = 18, n = 9) => {
+    for (let i = 0; i < n; i++) {
+      const k = 1 - i / n;
+      tl.to(target, { x: (i % 2 ? 1 : -1) * amp * k, y: ((i % 3) - 1) * amp * 0.6 * k, duration: 0.035, ease: "none" }, at + i * 0.035);
+    }
+    tl.to(target, { x: 0, y: 0, duration: 0.05, ease: "none" }, at + n * 0.035);
+  };
+  /** Herzschlag-Puls 0..1 für Zeit t bei bpm (für rote Vignetten etc.). */
+  SIM.pulse = (t, bpm) => {
+    const ph = (t * bpm) / 60 % 1;
+    return Math.max(Math.exp(-ph * 9), 0.6 * Math.exp(-Math.abs(ph - 0.28) * 14));
+  };
+
   window.SIM = SIM;
 })();

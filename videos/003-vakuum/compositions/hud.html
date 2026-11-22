@@ -1,0 +1,106 @@
+<!-- Durchgehendes HUD (Lunge → Rettung): Vakuum-Uhr, Bewusstsein, Überlebensfenster, Status, Alarm-Vignette.
+     Quellen: Bewusstlosigkeit nach ~15 s (NASA), Überleben bei Rückkompression < ~90 s (Tierversuche, NASA). -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #hud-alarm { position: absolute; inset: 0; opacity: 0;
+      background: radial-gradient(75% 55% at 50% 55%, rgba(255, 40, 40, 0) 40%, rgba(255, 40, 40, 0.55) 100%); }
+    #hud-card { left: 90px; width: 900px; top: 396px; padding: 24px 34px 26px; }
+    #hud-top { display: flex; justify-content: space-between; align-items: flex-end; }
+    #hud-top .blk { display: flex; flex-direction: column; gap: 10px; }
+    #hud-top .blk.r { align-items: flex-end; }
+    #hud-clock { font: 900 92px/0.9 "Inter", sans-serif; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    #hud-status { font: 900 28px/1 "Inter", sans-serif; letter-spacing: 0.08em; padding: 12px 16px; border-radius: 12px; white-space: nowrap;
+      background: rgba(255, 90, 78, 0.16); border: 2px solid rgba(255, 90, 78, 0.6); color: var(--coral); }
+    #hud-status.ok { background: rgba(62, 214, 192, 0.14); border-color: rgba(62, 214, 192, 0.6); color: var(--teal); }
+    .hud-bar { margin-top: 18px; }
+    .hud-bar .lbl { display: flex; justify-content: space-between; margin-bottom: 10px; }
+    .hud-bar .v { font: 900 28px/1 "Inter", sans-serif; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .hud-bar .trk { height: 16px; border-radius: 8px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+    .hud-bar .fill { height: 100%; width: 100%; border-radius: 8px; transform-origin: 0 50%; }
+    #hud-mode { position: absolute; right: 28px; top: -24px; }
+  </style>
+  <div id="root" data-composition-id="hud" data-width="1080" data-height="1920">
+    <div id="hud-alarm"></div>
+    <div class="ui-head ui">
+      <div class="ui-pill" id="hud-pill">Sekunde 0 · <em>Der Fehler</em></div>
+      <div class="ui-segs"><i id="hud-s1"></i><i id="hud-s2"></i><i id="hud-s3"></i><i id="hud-s4"></i></div>
+    </div>
+    <div id="hud-card" class="ui-card ui">
+      <div id="hud-mode" class="ui-ff">◀◀ ZEITLUPE</div>
+      <div id="hud-top">
+        <div class="blk"><div class="ui-label">Zeit im Vakuum</div><div id="hud-clock">0:00</div></div>
+        <div class="blk r"><div class="ui-label">Status</div><div id="hud-status">LUNGE: GEFAHR</div></div>
+      </div>
+      <div class="hud-bar"><div class="lbl"><div class="ui-label">Bewusstsein</div><div class="v c-teal" id="hud-v-awake">100 %</div></div>
+        <div class="trk"><div class="fill" id="hud-f-awake" style="background: linear-gradient(90deg, #2BB3A0, #3ED6C0)"></div></div></div>
+      <div class="hud-bar"><div class="lbl"><div class="ui-label">Überlebensfenster</div><div class="v c-amber" id="hud-v-win">noch 90 s</div></div>
+        <div class="trk"><div class="fill" id="hud-f-win" style="background: linear-gradient(90deg, #FF5A4E, #FFB547)"></div></div></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("hud"), G0 = VT.slots.hud.start;
+      const $ = (id) => document.getElementById(id);
+      const sl = VT.slots;
+      const phases = [
+        ["lunge", "Sekunde 0 · <em>Der Fehler</em>"],
+        ["ohnmacht", "Phase 2 · <em>Der Blackout</em>"],
+        ["mythos", "Phase 3 · <em>Die Mythen</em>"],
+        ["rettung", "Phase 4 · <em>Die Rettung</em>"],
+      ];
+      const tExhale = VAC.g("f4", 2), tSave = VAC.g("r3", 8);
+      const S = { t: 0 };
+      let lastPhase = -1;
+      function draw() {
+        const gt = G0 + S.t, T = VAC.T(gt);
+        const ph = phases.findIndex(([id]) => gt >= sl[id].start && gt < sl[id].end + 0.001);
+        const p = ph < 0 ? 3 : ph;
+        if (p !== lastPhase) {
+          $("hud-pill").innerHTML = phases[p][1];
+          ["hud-s1", "hud-s2", "hud-s3", "hud-s4"].forEach((id, i) => $(id).className = i <= p ? "on" : "");
+          lastPhase = p;
+        }
+        $("hud-clock").textContent = T < 2 ? SIM.fmtDec(T, 1) + " s" : SIM.clock(T);
+        const saved = gt >= tSave;
+        $("hud-clock").style.color = saved ? "var(--teal)" : T > 60 ? "var(--coral)" : "";
+        const aw = VAC.awake(T);
+        $("hud-f-awake").style.transform = `scaleX(${aw})`;
+        $("hud-v-awake").textContent = Math.round(aw * 100) + " %";
+        const win = Math.max(0, VAC.WINDOW - T);
+        $("hud-f-win").style.transform = `scaleX(${win / VAC.WINDOW})`;
+        $("hud-v-win").textContent = saved ? "6 s ÜBRIG" : "noch " + Math.ceil(win) + " s";
+        $("hud-v-win").style.color = win < 20 && !saved ? "var(--coral)" : "";
+
+        let st = "LUNGE: GEFAHR", ok = false;
+        if (gt >= tExhale) { st = "AUSGEATMET ✓"; ok = true; }
+        if (p >= 1) { st = T < 15 ? "SAUERSTOFF SINKT" : "BEWUSSTLOS"; ok = false; }
+        if (p >= 2) st = "BEWUSSTLOS · HERZ SCHLÄGT";
+        if (p >= 3) st = saved ? "DRUCK DA ✓ GERETTET" : "RETTUNG UNTERWEGS";
+        if (saved) ok = true;
+        $("hud-status").textContent = st;
+        $("hud-status").className = ok ? "ok" : "";
+
+        const mode = p === 0 ? "◀◀ ZEITLUPE" : (p === 2 || (p === 3 && !saved)) ? "⏩ ZEITRAFFER" : "";
+        $("hud-mode").textContent = mode;
+        $("hud-mode").style.opacity = mode ? 1 : 0;
+
+        // Alarm-Vignette: pulsiert mit dem Herzschlag (Rettung) bzw. Warnung (Lunge)
+        let a = 0;
+        if (p === 0 && gt < tExhale) a = 0.35 + 0.35 * SIM.pulse(S.t, 70);
+        if (p === 3 && !saved) {
+          const k = SIM.clamp((gt - sl.rettung.start) / (tSave - sl.rettung.start), 0, 1);
+          a = (0.2 + 0.6 * k) * SIM.pulse(gt, 60 + 90 * k);
+        }
+        $("hud-alarm").style.opacity = a;
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#hud-card", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 0.05);
+      tl.fromTo("#hud-clock", { scale: 1 }, { scale: 1.18, duration: 0.15, yoyo: true, repeat: 1 }, VAC.g("o1", 1) - G0);
+      tl.fromTo("#hud-clock", { scale: 1 }, { scale: 1.25, duration: 0.18, yoyo: true, repeat: 1 }, tSave - G0);
+      draw();
+      window.__timelines["hud"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,48 @@
+<!-- Szene 1 · Hook: Du + Lebensgefahr + Zeitlimit + offene Schleife („ein Fehler tötet dich sofort“) -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #hk-stage { position: absolute; inset: 0; }
+    #hk-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #hk-card { left: 90px; width: 900px; top: 330px; padding: 32px 30px 38px; text-align: center; }
+    #hk-l1 { font: 900 64px/1.04 "Inter", sans-serif; color: var(--ink); letter-spacing: -0.01em; }
+    #hk-l2 { font: 900 112px/1 "Inter", sans-serif; color: var(--amber); margin-top: 14px; letter-spacing: -0.03em;
+      text-shadow: 0 0 36px rgba(255, 181, 71, 0.55); }
+    #hk-warn { position: absolute; left: 0; right: 0; top: 720px; display: flex; justify-content: center; }
+    #hk-warn div { font: 900 44px/1 "Inter", sans-serif; letter-spacing: 0.06em; color: #fff; background: var(--coral);
+      padding: 16px 26px; border-radius: 16px; box-shadow: 0 0 50px rgba(255, 90, 78, 0.7); white-space: nowrap; }
+    #hk-red { position: absolute; inset: 0; opacity: 0;
+      background: radial-gradient(75% 55% at 50% 55%, rgba(255, 40, 40, 0) 35%, rgba(255, 40, 40, 0.6) 100%); }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hk-stage">
+      <svg id="hk-svg" viewBox="0 0 1080 1920"><g id="hk-station"></g></svg>
+      <div id="hk-person" class="sim-actor ui"></div>
+    </div>
+    <div id="hk-red"></div>
+    <div id="hk-card" class="ui-card ui">
+      <div id="hk-l1">OHNE RAUMANZUG<br />IM ALL. DU HAST</div>
+      <div id="hk-l2">90 SEKUNDEN.</div>
+    </div>
+    <div id="hk-warn" class="ui"><div id="hk-warn-chip">1 FEHLER = SOFORT TOT</div></div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("hook");
+      document.getElementById("hk-station").innerHTML = VAC.station(720, 1060);
+      const p = VAC.person(document.getElementById("hk-person"));
+      const tKill = VT.word("h3", 6);
+      const S = { t: 0 };
+      const draw = () => p.set(430 + 14 * S.t, 1060 - 6 * S.t, 1.6, -20 + 22 * S.t, S.t);
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#hk-l2", { scale: 1 }, { scale: 1.1, duration: 0.16, yoyo: true, repeat: 1, ease: "power2.out" }, VT.word("h2", 3));
+      tl.fromTo("#hk-warn-chip", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power4.out" }, tKill - 0.02);
+      tl.fromTo("#hk-red", { opacity: 0 }, { opacity: 1, duration: 0.08 }, tKill);
+      tl.to("#hk-red", { opacity: 0.45, duration: 0.8 }, tKill + 0.1);
+      SIM.shake(tl, "#hk-stage", tKill, 22);
+      draw();
+      window.__timelines["hook"] = tl;
+    })();
+  </script>
+</template>

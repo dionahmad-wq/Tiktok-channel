@@ -1,0 +1,52 @@
+<!-- Szene 3 · Blackout: ~9–12 s sauerstoffarmes Blut erreicht das Gehirn, Bewusstlosigkeit nach ~15 s (NASA).
+     Speichel „kocht“ (Ebullismus) – Augenzeugenbericht Jim LeBlanc, NASA-Vakuumkammer 1966. -->
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #oh-person { }
+    #oh-tunnel { position: absolute; inset: 0;
+      background: radial-gradient(42% 30% at 50% 58%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.92) 100%); opacity: 0; }
+    #oh-black { position: absolute; inset: 0; background: #000; opacity: 0; }
+    #oh-svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+    #oh-lbl { position: absolute; left: 640px; top: 830px; font: 900 30px/1 "Inter", sans-serif; letter-spacing: 0.1em; color: var(--amber); white-space: nowrap; }
+  </style>
+  <div id="root" data-composition-id="ohnmacht" data-width="1080" data-height="1920">
+    <div id="oh-person" class="sim-actor ui"></div>
+    <svg id="oh-svg" viewBox="0 0 1080 1920"><g id="oh-bub"></g></svg>
+    <div id="oh-tunnel"></div>
+    <div id="oh-black"></div>
+    <div id="oh-lbl" class="ui">◂ SPEICHEL KOCHT</div>
+  </div>
+  <script>
+    (function () {
+      const L = VT.len("ohnmacht"), G0 = VT.slots.ohnmacht.start;
+      const $ = (id) => document.getElementById(id);
+      const p = VAC.person($("oh-person"));
+      const tSpit = VT.word("o2", 7), tBlack = VT.word("o3", 6);
+      const bub = [];
+      for (let i = 0; i < 12; i++) bub.push(SIM.el("circle", { r: 4 + (i % 3) * 3, fill: "none", stroke: "#DDEBFF", "stroke-width": 2.5 }, $("oh-bub")));
+      const S = { t: 0 };
+      function draw() {
+        const t = S.t, T = VAC.T(G0 + t);
+        const s = 2.6, x = 540, y = 1150 + 10 * Math.sin(t * 0.8), rot = -6 + 3 * Math.sin(t * 0.6);
+        p.set(x, y, s, rot, t);
+        const hx = x + 4, hy = y + (13 - 50) * s; // Mund nahe Kopf
+        const on = SIM.clamp((t - tSpit + 1.2) / 0.5, 0, 1);
+        bub.forEach((b, i) => {
+          const q = (t * 0.9 + i / 12) % 1;
+          b.setAttribute("cx", hx + 30 + Math.sin(i * 1.9) * 20 + q * 30);
+          b.setAttribute("cy", hy + 10 - q * 70);
+          b.setAttribute("opacity", on * (1 - q));
+        });
+        $("oh-tunnel").style.opacity = 1 - VAC.awake(T);
+      }
+      const tl = gsap.timeline({ paused: true });
+      tl.to(S, { t: L, duration: L, ease: "none", onUpdate: draw }, 0);
+      tl.fromTo("#oh-lbl", { opacity: 0, x: 16 }, { opacity: 1, x: 0, duration: 0.3 }, tSpit - 1.0);
+      tl.to("#oh-lbl", { opacity: 0, duration: 0.3 }, tBlack - 1.2);
+      tl.fromTo("#oh-black", { opacity: 0 }, { opacity: 0.85, duration: 0.5, ease: "power2.in" }, tBlack - 0.3);
+      draw();
+      window.__timelines["ohnmacht"] = tl;
+    })();
+  </script>
+</template>
